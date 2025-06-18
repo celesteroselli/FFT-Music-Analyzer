@@ -4,52 +4,43 @@ import numpy as np
 import math
 from scipy.integrate import quad
 from pydub import AudioSegment
+import cmath
 
-maxfreq = 800
-
-# sound = AudioSegment.from_file('sound1.wav')
-# sound = sound.set_frame_rate(maxfreq)
-# samples = sound.get_array_of_samples()
-# arraysamples = np.array(samples)
-# print(arraysamples.size)
-
-global f
-f = 0.1
+duration = 10 #duration time that the wave should go for
+maxfreq = 50 #max frequency. i.e., how far does the graph over frequency go
 
 def wave(x):
-    return (math.cos(2*math.pi*x) + math.cos(2*math.pi*x*2))
+    return (math.cos(2*math.pi*x*30) + math.cos(2*math.pi*x*20))
 
-def circle(x):
+def circle(x, f):
     term = f * 2 * math.pi
     z = complex(math.cos(term*x), math.sin(term*x))
     return z
 
-flist = np.linspace(0, 2*math.pi, 200)
+def integrate(f):
+    #integrating the fourier function over the entire duration of the wave
+    return sp.integrate.quad(lambda x: wave(x) * cmath.exp(-2j * math.pi * f * x), 0, duration, limit=1000, complex_func=True)[0]
 
-def integrate():
-    #goes through a full circle and integrates the fourier curve
-    return sp.integrate.quad(fourier, 0, 2*math.pi, complex_func=True)
-
-def fourier(x):
+def fourier(x, f):
     #returns a complex number for where the point is
-    #return circle(x)*arraysamples[int(x)]
-    return circle(x)*wave(x)
+    return circle(x, f)*wave(x)
 
 fig, ax = plt.subplots()
 
 x = []
 y = []
 
-for i in flist:
-    #setting 
-    f = i
-    x.append(f)
-    y.append(integrate()[0])
+freqdistance = np.linspace(0, maxfreq, 2000)
+
+for i in freqdistance:
+    x.append(i)
+    y.append(integrate(i))
     #y.append(wave(f))
 
 ax.plot(x, y)
 plt.show()
 
+#there should be peaks at around 2 and 4
 peaks = []
 
 average = (np.average(y)).real
@@ -64,7 +55,7 @@ while not complete:
     index = y.index(ymax)
 
     #IF it's above 1 above the average, then get freq from index of x, and add
-    if (ymax > average*2):
+    if (ymax > average*10):
         freq = x[index]
         peaks.append(freq)
 
@@ -82,4 +73,3 @@ while not complete:
         complete = True
 
 print(peaks)
-
