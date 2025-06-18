@@ -1,10 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from pydub import AudioSegment
+
+sound = AudioSegment.from_file('sound2.wav')
+sound = sound.set_frame_rate(2000)
+audsamples = sound.get_array_of_samples()
+samples = np.array(audsamples)
+
 #MUST BE A FACTOR OF TWO
-intervals = 128
+intervals = 2000
 
 xvals = np.linspace(0, 2*np.pi, intervals)
-samples = np.sin(50*xvals)+np.sin(10*xvals)
+#samples = np.sin(300*xvals)+np.sin(100*xvals)
 
 #should go to 2
 frequencies = []
