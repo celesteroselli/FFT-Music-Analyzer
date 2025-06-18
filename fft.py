@@ -2,13 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pydub import AudioSegment
 
-sound = AudioSegment.from_file('sound2.wav')
-sound = sound.set_frame_rate(2000)
+factor = 2**15
+
+sound = AudioSegment.from_file('sound.wav')
 audsamples = sound.get_array_of_samples()
-samples = np.array(audsamples)
+middle = len(audsamples)//2
+samples = np.array(audsamples[middle:(middle+factor)])
+#window = np.hanning(len(samples))
+#samples = samples * window
+Fs = sound.frame_rate
 
 #MUST BE A FACTOR OF TWO
-intervals = 2000
+intervals = factor
 
 xvals = np.linspace(0, 2*np.pi, intervals)
 #samples = np.sin(300*xvals)+np.sin(100*xvals)
@@ -41,9 +46,10 @@ def split(x):
         return m_list
 
 freq_axis = [0] * (intervals)
-freq_axis = [k for k in range(intervals)]
+freq_axis = [(Fs * k) / intervals for k in range(intervals)]
 
 frequencylist = split(samples)
 
 plt.plot(freq_axis[1:intervals//2], (np.abs(frequencylist)[1:intervals//2]))
+plt.xlim(0, 1000)
 plt.show()
