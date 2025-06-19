@@ -6,12 +6,12 @@ import wavio as wv
 from scipy.signal import find_peaks
 import sounddevice as sd
 
-do_plot = True
+do_plot = False
 sound_input = 'test/sound.wav'
 
 def record():
-    fs = 66000  # Sample rate
-    seconds = 3  # Duration of recording
+    fs = 198000  # Sample rate
+    seconds = 1  # Duration of recording
 
     myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
     sd.wait()  # Wait until recording is finished
@@ -198,7 +198,8 @@ def one_note():
             peak_max_index = x
     note = find_note([freq_axis[peak_max_index]])[0]
     msg = "sharp" if note[1] > 0 else "flat"
-    return f"{note[0].name } : {str(np.abs(note[1]))} {msg}"
+    #return f"{note[0].name } : {str(np.abs(note[1]))} {msg}"
+    return note[0].pitch.frequency
     
 def run(type, recording, m_doplot):
     do_plot = m_doplot
