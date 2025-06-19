@@ -2,12 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pydub import AudioSegment
 
-factor = 2**15
+factor = 2**17
 
-sound = AudioSegment.from_file('sound.wav')
+sound = AudioSegment.from_file('domeso3.wav')
 audsamples = sound.get_array_of_samples()
 middle = len(audsamples)//2
-samples = np.array(audsamples[middle:(middle+factor)])
+
+#TODO: get sample size working!!!!!
+samples = np.array(audsamples[(middle-(factor//2)):(middle+(factor//2))])
 #window = np.hanning(len(samples))
 #samples = samples * window
 Fs = sound.frame_rate
@@ -37,10 +39,14 @@ def split(x):
         x_even = split(x[::2]) #all even-ordered elements (step of 2 starting at 0)
         x_odd = split(x[1::2]) #all odd-ordered elements (step of 2 starting at 1)
 
-        #for each frequency, 
+        #RECURSION WILL FINISH ONCE BOTH EVEN AND ODD ARE RETURNED WITH THE SUM OF THE TWO BRANCHES
+
+        #now that you have final sums:
+        
         m_list = [0] * N
         for k in range(N//2):
             exp = np.exp((-2j * np.pi * k)/N)
+
             m_list[k] = (x_even[k] + exp*x_odd[k])
             m_list[k + N//2] = x_even[k] - exp*x_odd[k]
         return m_list

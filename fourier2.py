@@ -8,7 +8,7 @@ from pydub import AudioSegment
 maxfreq = 800
 rate = 200
 
-sound = AudioSegment.from_file('sound1.wav')
+sound = AudioSegment.from_file('sound.wav')
 sound = sound.set_frame_rate(rate)
 samples = sound.get_array_of_samples()
 arraysamples = np.array(samples)
