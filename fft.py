@@ -6,8 +6,8 @@ import wavio as wv
 from scipy.signal import find_peaks
 import sounddevice as sd
 
-recording = True
-sound_input = 'output.wav'
+do_plot = True
+sound_input = 'test/sound.wav'
 
 def record():
     fs = 66000  # Sample rate
@@ -137,56 +137,83 @@ def split(x):
 
 def plot():
 
+    global freq_axis
     freq_axis = [0] * (intervals)
     freq_axis = [(Fs * k) / intervals for k in range(intervals)]
 
+    global frequency_list
     frequency_list = split(samples)
 
-    plt.plot(freq_axis[1:intervals//2], (np.abs(frequency_list)[1:intervals//2]))
-    plt.xlim(0, 1000)
-    plt.show()
+    if do_plot:
+        plt.plot(freq_axis[1:intervals//2], (np.abs(frequency_list)[1:intervals//2]))
+        plt.xlim(0, 1000)
+        plt.show()
 
     #get peaks using scipy
 
+    global average
     average = np.sum(np.abs(frequency_list)[1:intervals//2])/(intervals/2)
 
+    global m_peaks
     m_peaks = find_peaks(np.abs(frequency_list)[1:intervals//2], height=average*50, distance = 50)
-
-    peak_index = []
-
-    for x in m_peaks[0]:
-        item_index = freq_axis[x]
-        peak_index.append(item_index)
-
-    #find notes based on peaks (with hz differences):
-
+    
+def find_note(list):
     final_notes = []
-
-    for note in peak_index:
+    for note in list:
         min_diff = 2000
         closest_note = None
         actual_diff = 0
-        sharp = False
 
         for x in notes_list:
             freq = x.pitch.frequency
             if (np.abs(note-freq)<min_diff):
-                #print(str(np.abs(note-freq)) + " < " + str(min_diff))
                 closest_note = x
                 actual_diff = note-freq
                 min_diff = np.abs(note-freq)
-                sharp = (note-freq > 0)
+        final_notes.append((closest_note, actual_diff))
+    return final_notes
 
-        msg = "sharp" if sharp else "flat"
-        if (np.abs(actual_diff) < 50):
-            final_notes.append(f"{closest_note.name } : {str(np.abs(actual_diff))} {msg}")
-    if not final_notes:
-        final_notes.append("No note picked up. Please try again!") 
+def all_notes():
+    final = []
+    all_peaks = []
+    for x in m_peaks[0]:
+        all_peaks.append(freq_axis[x])
     
-    print(final_notes)
+    #find notes based on peaks (with hz differences):
+    find_notes = find_note(all_peaks)
+    for note in find_notes:
+        msg = "sharp" if note[1] > 0 else "flat"
+        if (np.abs(note[1]) < 50):
+            final.append(f"{note[0].name } : {str(np.abs(note[1]))} {msg}")
+    if not final:
+        final.append("No note picked up. Please try again!") 
+    return final
+
+def one_note():
+    peak_max = 0
+    peak_max_index = 0
+    for x in m_peaks[0]:
+        if np.abs(frequency_list)[x] > peak_max:
+            peak_max = np.abs(frequency_list)[x]
+            peak_max_index = x
+    note = find_note([freq_axis[peak_max_index]])[0]
+    msg = "sharp" if note[1] > 0 else "flat"
+    return f"{note[0].name } : {str(np.abs(note[1]))} {msg}"
     
-if (recording):
-    record()
-setup()
-process_audio()
-plot()
+def run(type, recording, m_doplot):
+    do_plot = m_doplot
+    if (recording):
+        record()
+    setup()
+    process_audio()
+    plot()
+    
+    match type:
+        case "one":
+            return one_note()
+        case "all":
+            return all_notes()
+        case _:
+            return "Sorry, your input does not match a fft option"
+    
+print(run("one", True, True))
