@@ -7,11 +7,12 @@ from scipy.signal import find_peaks
 import sounddevice as sd
 
 do_plot = False
-sound_input = 'test/sound.wav'
+#sound_input = 'test/chord.wav'
+sound_input = 'output.wav'
 
 def record():
-    fs = 198000  # Sample rate
-    seconds = 1  # Duration of recording
+    fs = 99000  # Sample rate
+    seconds = 2  # Duration of recording
 
     myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
     sd.wait()  # Wait until recording is finished
@@ -103,12 +104,14 @@ def process_audio():
     factor = 2**17
 
     sound = AudioSegment.from_file(sound_input)
+    global aud_samples
     aud_samples = sound.get_array_of_samples()
     middle = len(aud_samples)//2
 
     #TODO: get sample size working!!!!!
     global samples
     samples = np.array(aud_samples[(middle-(factor//2)):(middle+(factor//2))])
+    #samples = np.array(aud_samples[:factor])
 
     global intervals
     intervals = factor
@@ -182,11 +185,12 @@ def all_notes():
     #find notes based on peaks (with hz differences):
     find_notes = find_note(all_peaks)
     for note in find_notes:
-        msg = "sharp" if note[1] > 0 else "flat"
-        if (np.abs(note[1]) < 50):
-            final.append(f"{note[0].name } : {str(np.abs(note[1]))} {msg}")
-    if not final:
-        final.append("No note picked up. Please try again!") 
+        if note[0] != None:
+            msg = "sharp" if note[1] > 0 else "flat"
+            if (np.abs(note[1]) < 50):
+                final.append(f"{note[0].name } : {str(np.abs(note[1]))} {msg}")
+        if not final:
+            final.append("No note picked up. Please try again!") 
     return final
 
 def one_note():
@@ -199,22 +203,42 @@ def one_note():
     note = find_note([freq_axis[peak_max_index]])[0]
     msg = "sharp" if note[1] > 0 else "flat"
     #return f"{note[0].name } : {str(np.abs(note[1]))} {msg}"
-    return note[0].pitch.frequency
+    return note[0].pitch.frequency   
+
+def rhythm():
+    plt.plot(np.arange(len(aud_samples)), aud_samples)
+    plt.title("Raw Audio Waveform")
+    plt.show()
+    average = np.sum(aud_samples)/(len(aud_samples))
+    m_peaks = find_peaks(aud_samples, height=6000, distance = 10000)
+    distances = []
+    smallest = 1000000000
+    for i in range(len(m_peaks[0])-1):
+        current = m_peaks[0][i+1] - m_peaks[0][i]
+        if current < smallest:
+            smallest = current
+        distances.append(current)
     
+    ratios = []
+    for x in distances:
+        ratios.append(x/smallest)
+    return ratios
+
 def run(type, recording, m_doplot):
     do_plot = m_doplot
     if (recording):
         record()
     setup()
     process_audio()
-    plot()
+    if type != "rhythm":
+        plot()
     
     match type:
         case "one":
             return one_note()
         case "all":
             return all_notes()
+        case "rhythm":
+            return rhythm()
         case _:
             return "Sorry, your input does not match a fft option"
-    
-print(run("one", True, True))

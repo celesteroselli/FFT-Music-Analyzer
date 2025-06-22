@@ -2,30 +2,32 @@
 
 # Import and initialize the pygame library
 import pygame
-import fft
-import time
-from pysinewave import SineWave
-import numpy as np
+from player import *
+from music import *
+from pygame import *
+from physics import *
 
 pygame.init()
 
-# Set up the drawing window
-screen = pygame.display.set_mode([1000, 1000])
-threshold = 20
-
 # Run until the user asks to quit
 running = True
-y = 261.3
+
+m_player = PlayerClass(10, 10, 30, 30)
+pygame.display.flip()
+
+y = utilities.pitch_to_frequency(5)
 while running:
-
-    # Fill the background with white
-    screen.fill((255, 255, 255))
-
+    draw_background()
+    
+    m_player.loop()
+    handle_move(m_player)
+    m_player.draw(display)
+        
     # Draw a solid blue circle in the center
-    pygame.draw.circle(screen, (0, 0, 255), (250, 500-y), 75)
+    pygame.draw.rect(display, (0, 0, 255), ((DISPLAY_SIZE[0]-200, (DISPLAY_SIZE[1])-(y/5)), (20, 10)))
 
     # Flip the display
-    pygame.display.flip()
+    pygame.display.update()
     
     # Did the user click the window close button?
     for event in pygame.event.get():
@@ -33,24 +35,13 @@ while running:
             running = False
             
         if event.type == pygame.MOUSEBUTTONUP:
-            sine_wave = SineWave(pitch=0, pitch_per_second=0)
-
-            # Play the sine wave
-            sine_wave.play()
-
-            # Keep playing for 2 seconds
-            time.sleep(2)
-
-            # Stop the sine wave
-            sine_wave.stop()
+            y = utilities.pitch_to_frequency(5)
+            pygame.draw.rect(display, (0, 0, 255), ((DISPLAY_SIZE[0]-200, DISPLAY_SIZE[1]-(y/10)), (20, 10)))
+            pygame.display.flip()
+            y = harmonize(5, (5/4))
             print(y)
-            y = fft.run("one", True, False)
-            diff = np.abs(261.3*(5/4) - y)
-            msg = "sharp" if (261.3*(5/4) - y < 0) else "flat"
-            if diff > threshold:
-                print(f"oop, sorry, you were {diff} hz {msg}")
-            else:
-                print("congrats!")
+            
+    screen.blit(pygame.transform.scale(display, WINDOW_SIZE), (0,0))
 
 # Done! Time to quit.
 pygame.quit()
