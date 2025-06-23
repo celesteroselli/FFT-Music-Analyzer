@@ -61,4 +61,3 @@ def handle_move(player):
         if (player.is_colliding() == True):
             player.move_y(-4)
             player.set_colliding(False)
-            print("moving up")

@@ -1,4 +1,5 @@
 import pygame
+from music import *
 
 screen = pygame.display.set_mode([1500, 900])
 WINDOW_SIZE = screen.get_size()
@@ -18,7 +19,7 @@ game_map = [
 
 display = pygame.Surface(WINDOW_SIZE)
 DISPLAY_TILES = []
-def draw_background(camera, player, rectangle):
+def draw_background(camera, player, foreground):
     #clear tiles, fill in background with white to clear it
     DISPLAY_TILES.clear()
     display.fill((255, 255, 255))
@@ -34,8 +35,9 @@ def draw_background(camera, player, rectangle):
         y += 1
         
     #draw rectangle
-    pygame.draw.rect(display, (0, 0, 255), (rectangle.x-camera.offset.x, rectangle.y-camera.offset.y, rectangle.width, rectangle.height))
-    DISPLAY_TILES.append(rectangle)
+    for rect in foreground:     
+        pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
+        DISPLAY_TILES.append(rect)
         
     #move and draw player - MUST DO LAST TO GET ALL COLLISIONS
     if (player.is_colliding() == False):

@@ -19,14 +19,23 @@ follow = CamScroll(camera, m_player)
 
 pygame.display.flip()
 
-y = utilities.pitch_to_frequency(5)
+ypitch = 5
+y2pitch = 7
+y3pitch = 9
+
+y = utilities.pitch_to_frequency(ypitch)
+y2 = utilities.pitch_to_frequency(y2pitch)
+y3 = utilities.pitch_to_frequency(y3pitch)
 while running:
     
     handle_move(m_player)
     # Draw a solid blue circle in the center
-    rectangle = pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))
     
-    draw_background(camera, m_player, rectangle)
+    foreground = [
+        (pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))), (pygame.Rect(((3100, (WINDOW_SIZE[1])-(y2)), (100, 50)))), (pygame.Rect(((3200, (WINDOW_SIZE[1])-(y3)), (100, 50))))
+    ]
+    
+    draw_background(camera, m_player, foreground)
     m_player.draw(display, camera)
     follow.scroll()
 
@@ -39,11 +48,21 @@ while running:
             running = False
             
         if event.type == pygame.MOUSEBUTTONUP:
-            y = utilities.pitch_to_frequency(5)
-            pygame.draw.rect(display, (0, 0, 255), ((WINDOW_SIZE[0]-200, WINDOW_SIZE[1]-(y/10)), (20, 10)))
-            pygame.display.flip()
-            y = harmonize(5, (5/4))
-            print(y)
+            # Check if the left mouse button was pressed (button 1)
+                if event.button == 1:
+                    # Get the mouse position at the time of the click
+                    mouse_pos = event.pos
+                    # Check if the mouse position collides with the rect
+                    new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
+                    if foreground[0].collidepoint(new_pos):
+                        print("collided w 1")
+                        y = harmonize(ypitch, (5/4))
+                    if foreground[1].collidepoint(new_pos):
+                        print("collided w 2")
+                        y2 = harmonize(y2pitch, (5/4))
+                    if foreground[2].collidepoint(new_pos):
+                        print("collided w 3")
+                        y3 = harmonize(y3pitch, (5/4))
             
     screen.blit(display, (0,0))
 
