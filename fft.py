@@ -205,11 +205,11 @@ def one_note():
     #return f"{note[0].name } : {str(np.abs(note[1]))} {msg}"
     return note[0].pitch.frequency   
 
-def rhythm():
+def rhythm(r_max):
     plt.plot(np.arange(len(aud_samples)), aud_samples)
     plt.title("Raw Audio Waveform")
     plt.show()
-    average = np.sum(aud_samples)/(len(aud_samples))
+    
     m_peaks = find_peaks(aud_samples, height=6000, distance = 10000)
     distances = []
     smallest = 1000000000
@@ -218,13 +218,29 @@ def rhythm():
         if current < smallest:
             smallest = current
         distances.append(current)
+        
+    new_list = []
+    smallest_peak = 1000000000
+    for i in m_peaks[0]:
+        if i < smallest_peak:
+            smallest_peak = i
+        new_list.append(i)
+        
+    new_list = new_list - smallest_peak
+    
+    divide_by = (new_list[len(new_list)-1]) / r_max
     
     ratios = []
+    final = []
     for x in distances:
         ratios.append(x/smallest)
-    return ratios
+        
+    for x in new_list:
+        final.append(x/divide_by)
+           
+    return final
 
-def run(type, recording, m_doplot):
+def run(type, recording, m_doplot, rhythm_max):
     do_plot = m_doplot
     if (recording):
         record()
@@ -239,6 +255,6 @@ def run(type, recording, m_doplot):
         case "all":
             return all_notes()
         case "rhythm":
-            return rhythm()
+            return rhythm(rhythm_max)
         case _:
             return "Sorry, your input does not match a fft option"

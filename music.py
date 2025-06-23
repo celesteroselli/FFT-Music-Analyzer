@@ -31,3 +31,7 @@ def harmonize(pitchnum, interval):
     else:
         print("congrats!")
     return y
+
+def hit_rhythms(max):
+    list = fft.run("rhythm", True, False, max)
+    return list

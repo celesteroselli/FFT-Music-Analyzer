@@ -8,24 +8,16 @@ TILE_SIZE = 150
 image = pygame.image.load("image.png")
 image = pygame.transform.scale(image, (TILE_SIZE, TILE_SIZE))
 GROUND_ROWS = 3
-game_map = [
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1', '0', '0', '0', '0', '0'],
-    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
-    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
-]
 
 display = pygame.Surface(WINDOW_SIZE)
 DISPLAY_TILES = []
-def draw_background(camera, player, foreground):
+def draw_background(camera, player, foreground, gamemap):
     #clear tiles, fill in background with white to clear it
     DISPLAY_TILES.clear()
     display.fill((255, 255, 255))
     
     y=0
-    for row in game_map:
+    for row in gamemap:
         x=0
         for tile in row:
             if tile == "1":

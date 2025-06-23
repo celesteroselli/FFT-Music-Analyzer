@@ -8,16 +8,16 @@ from pygame import *
 from physics import *
 from camera import *
 
+pygame.init()
+
 game_map = [
     ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
     ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
     ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0'],
     ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
     ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
 ]
-
-pygame.init()
 
 # Run until the user asks to quit
 running = True
@@ -28,22 +28,23 @@ follow = CamScroll(camera, m_player)
 
 pygame.display.flip()
 
-ypitch = 5
-y2pitch = 7
-y3pitch = 9
-
-y = utilities.pitch_to_frequency(ypitch)
-y2 = utilities.pitch_to_frequency(y2pitch)
-y3 = utilities.pitch_to_frequency(y3pitch)
-
 foreground = [
-        (pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))), (pygame.Rect(((3100, (WINDOW_SIZE[1])-(y2)), (100, 50)))), (pygame.Rect(((3200, (WINDOW_SIZE[1])-(y3)), (100, 50))))
+        (pygame.Rect(((3000, 300), (100, 300)))), (pygame.Rect(((3300, 300), (100, 300)))), (pygame.Rect(((3600, 300), (100, 300))))
     ]
+
+falling = False
+rock = pygame.image.load("rock.png")
+rock = pygame.transform.scale(rock, (100, 100))
+count = 1
+rock_x = 3000
+rock_y = 0
 
 while running:
     
     handle_move(m_player)
     # Draw a solid blue circle in the center
+    
+    full_clap_width = 300+300+300
     
     draw_background(camera, m_player, foreground, game_map)
     m_player.draw(display, camera)
@@ -59,23 +60,36 @@ while running:
             
         # TO GET MOUSE POSITION IN REAL-WORLD COORDINATES: new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
         # TO GET PLAYER POSITION IN REAL-WORLD COORDINATES: new_player_pos = (m_player.rect.x + camera.offset.x, m_player.rect.y + camera.offset.y)
-            
+        
         if event.type == pygame.MOUSEBUTTONUP:
-            # Check if the left mouse button was pressed (button 1)
-                if event.button == 1:
-                    # Get the mouse position at the time of the click
-                    mouse_pos = event.pos
-                    # Check if the mouse position collides with the rect
-                    new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
-                    if foreground[0].collidepoint(new_pos):
-                        print("collided w 1")
-                        y = harmonize(ypitch, (5/4))
-                    if foreground[1].collidepoint(new_pos):
-                        print("collided w 2")
-                        y2 = harmonize(y2pitch, (5/4))
-                    if foreground[2].collidepoint(new_pos):
-                        print("collided w 3")
-                        y3 = harmonize(y3pitch, (5/4))
+            hits = hit_rhythms(600)
+            print(hits)
+            falling = True
+            
+    if falling:
+        
+        battleship = collision_test(Rect(rock_x, rock_y, 100, 100), foreground)
+        if battleship:
+            foreground.remove(battleship[0])
+            # for i in range(len(foreground)-1):
+            #     print(foreground[i])
+            #     print(battleship[0])
+            #     print(foreground[i] == battleship[0])
+            #     if foreground[i] == battleship[0]:
+            #         foreground.pop(i)
+        
+        display.blit(rock, (rock_x-camera.offset.x, rock_y))
+        rock_y = rock_y + 4
+        if count > 3:
+            falling = False
+            # count = 0, rockx = 3000
+            # count = 1, rockx = 3300
+            # count = 2, rockx = 3600
+        if rock_y > WINDOW_SIZE[1]:
+            if count < (len(hits)):
+                rock_y = 0
+                rock_x = 3000 + hits[count]
+            count = count + 1
             
     screen.blit(display, (0,0))
 
