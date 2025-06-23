@@ -47,6 +47,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             
+        # TO GET MOUSE POSITION IN REAL-WORLD COORDINATES: new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
+        # TO GET PLAYER POSITION IN REAL-WORLD COORDINATES: new_player_pos = (m_player.rect.x + camera.offset.x, m_player.rect.y + camera.offset.y)
+            
         if event.type == pygame.MOUSEBUTTONUP:
             # Check if the left mouse button was pressed (button 1)
                 if event.button == 1:
