@@ -18,14 +18,14 @@ game_map = [
 
 display = pygame.Surface(DISPLAY_SIZE)
 TILE_RECTS = []
-def draw_background():
+def draw_background(camera):
     display.fill((255, 255, 255))
     y=0
     for row in game_map:
         x=0
         for tile in row:
             if tile == "1":
-                display.blit(image, (x*TILE_SIZE, y*TILE_SIZE))
+                display.blit(image, (x*TILE_SIZE - camera.offset.x, y*TILE_SIZE))
                 TILE_RECTS.append(pygame.Rect(x * TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE))
             x += 1
         y += 1

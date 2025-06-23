@@ -6,6 +6,7 @@ from player import *
 from music import *
 from pygame import *
 from physics import *
+from camera import *
 
 pygame.init()
 
@@ -13,15 +14,21 @@ pygame.init()
 running = True
 
 m_player = PlayerClass(10, 10, 30, 30)
+camera = Camera(m_player)
+follow = CamScroll(camera, m_player)
+
+
+
 pygame.display.flip()
 
 y = utilities.pitch_to_frequency(5)
 while running:
-    draw_background()
+    draw_background(camera)
     
-    m_player.loop()
+    m_player.loop(camera)
     handle_move(m_player)
-    m_player.draw(display)
+    m_player.draw(display, camera)
+    follow.scroll()
         
     # Draw a solid blue circle in the center
     pygame.draw.rect(display, (0, 0, 255), ((DISPLAY_SIZE[0]-200, (DISPLAY_SIZE[1])-(y/5)), (20, 10)))

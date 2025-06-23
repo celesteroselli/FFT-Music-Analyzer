@@ -17,11 +17,15 @@ class PlayerClass(pygame.sprite.Sprite):
     def set_colliding(self, var):
         self.colliding = var
         
-    def move(self, dx, dy):
+    def move(self, dx, dy, camera):
         COLLIDING = False
         #process x-axis
         self.rect.x += dx
-        hit_list = collision_test(self.rect, TILE_RECTS)
+        CAMERA_TILES = []
+        for i in range(len(TILE_RECTS)):
+            CAMERA_TILES.append(pygame.Rect(TILE_RECTS[i].x - camera.offset.x, TILE_RECTS[i].y, TILE_RECTS[i].width, TILE_RECTS[i].height))
+        
+        hit_list = collision_test(self.rect, CAMERA_TILES)
         for tile in hit_list:
             if dx > 0:
                 self.rect.right = tile.left
@@ -44,15 +48,14 @@ class PlayerClass(pygame.sprite.Sprite):
     def move_y(self, vel):
         self.y_vel = vel
         
-    def loop(self):
+    def loop(self, camera):
         #do gravity if not colliding with a floor
         if (self.is_colliding() == False):
            self.y_vel = self.y_vel + 0.1
-           print("doing gravity " + str(self.y_vel))
-        self.move(self.x_vel, self.y_vel)
+        self.move(self.x_vel, self.y_vel, camera)
         
-    def draw(self, win):
-        pygame.draw.rect(win, self.COLOR, self.rect)
+    def draw(self, win, camera):
+        pygame.draw.rect(win, self.COLOR, (self.rect.x - camera.offset.x, self.rect.y, self.rect.width, self.rect.height))
 
 def handle_move(player):
     key = pygame.key.get_pressed()
@@ -64,6 +67,6 @@ def handle_move(player):
         player.move_x(1)
     if key[pygame.K_UP]:
         if (player.is_colliding() == True):
-            player.move_y(-2)
+            player.move_y(-4)
             player.set_colliding(False)
             print("moving up")
