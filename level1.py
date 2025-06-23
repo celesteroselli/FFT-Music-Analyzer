@@ -13,25 +13,22 @@ pygame.init()
 # Run until the user asks to quit
 running = True
 
-m_player = PlayerClass(10, 10, 30, 30)
+m_player = PlayerClass(10, 10, 100, 100)
 camera = Camera(m_player)
 follow = CamScroll(camera, m_player)
-
-
 
 pygame.display.flip()
 
 y = utilities.pitch_to_frequency(5)
 while running:
-    draw_background(camera)
     
-    m_player.loop(camera)
     handle_move(m_player)
+    # Draw a solid blue circle in the center
+    rectangle = pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))
+    
+    draw_background(camera, m_player, rectangle)
     m_player.draw(display, camera)
     follow.scroll()
-        
-    # Draw a solid blue circle in the center
-    pygame.draw.rect(display, (0, 0, 255), ((DISPLAY_SIZE[0]-200, (DISPLAY_SIZE[1])-(y/5)), (20, 10)))
 
     # Flip the display
     pygame.display.update()
@@ -43,12 +40,12 @@ while running:
             
         if event.type == pygame.MOUSEBUTTONUP:
             y = utilities.pitch_to_frequency(5)
-            pygame.draw.rect(display, (0, 0, 255), ((DISPLAY_SIZE[0]-200, DISPLAY_SIZE[1]-(y/10)), (20, 10)))
+            pygame.draw.rect(display, (0, 0, 255), ((WINDOW_SIZE[0]-200, WINDOW_SIZE[1]-(y/10)), (20, 10)))
             pygame.display.flip()
             y = harmonize(5, (5/4))
             print(y)
             
-    screen.blit(pygame.transform.scale(display, WINDOW_SIZE), (0,0))
+    screen.blit(display, (0,0))
 
 # Done! Time to quit.
 pygame.quit()

@@ -17,24 +17,22 @@ class PlayerClass(pygame.sprite.Sprite):
     def set_colliding(self, var):
         self.colliding = var
         
-    def move(self, dx, dy, camera):
-        COLLIDING = False
+    def move(self, dx, dy, m_list):
         #process x-axis
         self.rect.x += dx
-        CAMERA_TILES = []
-        for i in range(len(TILE_RECTS)):
-            CAMERA_TILES.append(pygame.Rect(TILE_RECTS[i].x - camera.offset.x, TILE_RECTS[i].y, TILE_RECTS[i].width, TILE_RECTS[i].height))
         
-        hit_list = collision_test(self.rect, CAMERA_TILES)
+        hit_list = collision_test(self.rect, m_list)
         for tile in hit_list:
             if dx > 0:
                 self.rect.right = tile.left
             if dx < 0:
                 self.rect.left = tile.right
                 
+        self.set_colliding(False)
+        
         #process y-axis
         self.rect.y += dy
-        hit_list = collision_test(self.rect, TILE_RECTS)
+        hit_list = collision_test(self.rect, m_list)
         for tile in hit_list:
             self.set_colliding(True)
             if dy > 0:
@@ -48,23 +46,17 @@ class PlayerClass(pygame.sprite.Sprite):
     def move_y(self, vel):
         self.y_vel = vel
         
-    def loop(self, camera):
-        #do gravity if not colliding with a floor
-        if (self.is_colliding() == False):
-           self.y_vel = self.y_vel + 0.1
-        self.move(self.x_vel, self.y_vel, camera)
-        
     def draw(self, win, camera):
-        pygame.draw.rect(win, self.COLOR, (self.rect.x - camera.offset.x, self.rect.y, self.rect.width, self.rect.height))
+        pygame.draw.rect(win, self.COLOR, (self.rect.x-camera.offset.x, self.rect.y-camera.offset.y, self.rect.width, self.rect.height))
 
 def handle_move(player):
     key = pygame.key.get_pressed()
     
     player.x_vel = 0
     if key[pygame.K_LEFT]:
-        player.move_x(-1)
+        player.move_x(-2)
     if key[pygame.K_RIGHT]:
-        player.move_x(1)
+        player.move_x(2)
     if key[pygame.K_UP]:
         if (player.is_colliding() == True):
             player.move_y(-4)
