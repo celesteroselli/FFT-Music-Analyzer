@@ -6,7 +6,7 @@ import wavio as wv
 from scipy.signal import find_peaks
 import sounddevice as sd
 
-do_plot = False
+do_plot = True
 #sound_input = 'test/chord.wav'
 sound_input = 'output.wav'
 
@@ -186,11 +186,11 @@ def all_notes():
     find_notes = find_note(all_peaks)
     for note in find_notes:
         if note[0] != None:
-            msg = "sharp" if note[1] > 0 else "flat"
+            #msg = "sharp" if note[1] > 0 else "flat"
             if (np.abs(note[1]) < 50):
-                final.append(f"{note[0].name } : {str(np.abs(note[1]))} {msg}")
+                final.append(note[0])
         if not final:
-            final.append("No note picked up. Please try again!") 
+            final.append("") 
     return final
 
 def one_note():
