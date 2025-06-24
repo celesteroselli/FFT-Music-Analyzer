@@ -49,7 +49,7 @@ def draw_background(camera, player, foreground, gamemap):
     #move and draw player - MUST DO LAST TO GET ALL COLLISIONS
     if (player.is_colliding() == False):
         #do gravity
-        player.y_vel = player.y_vel + 0.05
+        player.y_vel = player.y_vel + 0.07
     if ((camera.offset.x < 0.1) and (player.x_vel < 0)):
         player.x_vel = 0
     player.move(player.x_vel, player.y_vel, DISPLAY_TILES)

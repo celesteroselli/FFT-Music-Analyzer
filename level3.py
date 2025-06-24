@@ -29,8 +29,6 @@ m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 10, 100, 100)
 camera = Camera(m_player)
 follow = CamScroll(camera, m_player)
 
-pygame.display.flip()
-
 foreground = [
         (pygame.Rect(((3000, (WINDOW_SIZE[1])-(200)), (100, 50))))
     ]
@@ -47,11 +45,12 @@ def do_dialogue(write):
 
 clock = pygame.time.Clock()
 while running:
+    #IF FOREGROUND MUST BE EDITED, PUT BELOW HERE:
     
     if (not dialogue_on):
         #freezes screen if dialogue!
+
         handle_move(m_player)
-    
         draw_background(camera, m_player, foreground, game_map)
         m_player.draw(display, camera)
         follow.scroll()
@@ -59,16 +58,13 @@ while running:
         if (new_dialogue):
             do_dialogue("hey!")
             new_dialogue = False
-            
-    pygame.display.update()
     
     # Did the user click the window close button?
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
             
-        # TO GET MOUSE POSITION IN REAL-WORLD COORDINATES: new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
-        # TO GET PLAYER POSITION IN REAL-WORLD COORDINATES: new_player_pos = (m_player.rect.x + camera.offset.x, m_player.rect.y + camera.offset.y)
+        #PUT EXTRA INPUTS BELOW HERE:
         
         if event.type == pygame.MOUSEBUTTONUP:
             if (dialogue_on == False):
@@ -87,7 +83,8 @@ while running:
                         foreground.append((pygame.Rect(((3000, (WINDOW_SIZE[1])-(260)), (100, 50)))))                      
             
     screen.blit(display, (0,0))
-    clock.tick(60)
+    pygame.display.update()
+    clock.tick(120)
 
 # Done! Time to quit.
 pygame.quit()

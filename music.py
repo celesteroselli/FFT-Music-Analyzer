@@ -23,7 +23,7 @@ def harmonize(pitchnum, interval):
 
     # Stop the sine wave
     sine_wave.stop()
-    y = fft.run("one", True, False)
+    y = fft.run("one", True, False, 0)
     print("y =" + str(y))
     freq = utilities.pitch_to_frequency(pitchnum)
     diff = np.abs(freq*(interval) - y)
