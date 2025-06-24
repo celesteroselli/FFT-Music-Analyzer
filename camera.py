@@ -1,5 +1,5 @@
 import pygame
-from physics import TILE_SIZE, GROUND_ROWS
+from physics import TILE_SIZE, GROUND_ROWS, PLAYER_SCREEN_OFFSET
 
 vec = pygame.math.Vector2
 from abc import ABC, abstractmethod
@@ -9,7 +9,7 @@ class Camera:
         self.offset = vec(0,0)
         self.offset_float = vec(0,0)
         self.DISPLAY_W, self.DISPLAY_H = 1500,900
-        self.CONST = vec(-750, 0)
+        self.CONST = vec(-PLAYER_SCREEN_OFFSET, 0)
         
 class CamScroll:
     def __init__(self, camera, player):

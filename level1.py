@@ -22,7 +22,7 @@ pygame.init()
 # Run until the user asks to quit
 running = True
 
-m_player = PlayerClass(10, 10, 100, 100)
+m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 10, 100, 100)
 camera = Camera(m_player)
 follow = CamScroll(camera, m_player)
 
