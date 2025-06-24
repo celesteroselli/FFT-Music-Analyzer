@@ -59,8 +59,7 @@ while running:
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 if foreground[0].collidepoint(new_pos):
                     print("chord test")
-                    print(chord(0))
-                    if (chord(0)):
+                    if (chord(4)):
                         foreground.append((pygame.Rect(((3000, (WINDOW_SIZE[1])-(260)), (100, 50)))))                      
             
     screen.blit(display, (0,0))

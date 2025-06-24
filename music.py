@@ -5,6 +5,7 @@ from pysinewave import SineWave
 from pysinewave import utilities
 import fft
 import music21
+from usersettings import *
 
 global y
 y = utilities.pitch_to_frequency(3)
@@ -52,6 +53,9 @@ def chord(pitchnum):
     
     notes = []
     
+    base = pitch_data["Note"][pitchnum]
+    print("base = " + base)
+    
     octave_min = music21.pitch.Pitch("B3").frequency
     octave_max = music21.pitch.Pitch("B4").frequency
     print(octave_min)
@@ -62,17 +66,16 @@ def chord(pitchnum):
     final_chord = []
     
     for x in notes:
-        if ((x != None) and (x != "")):
-            if ((x.pitch.frequency > octave_min) and (x.pitch.frequency < octave_max)):
-                if x.name != None:
-                    print(x.name)
-                    final_chord.append(x.name)
+        if ((x.pitch.frequency > USER_CHORD_MIN) and (x.pitch.frequency < USER_CHORD_MAX)):
+            if x.name != None:
+                print(x.name)
+                final_chord.append(x.name)
                     
     myChord = music21.chord.Chord(final_chord)
     print(myChord)
     print(myChord.pitchedCommonName)
     
-    if (myChord.pitchedCommonName=="C-major triad") or (myChord.pitchedCommonName=="enharmonic equivalent to C-major triad"):
+    if (myChord.pitchedCommonName==f"{base}-major triad") or (myChord.pitchedCommonName==f"enharmonic equivalent to {base}-major triad"):
         print("that's c major!!")
         return True
     else: 

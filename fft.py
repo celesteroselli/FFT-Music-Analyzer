@@ -158,7 +158,7 @@ def plot():
     average = np.sum(np.abs(frequency_list)[1:intervals//2])/(intervals/2)
 
     global m_peaks
-    m_peaks = find_peaks(np.abs(frequency_list)[1:intervals//2], height=average*50, distance = 50)
+    m_peaks = find_peaks(np.abs(frequency_list)[1:intervals//2], height=average*70, distance = 50)
     
 def find_note(list):
     final_notes = []
@@ -189,8 +189,6 @@ def all_notes():
             #msg = "sharp" if note[1] > 0 else "flat"
             if (np.abs(note[1]) < 50):
                 final.append(note[0])
-        if not final:
-            final.append("") 
     return final
 
 def one_note():
