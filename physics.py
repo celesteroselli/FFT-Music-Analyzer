@@ -68,4 +68,3 @@ def parallax(scroll):
         for img in bg_images:
             display.blit(img, ((x*bg_width) - scroll*speed, 0))
             speed += 0.3
-
