@@ -26,7 +26,7 @@ def level_run(current_level, events, camera, m_player, follow):
             display.blit(text_surface,(current_level.variables["dialogue_box"].x,current_level.variables["dialogue_box"].y))
             current_level.variables["new_dialogue"] = False
             
-    current_level.variables["write"] = dialogue_actions(current_level.variables)
+    current_level.variables["write"] = current_level.dialogue()
     
     for event in events:
             

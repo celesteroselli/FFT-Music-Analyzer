@@ -85,4 +85,9 @@ def level1setup(foreground, camera):
     
     return (["ypitch", ypitch], ["y2pitch", y2pitch], ["y3pitch", y3pitch], ["y", y], ["y2", y2], ["y3", y3], ["foreground", foreground], ["camera", camera], ["running", True])
 
-Level_1 = Level(foreground, game_map, level1inputs, level1setup)
+def level1dialogue(variables):
+    if ((pygame.time.get_ticks() - variables["starttime"]) > 3000) and (variables["dialogue_count"]==0):
+        variables["dialogue_on"] = True
+        return "oh hey"
+
+Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue)
