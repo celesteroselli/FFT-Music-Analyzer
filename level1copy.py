@@ -4,8 +4,24 @@ from music import *
 from pygame import *
 from physics import *
 from camera import *
+from Level import Level
 
-def level1inputs(variables):
+game_map = [
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1', '0', '0', '0', '0', '0'],
+    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
+    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
+]
+
+foreground = []
+
+# foreground = [
+#         (pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))), (pygame.Rect(((3100, (WINDOW_SIZE[1])-(y2)), (100, 50)))), (pygame.Rect(((3200, (WINDOW_SIZE[1])-(y3)), (100, 50))))
+# ]
+
+def level1inputs(variables, events):
     global y
     global y2
     global y3
@@ -26,15 +42,19 @@ def level1inputs(variables):
     ypitch = variables.get("ypitch")
     y2pitch = variables.get("y2pitch")
     y3pitch = variables.get("y3pitch")
+    
+    global running
+    running = variables.get("running")
+    
+    foreground = [
+        (pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))), (pygame.Rect(((3100, (WINDOW_SIZE[1])-(y2)), (100, 50)))), (pygame.Rect(((3200, (WINDOW_SIZE[1])-(y3)), (100, 50))))
+    ]
+    
+    variables["foreground"] = foreground
             
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-            
-        # TO GET MOUSE POSITION IN REAL-WORLD COORDINATES: new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
-        # TO GET PLAYER POSITION IN REAL-WORLD COORDINATES: new_player_pos = (m_player.rect.x + camera.offset.x, m_player.rect.y + camera.offset.y)
-        
+    for event in events:
         if event.type == pygame.MOUSEBUTTONUP:
+            print("mouse button up in level1 copy")
         # Check if the left mouse button was pressed (button 1)
             if event.button == 1:
                 # Get the mouse position at the time of the click
@@ -44,13 +64,15 @@ def level1inputs(variables):
                 if foreground[0].collidepoint(new_pos):
                     print("collided w 1")
                     y = harmonize(ypitch, (5/4))
+                    variables["y"] = y
                 if foreground[1].collidepoint(new_pos):
                     print("collided w 2")
                     y2 = harmonize(y2pitch, (5/4))
+                    variables["y2"] = y2
                 if foreground[2].collidepoint(new_pos):
                     print("collided w 3")
                     y3 = harmonize(y3pitch, (5/4))
-                    
+                    variables["y3"] = y3
                     
 def level1setup(foreground, camera):
     ypitch = 5
@@ -61,4 +83,6 @@ def level1setup(foreground, camera):
     y2 = utilities.pitch_to_frequency(y2pitch)
     y3 = utilities.pitch_to_frequency(y3pitch)
     
-    return (["ypitch", ypitch], ["y2pitch", y2pitch], ["y3pitch", y3pitch,] ["y", y], ["y2", y2], ["y3", y3], ["foreground", foreground], ["camera", camera])
+    return (["ypitch", ypitch], ["y2pitch", y2pitch], ["y3pitch", y3pitch], ["y", y], ["y2", y2], ["y3", y3], ["foreground", foreground], ["camera", camera], ["running", True])
+
+Level_1 = Level(foreground, game_map, level1inputs, level1setup)

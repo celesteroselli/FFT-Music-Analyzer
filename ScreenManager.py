@@ -7,56 +7,83 @@ from music import *
 from pygame import *
 from physics import *
 from camera import *
+from dialogue import dialogue_actions
 
-from level1 import Level_1
+def level_run(num):
 
-pygame.font.init() # you have to call this at the start, 
-my_font = pygame.font.SysFont('Comic Sans MS', 30)
+    pygame.font.init() # you have to call this at the start, 
+    my_font = pygame.font.SysFont('Comic Sans MS', 30)
 
-foreground, game_map = Level_1.setup_func()
+    from level1copy import Level_1
 
-pygame.init()
+    pygame.init()
 
-# Run until the user asks to quit
-running = True
-m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 10, 100, 100)
-camera = Camera(m_player)
-follow = CamScroll(camera, m_player)
+    running = True
 
-dialogue_on = False
-new_dialogue = False
+    m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 10, 100, 100)
+    camera = Camera(m_player)
+    follow = CamScroll(camera, m_player)
 
-dialogue_box = pygame.Rect(100, WINDOW_SIZE[1]-100, WINDOW_SIZE[0]-200, 50)
+    #GET THE CURRENT LEVEL:::::
 
-def do_dialogue(write):
-    pygame.draw.rect(display, (0, 255, 0), dialogue_box)
-    text_surface = my_font.render(write, False, (0,0,255), None)
-    display.blit(text_surface, (dialogue_box.x,dialogue_box.y))
+    current_level = Level_1
 
-clock = pygame.time.Clock()
-while running:
+    current_level.setup(camera)
+
+    #END GETTING CURRENT LEVEL:::::
+
+    #dialogue variables
+    current_level.variables["dialogue_on"] = False
+    current_level.variables["new_dialogue"] = True
+    dialogue_box = pygame.Rect(100, WINDOW_SIZE[1]-100, WINDOW_SIZE[0]-200, 50)
+    current_level.variables["dialogue_count"] = 0
+    write = ""
+    dialogue_box = pygame.Rect(100, WINDOW_SIZE[1]-100, WINDOW_SIZE[0]-200, 50)
+
+    #clock starts
+    clock = pygame.time.Clock()
+
+    #start the run loop
+    while running:
     
-    if (not dialogue_on):
-        #freezes screen if dialogue!
-        handle_move(m_player)
-        draw_background(camera, m_player, foreground, game_map)
-        m_player.draw(display, camera)
-        follow.scroll()
-    else:
-        if (new_dialogue):
-            do_dialogue("hey!")
-            new_dialogue = False
+        if (not current_level.variables["dialogue_on"]):
+            #freezes screen if dialogue!
+            handle_move(m_player)
+            draw_background(camera, m_player, current_level.variables["foreground"], current_level.game_map)
+            m_player.draw(display, camera)
+            follow.scroll()
+        else:
+            if (current_level.variables["new_dialogue"]):
+                #handling dialogue display stuff
+                print("writing text")
+                pygame.draw.rect(display, (0, 255, 0), dialogue_box)
+                text_surface = my_font.render(write, False, (0,0,255), None)
+                display.blit(text_surface,(dialogue_box.x,dialogue_box.y))
+                current_level.variables["new_dialogue"] = False
+            
+        write = dialogue_actions(current_level.variables)
     
-    # Did the user click the window close button?
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        #get always game events
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                running = False
             
-        Level_1.input_func()                
+            if ((event.type == pygame.KEYDOWN) and (current_level.variables["dialogue_on"]==True)):
+                if event.key == pygame.K_ESCAPE: 
+                    print("pressed escape")
+                    current_level.variables["dialogue_on"] = False
+                    current_level.variables["new_dialogue"] = True
+                    current_level.variables["dialogue_count"] += 1
             
-    screen.blit(display, (0,0))
-    pygame.display.update()
-    clock.tick(120)
+        current_level.inputs(events)             
+            
+        screen.blit(display, (0,0))
+        pygame.display.update()
+        clock.tick(130)
 
-# Done! Time to quit.
-pygame.quit()
+    # Quit the run loop when it's done
+    pygame.quit()
+    return True
+
+level_run(1)

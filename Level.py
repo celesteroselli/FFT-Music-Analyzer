@@ -6,10 +6,10 @@ class Level:
         self.level_setup = level_setup
         self.variables = {}
         
-    def setup(self):
-        x = self.level_setup()
+    def setup(self, camera):
+        x = self.level_setup(self.foreground, camera)
         for arg in x:
-            self.variables[x[0]] = x[1]
+            self.variables[arg[0]] = arg[1]
     
-    def inputs(self, camera):
-        self.level_inputs(self.variables, self.foreground, camera)
+    def inputs(self, events):
+        self.level_inputs(self.variables, events)
