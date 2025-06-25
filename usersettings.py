@@ -1,3 +1,5 @@
+import pygame
+
 USER_CHORD_MIN = 100
 USER_CHORD_MAX = 600
 
@@ -7,3 +9,5 @@ pitch_data = {
     "Note": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"]
 }
 
+pygame.font.init() # you have to call this at the start, 
+my_font = pygame.font.SysFont('Comic Sans MS', 30)

@@ -5,9 +5,7 @@ from music import *
 from pygame import *
 from physics import *
 from camera import *
-
-pygame.font.init() # you have to call this at the start, 
-my_font = pygame.font.SysFont('Comic Sans MS', 30)
+from usersettings import *
 
 pygame.init()
 

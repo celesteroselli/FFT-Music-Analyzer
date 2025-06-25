@@ -1,3 +1,6 @@
+import pygame
+from physics import WINDOW_SIZE
+
 class Level:
     def __init__(self, foreground, game_map, level_inputs, level_setup):
         self.foreground = foreground
@@ -10,6 +13,11 @@ class Level:
         x = self.level_setup(self.foreground, camera)
         for arg in x:
             self.variables[arg[0]] = arg[1]
-    
+        self.variables["dialogue_on"] = False
+        self.variables["new_dialogue"] = True
+        self.variables["dialogue_count"] = 0
+        self.variables["dialogue_box"] = pygame.Rect(100, WINDOW_SIZE[1]-100, WINDOW_SIZE[0]-200, 50)
+        self.variables["write"] = ""
+
     def inputs(self, events):
         self.level_inputs(self.variables, events)

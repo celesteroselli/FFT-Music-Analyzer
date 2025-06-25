@@ -54,10 +54,10 @@ def handle_move(player):
     
     player.x_vel = 0
     if key[pygame.K_LEFT]:
-        player.move_x(-2)
+        player.move_x(-4)
     if key[pygame.K_RIGHT]:
-        player.move_x(2)
+        player.move_x(4)
     if key[pygame.K_UP]:
         if (player.is_colliding() == True):
-            player.move_y(-5)
+            player.move_y(-9)
             player.set_colliding(False)
