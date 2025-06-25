@@ -6,16 +6,9 @@ from physics import *
 from camera import *
 from Level import Level
 
-game_map = [
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1', '0', '0', '0', '0', '0'],
-    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
-    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
-]
-
 foreground = []
+
+game_map = "1_1"
 
 # foreground = [
 #         (pygame.Rect(((3000, (WINDOW_SIZE[1])-(y)), (100, 50)))), (pygame.Rect(((3100, (WINDOW_SIZE[1])-(y2)), (100, 50)))), (pygame.Rect(((3200, (WINDOW_SIZE[1])-(y3)), (100, 50))))
@@ -83,7 +76,7 @@ def level1setup(foreground, camera):
     y2 = utilities.pitch_to_frequency(y2pitch)
     y3 = utilities.pitch_to_frequency(y3pitch)
     
-    return (["ypitch", ypitch], ["y2pitch", y2pitch], ["y3pitch", y3pitch], ["y", y], ["y2", y2], ["y3", y3], ["foreground", foreground], ["camera", camera], ["running", True])
+    return (["ypitch", ypitch], ["y2pitch", y2pitch], ["y3pitch", y3pitch], ["y", y], ["y2", y2], ["y3", y3], ["foreground", foreground], ["camera", camera], ["running", True], ["game_map", game_map])
 
 def level1dialogue(variables):
     if ((pygame.time.get_ticks() - variables["starttime"]) > 3000) and (variables["dialogue_count"]==0):
