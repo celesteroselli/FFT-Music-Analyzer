@@ -17,8 +17,8 @@ bg_images = tileset.images(TILE_SIZE)
 print("bg_images = " + str(bg_images))
 
 background = []
-background.append(pygame.transform.scale(pygame.image.load("bg1.png"), WINDOW_SIZE))
-background.append(pygame.transform.scale(pygame.image.load("bg2.png"), WINDOW_SIZE))
+background.append(pygame.transform.scale(pygame.image.load("smallcity.jpeg"), (1800, 900)))
+#background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
 
 def draw_background(camera, player, foreground, mapname):
     #clear tiles, fill in background with white to clear it
