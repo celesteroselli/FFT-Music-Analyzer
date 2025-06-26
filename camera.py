@@ -19,7 +19,7 @@ class CamScroll:
     def scroll(self):
         self.camera.offset_float.x += (self.player.rect.x - self.camera.offset_float.x + self.camera.CONST.x)
         #equals not +=
-        if (self.player.rect.y < 300):
+        if (self.player.rect.y < (14*TILE_SIZE)):
             self.camera.offset_float.y += (self.player.rect.y - self.camera.offset_float.y + self.camera.CONST.y)
         else:
             self.camera.offset_float.y += 0

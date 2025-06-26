@@ -10,11 +10,12 @@ from usersettings import *
 global y
 y = utilities.pitch_to_frequency(3)
 threshold = 20
+factor = 1.2
 
-def harmonize(pitchnum, interval):
+def harmonize(pitch, interval):
     print("sing a major third above the pitch")
-    sine_wave = SineWave(pitch=pitchnum, pitch_per_second=0)
-
+    sine_wave = SineWave(pitch=1, pitch_per_second=500)
+    sine_wave.set_frequency(pitch)
     # Play the sine wave
     sine_wave.play()
 
@@ -25,19 +26,18 @@ def harmonize(pitchnum, interval):
     sine_wave.stop()
     y = fft.run("one", True, False, 0)
     print("y =" + str(y))
-    freq = utilities.pitch_to_frequency(pitchnum)
-    diff = np.abs(freq*(interval) - y)
-    msg = "sharp" if (freq*(interval) - y < 0) else "flat"
+    diff = np.abs(pitch*(interval) - y)
+    msg = "sharp" if (pitch*(interval) - y < 0) else "flat"
     if diff > threshold:
         print(f"oop, sorry, you were {diff} hz {msg}")
     else:
         print("congrats!")
     return y
 
-def pitch(pitchnum):
+def pitch(pitch):
     print("sing a major third above the pitch")
-    sine_wave = SineWave(pitch=pitchnum, pitch_per_second=0)
-
+    sine_wave = SineWave(pitch=1, pitch_per_second=500)
+    sine_wave.set_frequency(pitch)
     # Play the sine wave
     sine_wave.play()
 
@@ -47,7 +47,6 @@ def pitch(pitchnum):
     # Stop the sine wave
     sine_wave.stop()
     y = fft.run("one", True, False, 0)
-    print("y =" + str(y))
     return y
 
 def hit_rhythms(max):
@@ -71,11 +70,6 @@ def chord(pitchnum):
     
     base = pitch_data["Note"][pitchnum]
     print("base = " + base)
-    
-    octave_min = music21.pitch.Pitch("B3").frequency
-    octave_max = music21.pitch.Pitch("B4").frequency
-    print(octave_min)
-    print(octave_max)
     
     notes = fft.run("all", True, False, 0)
     

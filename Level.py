@@ -12,8 +12,8 @@ class Level:
         
     def setup(self, camera, startTime):
         x = self.level_setup(self.foreground, camera)
-        for arg in x:
-            self.variables[arg[0]] = arg[1]
+        for key, value in x.items():
+            self.variables[key] = value
         self.variables["dialogue_on"] = False
         self.variables["new_dialogue"] = True
         self.variables["dialogue_count"] = 0
@@ -21,8 +21,8 @@ class Level:
         self.variables["write"] = ""
         self.variables["starttime"] = startTime
 
-    def inputs(self, events):
-        self.level_inputs(self.variables, events)
+    def inputs(self, events, player):
+        self.level_inputs(self.variables, events, player)
         
     def dialogue(self):
         return self.level_dialogue(self.variables)

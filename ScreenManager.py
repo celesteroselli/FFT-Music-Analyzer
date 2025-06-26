@@ -9,7 +9,7 @@ from pygame_markdown import MarkdownRenderer
 pygame.init()
 
 running = True
-m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 10, 100, 100)
+m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 2000, 100, 100)
 camera = Camera(m_player)
 follow = CamScroll(camera, m_player)
 

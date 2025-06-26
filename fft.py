@@ -201,7 +201,7 @@ def one_note():
     note = find_note([freq_axis[peak_max_index]])[0]
     msg = "sharp" if note[1] > 0 else "flat"
     #return f"{note[0].name } : {str(np.abs(note[1]))} {msg}"
-    return note[0].pitch.frequency   
+    return note[0].pitch.frequency
 
 def rhythm(r_max):
     plt.plot(np.arange(len(aud_samples)), aud_samples)
