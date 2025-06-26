@@ -34,6 +34,22 @@ def harmonize(pitchnum, interval):
         print("congrats!")
     return y
 
+def pitch(pitchnum):
+    print("sing a major third above the pitch")
+    sine_wave = SineWave(pitch=pitchnum, pitch_per_second=0)
+
+    # Play the sine wave
+    sine_wave.play()
+
+    # Keep playing for 2 seconds
+    time.sleep(2)
+
+    # Stop the sine wave
+    sine_wave.stop()
+    y = fft.run("one", True, False, 0)
+    print("y =" + str(y))
+    return y
+
 def hit_rhythms(max):
     list = fft.run("rhythm", True, False, max)
     return list

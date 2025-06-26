@@ -45,5 +45,5 @@ while running:
         screen.blit(level_run(current_level, pygame_events, camera, m_player, follow), (0,0))
     
             
-    clock.tick(80)
+    clock.tick(90)
 pygame.quit()

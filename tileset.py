@@ -13,15 +13,15 @@ def go(name):
             coolarray[i].append(tile)
     return coolarray
 
-def images():
+def images(size):
     dict = {
-        "0": pygame.transform.smoothscale(pygame.image.load("tileset/0.png"), (32, 32)),
-        "1": pygame.transform.smoothscale(pygame.image.load("tileset/1.png"), (32, 32)),
-        "2": pygame.transform.smoothscale(pygame.image.load("tileset/2.png"), (32, 32)),
-        "3": pygame.transform.smoothscale(pygame.image.load("tileset/3.png"), (32, 32)),
-        "4": pygame.transform.smoothscale(pygame.image.load("tileset/4.png"), (32, 32)),
-        "5": pygame.transform.smoothscale(pygame.image.load("tileset/5.png"), (32, 32)),
-        "10": pygame.transform.smoothscale(pygame.image.load("tileset/10.png"), (32, 32)),
-        "11": pygame.transform.smoothscale(pygame.image.load("tileset/11.png"), (32, 32)),
+        "0": pygame.transform.scale(pygame.image.load("tileset/0.png"), (size, size)),
+        "1": pygame.transform.scale(pygame.image.load("tileset/1.png"), (size, size)),
+        "2": pygame.transform.scale(pygame.image.load("tileset/2.png"), (size, size)),
+        "3": pygame.transform.scale(pygame.image.load("tileset/3.png"), (size, size)),
+        "4": pygame.transform.scale(pygame.image.load("tileset/4.png"), (size, size)),
+        "5": pygame.transform.scale(pygame.image.load("tileset/5.png"), (size, size)),
+        "10": pygame.transform.scale(pygame.image.load("tileset/10.png"), (size, size)),
+        "11": pygame.transform.scale(pygame.image.load("tileset/11.png"), (size, size)),
     }
     return dict
