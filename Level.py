@@ -24,5 +24,5 @@ class Level:
     def inputs(self, events, player):
         self.level_inputs(self.variables, events, player)
         
-    def dialogue(self):
-        return self.level_dialogue(self.variables)
+    def dialogue(self, player):
+        return self.level_dialogue(self.variables, player)

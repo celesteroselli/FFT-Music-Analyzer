@@ -12,9 +12,9 @@ foreground = []
 
 game_map = "1_1"
 
-num_of_elements = 4
+num_of_elements = 9
 
-factor = 3
+factor = 4
 
 def level1inputs(variables, events, player):
     
@@ -31,6 +31,12 @@ def level1inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*16), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*23), (TILE_SIZE*11)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*16)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*57), (TILE_SIZE*14)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*67), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*11)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13), (600, 50))))),
     ]
     
     for i in range(num_of_elements):
@@ -67,9 +73,14 @@ def level1setup(foreground, camera):
     temp_dict["lowest"] = 440 * OCTAVE
     
     temp_dict["y1"] = 440 * OCTAVE
-    temp_dict["y2"] = 500 * OCTAVE
-    temp_dict["y3"] = 480 * OCTAVE
+    temp_dict["y2"] = 530 * OCTAVE
+    temp_dict["y3"] = 600 * OCTAVE
     temp_dict["y4"] = 440 * OCTAVE
+    temp_dict["y5"] = 390 * OCTAVE
+    temp_dict["y6"] = 440 * OCTAVE
+    temp_dict["y7"] = 600 * OCTAVE
+    temp_dict["y8"] = 530 * OCTAVE
+    temp_dict["y9"] = 500 * OCTAVE
     
     for i in range(num_of_elements):
     
@@ -83,9 +94,24 @@ def level1setup(foreground, camera):
     
     return temp_dict
 
-def level1dialogue(variables):
-    if ((pygame.time.get_ticks() - variables["starttime"]) > 3000) and (variables["dialogue_count"]==0):
+def level1dialogue(variables, player):
+    print(player.rect.x)
+    print(variables["dialogue_count"])
+    if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
-        return "oh hey"
+        return "you feel a need to escape"
+    
+    if ((player.rect.x > 4*TILE_SIZE) and (variables["dialogue_count"]==1)):
+        variables["dialogue_on"] = True
+        return "stand on the platform and click it"
+    
+    if ((player.rect.x > 8*TILE_SIZE) and (variables["dialogue_count"]==2)):
+        variables["dialogue_on"] = True
+        return "higher pitches move the platform higher, lower pitches move it lower"
+    
+    if ((player.rect.x > 77*TILE_SIZE) and (variables["dialogue_count"]==3)):
+        variables["dialogue_on"] = True
+        return "better sing the right pitch to avoid the ceiling and thorns"
+    #79, 13
 
 Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue)
