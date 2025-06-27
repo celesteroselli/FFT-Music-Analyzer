@@ -17,7 +17,8 @@ bg_images = tileset.images(TILE_SIZE)
 print("bg_images = " + str(bg_images))
 
 background = []
-background.append(pygame.transform.scale(pygame.image.load("smallcity.jpeg"), (1800, 900)))
+my_img = pygame.image.load("unit1.jpeg")
+background.append(pygame.transform.scale(my_img, (my_img.get_width(), 900)))
 #background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
 
 def draw_background(camera, player, foreground, mapname):
@@ -68,5 +69,5 @@ def parallax(scroll):
         speed = 0.3
         #first bg1 then bg2 (foreground)
         for img in background:
-            display.blit(img, ((x*WINDOW_SIZE[0]) - scroll*speed, 0))
+            display.blit(img, ((x*img.get_width()) - scroll*speed, 0))
             speed += 0.3
