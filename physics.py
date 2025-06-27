@@ -17,7 +17,7 @@ bg_images = tileset.images(TILE_SIZE)
 print("bg_images = " + str(bg_images))
 
 background = []
-my_img = pygame.image.load("unit1.jpeg")
+my_img = pygame.image.load("unit3.png")
 background.append(pygame.transform.scale(my_img, (my_img.get_width(), 900)))
 #background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
 
