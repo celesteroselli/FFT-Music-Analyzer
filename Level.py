@@ -20,6 +20,7 @@ class Level:
         self.variables["dialogue_box"] = pygame.Rect(100, WINDOW_SIZE[1]-100, WINDOW_SIZE[0]-200, 50)
         self.variables["write"] = ""
         self.variables["starttime"] = startTime
+        self.variables["running"] = True
 
     def inputs(self, events, player):
         self.level_inputs(self.variables, events, player)

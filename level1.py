@@ -23,7 +23,7 @@ def level1inputs(variables, events, player):
     
     if variables["killed"]==True:
         for i in range(num_of_elements):
-            variables[f"y{i+1}_height"] = variables[f"orig_y{i+1}"] - variables.get("lowest")
+            variables[f"y{i+1}_height"] = 0
     
     foreground = [
         #x-left = x tiles from left
@@ -32,10 +32,10 @@ def level1inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*16), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*23), (TILE_SIZE*13)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*15)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*57), (TILE_SIZE*14)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*56), (TILE_SIZE*14)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*14)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*11)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13)), (600, 50)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
@@ -69,7 +69,7 @@ def level1inputs(variables, events, player):
                 for i in range(num_of_elements):
                     if foreground[i].collidepoint(new_pos):
                         variables[f"y{i+1}"] = pitch(variables[f"y{i+1}"])
-                        variables[f"y{i+1}_height_goal"] = variables[f"y{i+1}"] - variables["lowest"]
+                        variables[f"y{i+1}_height_goal"] = variables[f"y{i+1}"] - variables[f"orig_y{i+1}"]
                         if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
                             print("player is touching rectangle")
                         else:
@@ -77,8 +77,6 @@ def level1inputs(variables, events, player):
                     
 def level1setup(foreground, camera):
     temp_dict = {}
-    
-    temp_dict["lowest"] = 440 * OCTAVE
     
     temp_dict["killed"] = False
     
@@ -102,15 +100,17 @@ def level1setup(foreground, camera):
     temp_dict["y8"] = temp_dict["orig_y8"]
     temp_dict["y9"] = temp_dict["orig_y9"]
     
+    temp_dict["congrats"] = False
+    
     for i in range(num_of_elements):
     
-        temp_dict[f"y{i+1}_height"] = temp_dict[f"y{i+1}"] - temp_dict.get("lowest")
-        temp_dict[f"y{i+1}_height_goal"] = temp_dict[f"y{i+1}"] - temp_dict.get("lowest")
+        temp_dict[f"y{i+1}_height"] = 0
+        temp_dict[f"y{i+1}_height_goal"] = 0
     
-        temp_dict["foreground"] = foreground
-        temp_dict["camera"] = camera
-        temp_dict["running"] = True
-        temp_dict["game_map"] = game_map
+    temp_dict["foreground"] = foreground
+    temp_dict["camera"] = camera
+    temp_dict["game_map"] = game_map
+    temp_dict["running"] = True
     
     return temp_dict
 
@@ -131,5 +131,10 @@ def level1dialogue(variables, player):
         variables["dialogue_on"] = True
         return "better sing the right pitch to avoid the ceiling and thorns"
     #79, 13
+    
+    if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
+        variables["dialogue_on"] = True
+        variables["running"] = False
+        return "congrats! you finished the level!"
 
 Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue)

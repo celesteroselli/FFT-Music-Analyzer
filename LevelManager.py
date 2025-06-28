@@ -36,6 +36,8 @@ def level_run(current_level, events, camera, m_player, follow):
                 current_level.variables["dialogue_on"] = False
                 current_level.variables["new_dialogue"] = True
                 current_level.variables["dialogue_count"] += 1
+                if current_level.variables["running"]==False:
+                    return False
             
     current_level.inputs(events, m_player)             
             
