@@ -3,7 +3,7 @@ import pygame
 USER_CHORD_MIN = 100
 USER_CHORD_MAX = 600
 
-OCTAVE = 0.5
+OCTAVE = 1
 
 pitch_data = {
     "Pitch": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],

@@ -30,9 +30,10 @@ def harmonize(pitch, interval):
     msg = "sharp" if (pitch*(interval) - y < 0) else "flat"
     if diff > threshold:
         print(f"oop, sorry, you were {diff} hz {msg}")
+        return False, y, f"oop, sorry, you were {diff} hz {msg}"
     else:
         print("congrats!")
-    return y
+        return True, y, "congrats!"
 
 def pitch(pitch):
     print("sing a major third above the pitch")

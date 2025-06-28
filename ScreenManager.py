@@ -2,6 +2,7 @@ import pygame
 from LevelManager import *
 from physics import screen
 from level1 import Level_1
+from level2 import Level_2
 from lesson import *
 from usersettings import *
 from pygame_markdown import MarkdownRenderer
@@ -11,13 +12,13 @@ pygame.init()
 
 running = True
 
-startx = PLAYER_SCREEN_OFFSET+TILE_SIZE*90
+startx = PLAYER_SCREEN_OFFSET
 starty = 2000
 m_player = PlayerClass(startx, starty, 100, 100)
 camera = Camera(m_player)
 follow = CamScroll(camera, m_player)
 
-current_level = Level_1
+current_level = Level_2
 
 clock = pygame.time.Clock()
 
@@ -65,7 +66,7 @@ while running:
         if run[0] == True:
             screen.blit(pick(pygame_events)[1], (0,0))
         else:
-            current_level = Level_1
+            current_level = Level_2
             is_level = True
     
     clock.tick(90)

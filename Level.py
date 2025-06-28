@@ -21,6 +21,7 @@ class Level:
         self.variables["write"] = ""
         self.variables["starttime"] = startTime
         self.variables["running"] = True
+        self.variables["background"] = []
 
     def inputs(self, events, player):
         self.level_inputs(self.variables, events, player)

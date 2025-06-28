@@ -14,7 +14,7 @@ def level_run(current_level, events, camera, m_player, follow):
     if (not current_level.variables["dialogue_on"]):
         #freezes screen if dialogue!
         handle_move(m_player)
-        draw_background(camera, m_player, current_level.variables["foreground"], current_level.variables["game_map"])
+        draw_background(camera, m_player, current_level.variables["foreground"], current_level.variables["game_map"], current_level.variables["background"])
         m_player.draw(display, camera)
         follow.scroll()
     else:

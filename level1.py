@@ -36,7 +36,7 @@ def level1inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*11)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*13)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13)), (600, 50)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
