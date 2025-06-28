@@ -14,29 +14,31 @@ game_map = "1_1"
 
 num_of_elements = 9
 
-factor = 4
+factor = 6
 
 def level1inputs(variables, events, player):
     
     camera = variables.get("camera")
     foreground = variables.get("foreground")
     
-    global running
-    running = variables.get("running")
+    if variables["killed"]==True:
+        for i in range(num_of_elements):
+            variables[f"y{i+1}_height"] = variables[f"orig_y{i+1}"] - variables.get("lowest")
     
     foreground = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
         (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*16), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*23), (TILE_SIZE*11)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*16)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*23), (TILE_SIZE*13)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*15)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*57), (TILE_SIZE*14)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*67), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*11)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*14)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13), (600, 50))))),
+        (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13)), (600, 50)))),
+        (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
     
     for i in range(num_of_elements):
@@ -45,7 +47,13 @@ def level1inputs(variables, events, player):
                 variables[f"y{i+1}_height"] += 1
             elif variables[f"y{i+1}_height_goal"] < variables[f"y{i+1}_height"]:
                 variables[f"y{i+1}_height"] -= 1
-
+                
+    #things that kill the player
+    for i in [9, 10]:
+        if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
+            print("KILLED")
+            player.kill(camera)
+            variables["killed"] = True
     
     variables["foreground"] = foreground
             
@@ -60,10 +68,10 @@ def level1inputs(variables, events, player):
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 for i in range(num_of_elements):
                     if foreground[i].collidepoint(new_pos):
+                        variables[f"y{i+1}"] = pitch(variables[f"y{i+1}"])
+                        variables[f"y{i+1}_height_goal"] = variables[f"y{i+1}"] - variables["lowest"]
                         if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
-                            print("player is touching rectangle so moving it")
-                            variables[f"y{i+1}"] = pitch(variables[f"y{i+1}"])
-                            variables[f"y{i+1}_height_goal"] = variables[f"y{i+1}"] - variables["lowest"]
+                            print("player is touching rectangle")
                         else:
                             print("player not colliding")
                     
@@ -72,15 +80,27 @@ def level1setup(foreground, camera):
     
     temp_dict["lowest"] = 440 * OCTAVE
     
-    temp_dict["y1"] = 440 * OCTAVE
-    temp_dict["y2"] = 530 * OCTAVE
-    temp_dict["y3"] = 600 * OCTAVE
-    temp_dict["y4"] = 440 * OCTAVE
-    temp_dict["y5"] = 390 * OCTAVE
-    temp_dict["y6"] = 440 * OCTAVE
-    temp_dict["y7"] = 600 * OCTAVE
-    temp_dict["y8"] = 530 * OCTAVE
-    temp_dict["y9"] = 500 * OCTAVE
+    temp_dict["killed"] = False
+    
+    temp_dict["orig_y1"] = 440 * OCTAVE
+    temp_dict["orig_y2"] = 500 * OCTAVE
+    temp_dict["orig_y3"] = 500 * OCTAVE
+    temp_dict["orig_y4"] = 440 * OCTAVE
+    temp_dict["orig_y5"] = 500 * OCTAVE
+    temp_dict["orig_y6"] = 440 * OCTAVE
+    temp_dict["orig_y7"] = 500 * OCTAVE
+    temp_dict["orig_y8"] = 600 * OCTAVE
+    temp_dict["orig_y9"] = 500 * OCTAVE
+    
+    temp_dict["y1"] = temp_dict["orig_y1"]
+    temp_dict["y2"] = temp_dict["orig_y2"]
+    temp_dict["y3"] = temp_dict["orig_y3"]
+    temp_dict["y4"] = temp_dict["orig_y4"]
+    temp_dict["y5"] = temp_dict["orig_y5"]
+    temp_dict["y6"] = temp_dict["orig_y6"]
+    temp_dict["y7"] = temp_dict["orig_y7"]
+    temp_dict["y8"] = temp_dict["orig_y8"]
+    temp_dict["y9"] = temp_dict["orig_y9"]
     
     for i in range(num_of_elements):
     
@@ -95,8 +115,6 @@ def level1setup(foreground, camera):
     return temp_dict
 
 def level1dialogue(variables, player):
-    print(player.rect.x)
-    print(variables["dialogue_count"])
     if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
         return "you feel a need to escape"

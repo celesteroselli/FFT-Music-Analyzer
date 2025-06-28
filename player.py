@@ -39,6 +39,12 @@ class PlayerClass(pygame.sprite.Sprite):
                 self.rect.bottom = tile.top
             if dy < 0:
                 self.rect.top = tile.bottom
+                
+    def kill(self, camera):
+        camera.offset.x = 0
+        camera.offset.y = 0
+        self.rect.x = PLAYER_SCREEN_OFFSET
+        self.rect.y = 2000
         
     def move_x(self, vel):
         self.x_vel = vel
