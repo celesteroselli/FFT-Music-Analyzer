@@ -3,6 +3,8 @@ from LevelManager import *
 from physics import screen
 from level1 import Level_1
 from level2 import Level_2
+from level3 import Level_3
+from level4 import Level_4
 from lesson import *
 from usersettings import *
 from pygame_markdown import MarkdownRenderer
@@ -66,7 +68,7 @@ while running:
         if run[0] == True:
             screen.blit(pick(pygame_events)[1], (0,0))
         else:
-            current_level = Level_2
+            current_level = Level_4
             is_level = True
     
     clock.tick(90)

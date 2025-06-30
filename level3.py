@@ -1,83 +1,119 @@
-# Simple pygame program
-
-# Import and initialize the pygame library
 import pygame
 from player import *
 from music import *
 from pygame import *
 from physics import *
 from camera import *
+from Level import Level
 
-pygame.font.init() # you have to call this at the start, 
-my_font = pygame.font.SysFont('Comic Sans MS', 30)
-
-pygame.init()
-
-game_map = [
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
-    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
-    ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
-]
-
-# Run until the user asks to quit
-running = True
-
-m_player = PlayerClass(PLAYER_SCREEN_OFFSET, 10, 100, 100)
-camera = Camera(m_player)
-follow = CamScroll(camera, m_player)
+import numpy as np
 
 foreground = [
-        (pygame.Rect(((3000, (WINDOW_SIZE[1])-(200)), (100, 50))))
+        #x-left = x tiles from left
+        #y-top = y-1 tiles from top
+        (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
+        (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*15)), (300, 50)))),
+]
+
+game_map = "1_3"
+
+def level3inputs(variables, events, player):
+    
+    camera = variables.get("camera")
+    foreground = variables.get("foreground")
+    
+    if variables["killed"]==True:
+        pass
+    
+    foreground_list = [
+        #x-left = x tiles from left
+        #y-top = y-1 tiles from top
+        (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*15)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*15)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*15)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*11)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*10)), (300, 50)))),
     ]
-
-dialogue_on = False
-new_dialogue = False
-
-clock = pygame.time.Clock()
-while running:
-    #IF FOREGROUND MUST BE EDITED, PUT BELOW HERE:
     
-    if (not dialogue_on):
-        #freezes screen if dialogue!
-
-        handle_move(m_player)
-        draw_background(camera, m_player, foreground, game_map)
-        m_player.draw(display, camera)
-        follow.scroll()
-    else:
-        if (new_dialogue):
-            do_dialogue("hey!")
-            new_dialogue = False
+    pitch_list = [
+        261.63*OCTAVE,
+        293.66*OCTAVE,
+        440*OCTAVE,
+        349.23*OCTAVE,
+        415.30*OCTAVE,
+        329.63*OCTAVE,
+        440*OCTAVE,
+        493.88*OCTAVE,
+    ]
     
-    # Did the user click the window close button?
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    background = [
+        (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*17)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*17)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*17)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*17)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*14)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*14)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*13)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*12)), (300, 300)))),
+    ]
+                
+    #things that kill the player
+    for i in [0]:
+        if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
+            print("KILLED")
+            player.kill(camera)
+            variables["foreground"] = [
+            #x-left = x tiles from left
+            #y-top = y-1 tiles from top
+            (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
+            (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*15)), (300, 50)))),
+            ]
+            variables["killed"] = True
             
-        #PUT EXTRA INPUTS BELOW HERE:
-        
+    for event in events:
         if event.type == pygame.MOUSEBUTTONUP:
-            if (dialogue_on == False):
-                new_dialogue = True
-                dialogue_on = True
-            else:
-                dialogue_on = False
-            
+            print("mouse button up in level1 copy")
+        # Check if the left mouse button was pressed (button 1)
             if event.button == 1:
                 # Get the mouse position at the time of the click
                 mouse_pos = event.pos
-                    # Check if the mouse position collides with the rect
+                # Check if the mouse position collides with the rect
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
-                if foreground[0].collidepoint(new_pos):
-                    if (chord(4)):
-                        foreground.append((pygame.Rect(((3000, (WINDOW_SIZE[1])-(260)), (100, 50)))))                      
-            
-    screen.blit(display, (0,0))
-    pygame.display.update()
-    clock.tick(120)
+                for i in range(len(background)):
+                    if background[i].collidepoint(new_pos):
+                        print(f"hitting background {i}")
+                        run = harmonize(pitch_list[i], 1)
+                        print(run[2])
+                        if run[0]:
+                            foreground.append(foreground_list[i])
+    
+    variables["background"] = background
+    variables["foreground"] = foreground
+                    
+def level3setup(foreground, camera):
+    temp_dict = {}
+    
+    temp_dict["killed"] = False
+    temp_dict["congrats"] = False
+    
+    temp_dict["foreground"] = foreground
+    temp_dict["camera"] = camera
+    temp_dict["game_map"] = game_map
+    temp_dict["running"] = True
+    
+    return temp_dict
 
-# Done! Time to quit.
-pygame.quit()
+def level3dialogue(variables, player):
+    if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
+        variables["dialogue_on"] = True
+        return "match the pitches"
+    
+    if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
+        variables["dialogue_on"] = True
+        variables["running"] = False
+        return "congrats! you finished the level!"
+
+Level_3 = Level(foreground, game_map, level3inputs, level3setup, level3dialogue)

@@ -10,13 +10,13 @@ import numpy as np
 
 foreground = []
 
-game_map = "1_2"
+game_map = "1_4"
 
 num_of_elements = 9
 
 factor = 6
 
-def level2inputs(variables, events, player):
+def level4inputs(variables, events, player):
     
     camera = variables.get("camera")
     foreground = variables.get("foreground")
@@ -75,7 +75,7 @@ def level2inputs(variables, events, player):
                         else:
                             print("player not colliding")
                     
-def level2setup(foreground, camera):
+def level4setup(foreground, camera):
     temp_dict = {}
     
     temp_dict["killed"] = False
@@ -114,7 +114,7 @@ def level2setup(foreground, camera):
     
     return temp_dict
 
-def level2dialogue(variables, player):
+def level4dialogue(variables, player):
     if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
         return "you feel a need to escape"
@@ -137,4 +137,4 @@ def level2dialogue(variables, player):
         variables["running"] = False
         return "congrats! you finished the level!"
 
-Level_2 = Level(foreground, game_map, level2inputs, level2setup, level2dialogue)
+Level_4 = Level(foreground, game_map, level4inputs, level4setup, level4dialogue)
