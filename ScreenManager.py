@@ -24,7 +24,7 @@ current_level = Level_2
 
 clock = pygame.time.Clock()
 
-current_lesson = lesson_content(1, 1)
+current_lesson = lesson_content(1, 4)
 lesson_first = True
 isdone = MutableInt(0)
 
@@ -66,9 +66,13 @@ while running:
     #else, show the level screen
         run = pick(pygame_events)
         if run[0] == True:
-            screen.blit(pick(pygame_events)[1], (0,0))
+            screen.blit(run[1], (0,0))
         else:
-            current_level = Level_4
+            current_level = run[1]
+            print("unit/level:")
+            print(run[2][0])
+            print(run[2][1])
+            current_lesson = lesson_content(run[2][0], run[2][1])
             is_level = True
     
     clock.tick(90)

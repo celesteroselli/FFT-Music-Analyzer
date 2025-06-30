@@ -2,9 +2,11 @@ import pygame
 from physics import WINDOW_SIZE
 
 class Level:
-    def __init__(self, foreground, game_map, level_inputs, level_setup, level_dialogue):
+    def __init__(self, foreground, game_map, level_inputs, level_setup, level_dialogue, game_back, game_front):
         self.foreground = foreground
         self.game_map = game_map
+        self.game_front = game_front
+        self.game_back = game_back
         self.level_inputs = level_inputs
         self.level_setup = level_setup
         self.level_dialogue = level_dialogue
@@ -22,6 +24,10 @@ class Level:
         self.variables["starttime"] = startTime
         self.variables["running"] = True
         self.variables["background"] = []
+        self.variables["wrong"] = False
+        
+        self.variables["game_front"] = self.game_front
+        self.variables["game_back"] = self.game_back
 
     def inputs(self, events, player):
         self.level_inputs(self.variables, events, player)

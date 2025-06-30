@@ -14,7 +14,7 @@ game_map = "1_4"
 
 num_of_elements = 9
 
-factor = 6
+factor = 4
 
 def level4inputs(variables, events, player):
     
@@ -28,16 +28,15 @@ def level4inputs(variables, events, player):
     foreground = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
-        (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*16), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*23), (TILE_SIZE*13)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*15)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*56), (TILE_SIZE*14)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*11)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*13)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13)), (600, 50)))),
+        (pygame.Rect((((TILE_SIZE*15), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*18), (TILE_SIZE*11)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*14)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*38), (TILE_SIZE*9)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*51), (TILE_SIZE*15)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*54), (TILE_SIZE*10)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*12)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*78), (TILE_SIZE*7)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*87), (TILE_SIZE*12)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
     
@@ -49,7 +48,7 @@ def level4inputs(variables, events, player):
                 variables[f"y{i+1}_height"] -= 1
                 
     #things that kill the player
-    for i in [9, 10]:
+    for i in [9]:
         if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
             print("KILLED")
             player.kill(camera)
@@ -68,27 +67,37 @@ def level4inputs(variables, events, player):
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 for i in range(num_of_elements):
                     if foreground[i].collidepoint(new_pos):
-                        variables[f"y{i+1}"] = pitch(variables[f"y{i+1}"])
-                        variables[f"y{i+1}_height_goal"] = variables[f"y{i+1}"] - variables[f"orig_y{i+1}"]
-                        if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
-                            print("player is touching rectangle")
+                        if variables[f"y{i+1}"] < (440*OCTAVE):
+                            run = harmonize(variables[f"y{i+1}"], 2)
+                            ifup = 2
                         else:
-                            print("player not colliding")
+                            run = harmonize(variables[f"y{i+1}"], 0.5)
+                            ifup = -2
+                        orig = variables[f"orig_y{i+1}"]
+                        if (run[0]==True):
+                            variables[f"y{i+1}"] = run[1]
+                            variables[f"y{i+1}_height_goal"] = ifup * 98
+                            if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
+                                print("player is touching rectangle")
+                            else:
+                                print("player not colliding")
+                        else:
+                            variables["wrong"] = f"Sorry, you sang {run[1]} hz which is not an octave to {orig} hz."
                     
 def level4setup(foreground, camera):
     temp_dict = {}
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 440 * OCTAVE
-    temp_dict["orig_y2"] = 500 * OCTAVE
-    temp_dict["orig_y3"] = 500 * OCTAVE
-    temp_dict["orig_y4"] = 440 * OCTAVE
-    temp_dict["orig_y5"] = 500 * OCTAVE
-    temp_dict["orig_y6"] = 440 * OCTAVE
-    temp_dict["orig_y7"] = 500 * OCTAVE
-    temp_dict["orig_y8"] = 600 * OCTAVE
-    temp_dict["orig_y9"] = 500 * OCTAVE
+    temp_dict["orig_y1"] = 280 * OCTAVE
+    temp_dict["orig_y2"] = 750 * OCTAVE
+    temp_dict["orig_y3"] = 320 * OCTAVE
+    temp_dict["orig_y4"] = 770 * OCTAVE
+    temp_dict["orig_y5"] = 360 * OCTAVE
+    temp_dict["orig_y6"] = 800 * OCTAVE
+    temp_dict["orig_y7"] = 390 * OCTAVE
+    temp_dict["orig_y8"] = 830 * OCTAVE
+    temp_dict["orig_y9"] = 420 * OCTAVE
     
     temp_dict["y1"] = temp_dict["orig_y1"]
     temp_dict["y2"] = temp_dict["orig_y2"]
@@ -117,24 +126,11 @@ def level4setup(foreground, camera):
 def level4dialogue(variables, player):
     if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
-        return "you feel a need to escape"
-    
-    if ((player.rect.x > 4*TILE_SIZE) and (variables["dialogue_count"]==1)):
-        variables["dialogue_on"] = True
-        return "stand on the platform and click it"
-    
-    if ((player.rect.x > 8*TILE_SIZE) and (variables["dialogue_count"]==2)):
-        variables["dialogue_on"] = True
-        return "higher pitches move the platform higher, lower pitches move it lower"
-    
-    if ((player.rect.x > 77*TILE_SIZE) and (variables["dialogue_count"]==3)):
-        variables["dialogue_on"] = True
-        return "better sing the right pitch to avoid the ceiling and thorns"
-    #79, 13
+        return "sing an octave above or below each note!"
     
     if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"
 
-Level_4 = Level(foreground, game_map, level4inputs, level4setup, level4dialogue)
+Level_4 = Level(foreground, game_map, level4inputs, level4setup, level4dialogue, "1", "")

@@ -16,18 +16,24 @@ DISPLAY_TILES = []
 bg_images = tileset.images(TILE_SIZE)
 print("bg_images = " + str(bg_images))
 
+unit1bg = pygame.image.load("unit1.jpeg")
+unit1fg = pygame.image.load("u1foreground.png")
+
+images = {
+    "1": pygame.transform.scale(unit1bg, (unit1bg.get_width(), 900)),
+    "1fg": pygame.transform.scale(unit1fg, (unit1fg.get_width()/2, 450)),
+}
+
 background = []
-my_img = pygame.image.load("unit1.jpeg")
-background.append(pygame.transform.scale(my_img, (my_img.get_width(), 900)))
-my_foreground = pygame.image.load("u1foreground.png")
-background.append(pygame.transform.scale(my_foreground, (my_img.get_width()/2, 450)))
+# background.append(pygame.transform.scale(my_img, (my_img.get_width(), 900)))
+# background.append(pygame.transform.scale(my_foreground, (my_img.get_width()/2, 450)))
 #background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
 
-def draw_background(camera, player, foreground, mapname, draw_back):
+def draw_background(camera, player, foreground, mapname, draw_back, game_back, game_front):
     #clear tiles, fill in background with white to clear it
     DISPLAY_TILES.clear()
     display.fill((255, 255, 255))
-    parallax(camera.offset.x)
+    parallax(camera.offset.x, game_back, game_front)
     
     import pandas as pd
     import numpy as np
@@ -69,7 +75,11 @@ def collision_test(rect, tiles):
             hit_list.append(tile)
     return hit_list
 
-def parallax(scroll):
+def parallax(scroll, game_back, game_front):
+    if game_front:
+        background = [images[game_back], images[game_front]]
+    else:
+        background = [images[game_back]]
     for x in range(50):
         speed = 0.3
         #first bg1 then bg2 (foreground)

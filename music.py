@@ -34,6 +34,40 @@ def harmonize(pitch, interval):
     else:
         print("congrats!")
         return True, y, "congrats!"
+    
+def constraint(pitch, pitch2):
+    
+    if pitch2 < pitch:
+        higher = pitch
+        lower = pitch2
+    else:
+        higher = pitch2
+        lower = pitch
+    
+    print("sing a major third above the pitch")
+    sine_wave = SineWave(pitch=1, pitch_per_second=500)
+    sine_wave2 = SineWave(pitch=1, pitch_per_second=500)
+    sine_wave.set_frequency(lower)
+    sine_wave2.set_frequency(higher)
+    # Play the sine wave
+    sine_wave.play()
+
+    # Keep playing for 2 seconds
+    time.sleep(2)
+    sine_wave.stop()
+    
+    sine_wave2.play()
+    
+    time.sleep(2)
+
+    # Stop the sine wave
+    sine_wave2.stop()
+    y = fft.run("one", True, False, 0)
+    print("y =" + str(y))
+    if (y > lower) and (y < higher):
+        return True, y
+    else:
+        return False, y
 
 def pitch(pitch):
     print("sing a major third above the pitch")

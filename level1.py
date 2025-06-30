@@ -137,4 +137,4 @@ def level1dialogue(variables, player):
         variables["running"] = False
         return "congrats! you finished the level!"
 
-Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue)
+Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue, "1", "")
