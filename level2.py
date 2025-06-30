@@ -32,7 +32,7 @@ def level2inputs(variables, events, player):
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
         (pygame.Rect((((TILE_SIZE*10), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*12)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*14)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*37), (TILE_SIZE*13)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
         (pygame.Rect((((TILE_SIZE*46), (TILE_SIZE*15)+(100)-(variables["y5_height"]*factor)), (300, 50)))),

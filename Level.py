@@ -28,6 +28,10 @@ class Level:
         
         self.variables["game_front"] = self.game_front
         self.variables["game_back"] = self.game_back
+        
+        self.variables["figure"] = False
+        self.variables["last-note"] = 0
+        self.variables["first_move"] = False
 
     def inputs(self, events, player):
         self.level_inputs(self.variables, events, player)

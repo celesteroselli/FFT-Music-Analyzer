@@ -1,4 +1,6 @@
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('module://pygame_matplotlib.backend_pygame')
 import numpy as np
 from pydub import AudioSegment
 import music21 as music
@@ -140,6 +142,8 @@ def split(x):
 
 def plot():
 
+    global fig, axes
+    fig, axes = plt.subplots(1, 1,)
     global freq_axis
     freq_axis = [0] * (intervals)
     freq_axis = [(Fs * k) / intervals for k in range(intervals)]
@@ -148,9 +152,10 @@ def plot():
     frequency_list = split(samples)
 
     if do_plot:
-        plt.plot(freq_axis[1:intervals//2], (np.abs(frequency_list)[1:intervals//2]))
-        plt.xlim(0, 1000)
-        plt.show()
+        axes.plot(freq_axis[1:intervals//2], (np.abs(frequency_list)[1:intervals//2]))
+        axes.set_xlim(0, 1000)
+        
+    fig.canvas.draw()
 
     #get peaks using scipy
 
@@ -249,10 +254,16 @@ def run(type, recording, m_doplot, rhythm_max):
     
     match type:
         case "one":
-            return one_note()
+            return one_note(), fig
         case "all":
             return all_notes()
         case "rhythm":
             return rhythm(rhythm_max)
         case _:
             return "Sorry, your input does not match a fft option"
+        
+        
+        
+        
+        
+

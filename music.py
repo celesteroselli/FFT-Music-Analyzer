@@ -24,7 +24,8 @@ def harmonize(pitch, interval):
 
     # Stop the sine wave
     sine_wave.stop()
-    y = fft.run("one", True, False, 0)
+    run = fft.run("one", True, False, 0)
+    y = run[0]
     print("y =" + str(y))
     diff = np.abs(pitch*(interval) - y)
     msg = "sharp" if (pitch*(interval) - y < 0) else "flat"
@@ -33,7 +34,7 @@ def harmonize(pitch, interval):
         return False, y, f"oop, sorry, you were {diff} hz {msg}"
     else:
         print("congrats!")
-        return True, y, "congrats!"
+        return True, y, "congrats!", run[1]
     
 def constraint(pitch, pitch2):
     
@@ -81,8 +82,9 @@ def pitch(pitch):
 
     # Stop the sine wave
     sine_wave.stop()
-    y = fft.run("one", True, False, 0)
-    return y
+    run = fft.run("one", True, False, 0)
+    y = run[0]
+    return y, run[1]
 
 def hit_rhythms(max):
     list = fft.run("rhythm", True, False, max)

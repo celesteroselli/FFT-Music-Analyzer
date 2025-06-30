@@ -78,6 +78,3 @@ while running:
     clock.tick(90)
     
 pygame.quit()
-
-def run_a_level():
-    pass

@@ -25,7 +25,9 @@ def level_run(current_level, events, camera, m_player, follow):
             text_surface = my_font.render(current_level.variables["write"], False, (0,0,255), None)
             display.blit(text_surface,(current_level.variables["dialogue_box"].x,current_level.variables["dialogue_box"].y))
             current_level.variables["new_dialogue"] = False
-            
+            if current_level.variables["figure"] != False:
+                display.blit(current_level.variables["figure"], (500,100))
+
     current_level.variables["write"] = current_level.dialogue(m_player)
     
     for event in events:
@@ -37,8 +39,12 @@ def level_run(current_level, events, camera, m_player, follow):
                 current_level.variables["new_dialogue"] = True
                 current_level.variables["dialogue_count"] += 1
                 current_level.variables["wrong"] = False
+                current_level.variables["figure"] = False
                 if current_level.variables["running"]==False:
                     return False
+                
+        if (event.type==KEYDOWN) and (event.key == pygame.K_q):
+            current_level.variables["running"] = False
             
     current_level.inputs(events, m_player)             
             

@@ -40,13 +40,6 @@ def level1inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*13)), (600, 50)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
-    
-    for i in range(num_of_elements):
-        if np.absolute(variables[f"y{i+1}_height_goal"]-variables[f"y{i+1}_height"]) > 10:
-            if variables[f"y{i+1}_height_goal"] > variables[f"y{i+1}_height"]:
-                variables[f"y{i+1}_height"] += 1
-            elif variables[f"y{i+1}_height_goal"] < variables[f"y{i+1}_height"]:
-                variables[f"y{i+1}_height"] -= 1
                 
     #things that kill the player
     for i in [9, 10]:
@@ -68,12 +61,28 @@ def level1inputs(variables, events, player):
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 for i in range(num_of_elements):
                     if foreground[i].collidepoint(new_pos):
-                        variables[f"y{i+1}"] = pitch(variables[f"y{i+1}"])
+                        run = pitch(variables[f"y{i+1}"])
+                        variables[f"y{i+1}"] = run[0]
+                        variables["figure"] = run[1]
+                        variables["last_note"] = run[0]
+                        variables["first_move"] = True
                         variables[f"y{i+1}_height_goal"] = variables[f"y{i+1}"] - variables[f"orig_y{i+1}"]
                         if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
                             print("player is touching rectangle")
                         else:
                             print("player not colliding")
+                       
+    if variables["dialogue_on"]==False:
+        for i in range(num_of_elements):
+            if np.absolute(variables[f"y{i+1}_height_goal"]-variables[f"y{i+1}_height"]) > 10:
+                if (variables["first_move"] == True):
+                    print("first move was true")
+                    time.sleep(1)
+                    variables["first_move"] = False
+                if variables[f"y{i+1}_height_goal"] > variables[f"y{i+1}_height"]:
+                    variables[f"y{i+1}_height"] += 1
+                elif variables[f"y{i+1}_height_goal"] < variables[f"y{i+1}_height"]:
+                    variables[f"y{i+1}_height"] -= 1
                     
 def level1setup(foreground, camera):
     temp_dict = {}
@@ -136,5 +145,9 @@ def level1dialogue(variables, player):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"
+    
+    if (variables["figure"]):
+        variables["dialogue_on"] = True
+        return f"you sang {variables["last_note"]} hz"
 
 Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue, "1", "")
