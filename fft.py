@@ -256,7 +256,7 @@ def run(type, recording, m_doplot, rhythm_max):
         case "one":
             return one_note(), fig
         case "all":
-            return all_notes()
+            return all_notes(), fig
         case "rhythm":
             return rhythm(rhythm_max)
         case _:

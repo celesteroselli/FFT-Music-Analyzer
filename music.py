@@ -63,12 +63,13 @@ def constraint(pitch, pitch2):
 
     # Stop the sine wave
     sine_wave2.stop()
-    y = fft.run("one", True, False, 0)
+    run = fft.run("one", True, False, 0)
+    y = run[0]
     print("y =" + str(y))
     if (y > lower) and (y < higher):
-        return True, y
+        return True, y, run[1]
     else:
-        return False, y
+        return False, y, run[1]
 
 def pitch(pitch):
     print("sing a major third above the pitch")
