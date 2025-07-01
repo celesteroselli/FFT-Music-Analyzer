@@ -12,11 +12,23 @@ foreground = []
 
 game_map = "2_1"
 
-num_of_elements = 9
+num_of_elements = 7
 
 factor = 6
 
 def level5inputs(variables, events, player):
+    
+    background = [
+        (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*13)+(100)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*10)+(100)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*6)+(100)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*47), (TILE_SIZE*10)+(100)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*64), (TILE_SIZE*4)+(100)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*0)+(100)), (300, 300)))),
+        (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*4)+(100)), (300, 300)))),
+    ]
+    
+    variables["background"] = background
     
     camera = variables.get("camera")
     foreground = variables.get("foreground")
@@ -28,20 +40,18 @@ def level5inputs(variables, events, player):
     foreground = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
-        (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*16), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*23), (TILE_SIZE*13)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*15)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*56), (TILE_SIZE*14)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*16)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*80), (TILE_SIZE*11)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*13)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*13)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*9)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*47), (TILE_SIZE*13)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*64), (TILE_SIZE*7)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*3)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*7)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
                 
     #things that kill the player
-    for i in [9]:
+    for i in [num_of_elements]:
         if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
             print("KILLED")
             player.kill(camera)
@@ -73,7 +83,7 @@ def level5inputs(variables, events, player):
                             else:
                                 print("player not colliding")
                         else:
-                            variables["wrong"] = run[2]
+                            variables["wrong"] = run[3]
                        
     if variables["dialogue_on"]==False:
         for i in range(num_of_elements):
@@ -94,13 +104,11 @@ def level5setup(foreground, camera):
     
     temp_dict["orig_y1"] = 440 * OCTAVE
     temp_dict["orig_y2"] = 500 * OCTAVE
-    temp_dict["orig_y3"] = 500 * OCTAVE
+    temp_dict["orig_y3"] = 600 * OCTAVE
     temp_dict["orig_y4"] = 440 * OCTAVE
     temp_dict["orig_y5"] = 500 * OCTAVE
-    temp_dict["orig_y6"] = 440 * OCTAVE
-    temp_dict["orig_y7"] = 500 * OCTAVE
-    temp_dict["orig_y8"] = 600 * OCTAVE
-    temp_dict["orig_y9"] = 500 * OCTAVE
+    temp_dict["orig_y6"] = 500 * OCTAVE
+    temp_dict["orig_y7"] = 440 * OCTAVE
     
     temp_dict["y1"] = temp_dict["orig_y1"]
     temp_dict["y2"] = temp_dict["orig_y2"]
@@ -109,18 +117,14 @@ def level5setup(foreground, camera):
     temp_dict["y5"] = temp_dict["orig_y5"]
     temp_dict["y6"] = temp_dict["orig_y6"]
     temp_dict["y7"] = temp_dict["orig_y7"]
-    temp_dict["y8"] = temp_dict["orig_y8"]
-    temp_dict["y9"] = temp_dict["orig_y9"]
     
     temp_dict["y1_interval"] = 4/3
-    temp_dict["y2_interval"] = 4/3
-    temp_dict["y3_interval"] = 4/3
-    temp_dict["y4_interval"] = 4/3
+    temp_dict["y2_interval"] = 3/2
+    temp_dict["y3_interval"] = 2/3
+    temp_dict["y4_interval"] = 3/2
     temp_dict["y5_interval"] = 4/3
-    temp_dict["y6_interval"] = 4/3
-    temp_dict["y7_interval"] = 4/3
-    temp_dict["y8_interval"] = 4/3
-    temp_dict["y9_interval"] = 4/3
+    temp_dict["y6_interval"] = 3/4
+    temp_dict["y7_interval"] = 2/3
     
     temp_dict["congrats"] = False
     

@@ -149,5 +149,9 @@ def level1dialogue(variables, player):
     if (variables["figure"]):
         variables["dialogue_on"] = True
         return f"you sang {variables["last_note"]} hz"
+    
+    if (variables["wrong"] != False ):
+        variables["dialogue_on"] = True
+        return variables["wrong"]
 
 Level_1 = Level(foreground, game_map, level1inputs, level1setup, level1dialogue, "1", "")

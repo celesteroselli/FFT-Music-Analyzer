@@ -132,5 +132,9 @@ def level4dialogue(variables, player):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"
+    
+    if (variables["wrong"] != False ):
+        variables["dialogue_on"] = True
+        return variables["wrong"]
 
 Level_4 = Level(foreground, game_map, level4inputs, level4setup, level4dialogue, "1", "")

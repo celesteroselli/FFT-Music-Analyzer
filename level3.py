@@ -111,6 +111,10 @@ def level3dialogue(variables, player):
         variables["dialogue_on"] = True
         return "match the pitches"
     
+    if (variables["wrong"] != False ):
+        variables["dialogue_on"] = True
+        return variables["wrong"]
+    
     if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
         variables["dialogue_on"] = True
         variables["running"] = False
