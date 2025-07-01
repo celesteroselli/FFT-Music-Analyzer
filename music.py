@@ -30,11 +30,11 @@ def harmonize(pitch, interval):
     diff = np.abs(pitch*(interval) - y)
     msg = "sharp" if (pitch*(interval) - y < 0) else "flat"
     if diff > threshold:
-        print(f"oop, sorry, you were {diff} hz {msg}")
-        return False, y, f"oop, sorry, you were {diff} hz {msg}"
+        message = f"sorry, you were {diff} hz {msg}"
+        return False, y, run[1], message
     else:
         print("congrats!")
-        return True, y, "congrats!", run[1]
+        return True, y, run[1]
     
 def constraint(pitch, pitch2):
     
