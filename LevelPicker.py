@@ -5,6 +5,9 @@ from level2 import Level_2
 from level3 import Level_3
 from level4 import Level_4
 from level5 import Level_5
+from level6 import Level_6
+from level7 import Level_7
+from level8 import Level_8
 
 levels = {
     1: (Level_1, (1,1)),
@@ -12,6 +15,9 @@ levels = {
     3: (Level_3, (1,3)),
     4: (Level_4, (1,4)),
     5: (Level_5, (2,1)),
+    6: (Level_6, (2,2)),
+    7: (Level_7, (2,3)),
+    8: (Level_8, (2,3)),
 }
 
 num_levels = len(levels)
@@ -23,6 +29,9 @@ def pick(events):
         (pygame.Rect((((30), (150)), (300, 50)))),
         (pygame.Rect((((30), (210)), (300, 50)))),
         (pygame.Rect((((30), (270)), (300, 50)))),
+        (pygame.Rect((((30), (330)), (300, 50)))),
+        (pygame.Rect((((30), (390)), (300, 50)))),
+        (pygame.Rect((((30), (450)), (300, 50)))),
     ]
     
     display.fill((255, 255, 255))

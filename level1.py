@@ -24,6 +24,9 @@ def level1inputs(variables, events, player):
     if variables["killed"]==True:
         for i in range(num_of_elements):
             variables[f"y{i+1}_height"] = 0
+            variables[f"y{i+1}_height_goal"] = 0
+            variables[f"y{i+1}"] = variables[f"orig_y{i+1}"]
+            variables["killed"]=False
     
     foreground = [
         #x-left = x tiles from left

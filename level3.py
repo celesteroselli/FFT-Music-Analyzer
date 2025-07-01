@@ -22,8 +22,14 @@ def level3inputs(variables, events, player):
     camera = variables.get("camera")
     foreground = variables.get("foreground")
     
+    num_of_elements = 9
+    
     if variables["killed"]==True:
-        pass
+        for i in range(num_of_elements):
+            variables[f"y{i+1}_height"] = 0
+            variables[f"y{i+1}_height_goal"] = 0
+            variables[f"y{i+1}"] = variables[f"orig_y{i+1}"]
+            variables["killed"]=False
     
     foreground_list = [
         #x-left = x tiles from left
@@ -39,14 +45,14 @@ def level3inputs(variables, events, player):
     ]
     
     pitch_list = [
-        261.63*OCTAVE,
-        293.66*OCTAVE,
-        440*OCTAVE,
-        349.23*OCTAVE,
-        415.30*OCTAVE,
-        329.63*OCTAVE,
-        440*OCTAVE,
-        493.88*OCTAVE,
+        261.63*2*OCTAVE,
+        293.66*2*OCTAVE,
+        440*2*OCTAVE,
+        349.23*2*OCTAVE,
+        415.30*2*OCTAVE,
+        329.63*2*OCTAVE,
+        440*2*OCTAVE,
+        493.88*2*OCTAVE,
     ]
     
     background = [
