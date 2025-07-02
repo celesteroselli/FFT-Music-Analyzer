@@ -1,3 +1,10 @@
+import os
+
+# Change the current working directory
+print("Old Directory:", os.getcwd(), "\n")
+os.chdir(r'C:\Users\rc21310\Documents\FFT-Music-Analyzer')
+print("Updated Directory:", os.getcwd(), "\n")
+
 import pygame
 from LevelManager import *
 from physics import screen
@@ -6,6 +13,7 @@ from lesson import *
 from usersettings import *
 from pygame_markdown import MarkdownRenderer
 from LevelPicker import pick
+
 
 pygame.init()
 
