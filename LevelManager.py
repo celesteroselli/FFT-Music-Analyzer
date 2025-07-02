@@ -29,7 +29,9 @@ def level_run(current_level, events, camera, m_player, follow):
                 display.blit(current_level.variables["figure"], (500,100))
 
     current_level.variables["write"] = current_level.dialogue(m_player)
-    
+            
+    current_level.inputs(events, m_player)    
+
     for event in events:
             
         if ((event.type == pygame.KEYDOWN) and (current_level.variables["dialogue_on"]==True)):
@@ -40,13 +42,13 @@ def level_run(current_level, events, camera, m_player, follow):
                 current_level.variables["dialogue_count"] += 1
                 current_level.variables["wrong"] = False
                 current_level.variables["figure"] = False
-                if current_level.variables["running"]==False:
-                    return False
                 
         if (event.type==KEYDOWN) and (event.key == pygame.K_q):
-            current_level.variables["running"] = False
-            
-    current_level.inputs(events, m_player)             
+            print("q pressed")
+            current_level.variables["running"] = False     
+
+        if current_level.variables["running"]==False:
+                    return False
             
     pygame.display.update()
     return display

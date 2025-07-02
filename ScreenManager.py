@@ -39,8 +39,9 @@ is_level = False
 while running:
     pygame_events = pygame.event.get()
     for event in pygame_events:
-            if event.type == pygame.QUIT:
-                running = False
+        if event.type == pygame.QUIT:
+            running = False
+
                 
     #if the user is in a level, do the following each tick:
     if is_level:

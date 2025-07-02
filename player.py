@@ -21,6 +21,7 @@ class PlayerClass(pygame.sprite.Sprite):
         self.jumpsprites = ["tileset/char041.png", "tileset/char042.png", "tileset/char043.png", "tileset/char044.png", "tileset/char045.png", "tileset/char046.png", "tileset/char047.png", "tileset/char048.png"]
         self.i = 0
         self.ticker = 0.7
+        self.facing = 0
         
     def is_colliding(self):
         return self.colliding
@@ -72,20 +73,14 @@ class PlayerClass(pygame.sprite.Sprite):
                 if self.i >= len(self.idlesprites):
                     self.i = 0
                 self.sprite = pygame.transform.scale(pygame.image.load(self.idlesprites[self.i]), (self.rect.w, self.rect.h))
-            case "moveright":
+            case "move":
                 if self.i >= len(self.runsprites):
                     self.i = 0
                 self.sprite = pygame.transform.scale(pygame.image.load(self.runsprites[self.i]), (self.rect.w, self.rect.h))
-            case "moveleft":
-                if self.i >= len(self.runsprites):
-                    self.i = 0
-                self.sprite = pygame.transform.scale(pygame.image.load(self.runsprites[self.i]), (self.rect.w, self.rect.h))
-                self.sprite = pygame.transform.flip(self.sprite, True, False)
             case "jump":
                 if self.i >= len(self.jumpsprites):
                     self.i = 0
                 self.sprite = pygame.transform.scale(pygame.image.load(self.jumpsprites[self.i]), (self.rect.w, self.rect.h))
-                self.sprite = pygame.transform.flip(self.sprite, True, False)
             case _:
                 if self.i >= len(self.idlesprites):
                     self.i = 0
@@ -93,6 +88,8 @@ class PlayerClass(pygame.sprite.Sprite):
         
     def draw(self, win, camera):
         self.doAnimation()
+        if self.facing==1:
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
         display.blit(self.sprite, (self.rect.x-camera.offset.x, self.rect.y-camera.offset.y))
         #pygame.draw.rect(win, self.COLOR, (self.rect.x-camera.offset.x, self.rect.y-camera.offset.y, self.rect.width, self.rect.height))
 
@@ -101,11 +98,13 @@ def handle_move(player):
     
     player.x_vel = 0
     if key[pygame.K_LEFT]:
-        player.animate = "moveleft"
+        player.animate = "move"
+        player.facing = 1
         player.ticker = 0.2
         player.move_x(-6.5)
     if key[pygame.K_RIGHT]:
-        player.animate = "moveright"
+        player.animate = "move"
+        player.facing = 0
         player.ticker = 0.2
         player.move_x(6.5)
     if key[pygame.K_UP]:
