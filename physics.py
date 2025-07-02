@@ -64,6 +64,8 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
     if (player.is_colliding() == False):
         #do gravity
         player.y_vel = player.y_vel + 0.11
+        player.animate = "jump"
+        player.ticker = 0.3
     if ((camera.offset.x < 0.1) and (player.x_vel < 0)):
         player.x_vel = 0
     player.move(player.x_vel, player.y_vel, DISPLAY_TILES)
