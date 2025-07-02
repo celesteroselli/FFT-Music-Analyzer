@@ -64,8 +64,13 @@ def pick(events):
     ]
     
     for i in range(num_levels):
+        num = i+1
+        if num > 4:
+            num = num - 4
         rect = foreground[i]
-        pygame.draw.rect(display, (0, 255, 0), (rect.x, rect.y, rect.width, rect.height))
+        pygame.draw.rect(display, color3, (rect.x, rect.y, rect.width, rect.height))
+        levelnum = my_font.render(f"Level {num}", False, color2, None)
+        display.blit(levelnum, ((rect.x)+(rect.w-levelnum.get_width())/2, (rect.y)+(rect.h-levelnum.get_height())/2))
     
     for event in events:
          if event.type == pygame.MOUSEBUTTONUP:
