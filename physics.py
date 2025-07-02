@@ -19,8 +19,8 @@ print("bg_images = " + str(bg_images))
 unit1bg = pygame.image.load("unit1.jpeg")
 unit1fg = pygame.image.load("u1foreground.png")
 unit2bg = pygame.image.load("unit2.png")
-unit3bg = pygame.image.load("unit3.png")
-unit4bg = pygame.image.load("unit4.jpeg")
+unit3bg = pygame.image.load("unit3.jpeg")
+unit4bg = pygame.image.load("unit4.png")
 
 images = {
     "1": pygame.transform.scale(unit1bg, (unit1bg.get_width(), 900)),

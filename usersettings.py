@@ -12,4 +12,6 @@ pitch_data = {
 }
 
 pygame.font.init() # you have to call this at the start, 
-my_font = pygame.font.SysFont('Comic Sans MS', 30)
+font_url = "tileset\PixelifySans-Regular.ttf"
+my_font = pygame.font.Font(font_url, 36)
+title_font = pygame.font.Font(font_url, 55)
