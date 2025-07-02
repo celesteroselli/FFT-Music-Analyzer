@@ -18,10 +18,16 @@ print("bg_images = " + str(bg_images))
 
 unit1bg = pygame.image.load("unit1.jpeg")
 unit1fg = pygame.image.load("u1foreground.png")
+unit2bg = pygame.image.load("unit2.png")
+unit3bg = pygame.image.load("unit3.png")
+unit4bg = pygame.image.load("unit4.jpeg")
 
 images = {
     "1": pygame.transform.scale(unit1bg, (unit1bg.get_width(), 900)),
     "1fg": pygame.transform.scale(unit1fg, (unit1fg.get_width()/2, 450)),
+    "2": pygame.transform.scale(unit2bg, (unit1bg.get_width(), 900)),
+    "3": pygame.transform.scale(unit3bg, (unit1bg.get_width(), 900)),
+    "4": pygame.transform.scale(unit4bg, (unit1bg.get_width(), 900)),
 }
 
 background = []
@@ -66,8 +72,10 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
         player.y_vel = player.y_vel + 0.11
         player.animate = "jump"
         player.ticker = 0.3
-    if ((camera.offset.x < 0.1) and (player.x_vel < 0)):
+    if ((camera.offset.x < 0.12) and (player.x_vel < 0)):
         player.x_vel = 0
+        player.animate = "idle"
+        player.ticker = 0.7
     player.move(player.x_vel, player.y_vel, DISPLAY_TILES)
         
 def collision_test(rect, tiles):

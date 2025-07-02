@@ -168,4 +168,4 @@ def level6dialogue(variables, player):
         variables["dialogue_on"] = True
         return f"you sang {variables["last_note"]} hz"
 
-Level_6 = Level(foreground, game_map, level6inputs, level6setup, level6dialogue, "1", "")
+Level_6 = Level(foreground, game_map, level6inputs, level6setup, level6dialogue, "2", "")
