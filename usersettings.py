@@ -15,3 +15,7 @@ pygame.font.init() # you have to call this at the start,
 font_url = "tileset\PixelifySans-Regular.ttf"
 my_font = pygame.font.Font(font_url, 36)
 title_font = pygame.font.Font(font_url, 55)
+
+color1 = (160,0,68)
+color2 = (32,42,120)
+color3 = (161,181,232)

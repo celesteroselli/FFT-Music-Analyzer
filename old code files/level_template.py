@@ -30,7 +30,7 @@ dialogue_box = pygame.Rect(100, WINDOW_SIZE[1]-100, WINDOW_SIZE[0]-200, 50)
 
 def do_dialogue(write):
     pygame.draw.rect(display, (0, 255, 0), dialogue_box)
-    text_surface = my_font.render(write, False, (0,0,255), None)
+    text_surface = my_font.render(write, False, color1, None)
     display.blit(text_surface, (dialogue_box.x,dialogue_box.y))
 
 clock = pygame.time.Clock()

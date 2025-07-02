@@ -21,8 +21,8 @@ def level_run(current_level, events, camera, m_player, follow):
         if (current_level.variables["new_dialogue"]):
             #handling dialogue display stuff
             print("writing text")
-            pygame.draw.rect(display, (0, 255, 0), current_level.variables["dialogue_box"])
-            text_surface = my_font.render(current_level.variables["write"], False, (0,0,255), None)
+            pygame.draw.rect(display, color3, current_level.variables["dialogue_box"])
+            text_surface = my_font.render(current_level.variables["write"], False, color1, None)
             display.blit(text_surface,(current_level.variables["dialogue_box"].x,current_level.variables["dialogue_box"].y))
             current_level.variables["new_dialogue"] = False
             if current_level.variables["figure"] != False:

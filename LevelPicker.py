@@ -20,7 +20,7 @@ levels = {
     8: (Level_8, (2,3)),
 }
 
-MARGIN = 50
+MARGIN = 40
 WINDOWX = WINDOW_SIZE[0] - MARGIN*2
 WINDOWY = WINDOW_SIZE[1]
 
@@ -37,7 +37,18 @@ def pick(events):
     background = pygame.transform.scale(background, WINDOW_SIZE)
     display.blit(background, (0,0))
 
-    title_surface = title_font.render("welcome to timbre", False, (0,0,255), None)
+    title_surface = title_font.render("welcome to timbre", False, color1, None)
+
+    u1surface = my_font.render("Unit 1: Pitch", False, color2, None)
+    u2surface = my_font.render("Unit 2: Harmony", False, color2, None)
+    u3surface = my_font.render("Unit 3: Rhythm", False, color2, None)
+    u4surface = my_font.render("Unit 4: Chords", False, color2, None)
+
+    display.blit(u1surface, (MARGIN - (u1surface.get_width()-LEVEL_W)/2,TOP-50))
+    display.blit(u2surface, (MARGIN+GAP - (u2surface.get_width()-LEVEL_W)/2,TOP-50))
+    display.blit(u3surface, (MARGIN+GAP*2 - (u3surface.get_width()-LEVEL_W)/2,TOP-50))
+    display.blit(u4surface, (MARGIN+GAP*3 - (u4surface.get_width()-LEVEL_W)/2,TOP-50))
+
     display.blit(title_surface, ((WINDOW_SIZE[0]-title_surface.get_width())/2,100))
 
     foreground = [
