@@ -62,13 +62,18 @@ def pick(events):
         (pygame.Rect((((MARGIN+GAP), (TOP+MARGIN*3+LEVEL_H*2)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP), (TOP+MARGIN*4+LEVEL_H*3)), (LEVEL_W, LEVEL_H)))),
     ]
+
+    button = pygame.image.load("Button.png")
+    button = pygame.transform.scale(button, (LEVEL_W, LEVEL_H))
     
     for i in range(num_levels):
         num = i+1
         if num > 4:
             num = num - 4
         rect = foreground[i]
-        pygame.draw.rect(display, color3, (rect.x, rect.y, rect.width, rect.height))
+
+        display.blit(button, (rect.x, rect.y))
+        #pygame.draw.rect(display, color3, (rect.x, rect.y, rect.width, rect.height))
         levelnum = my_font.render(f"Level {num}", False, color2, None)
         display.blit(levelnum, ((rect.x)+(rect.w-levelnum.get_width())/2, (rect.y)+(rect.h-levelnum.get_height())/2))
     

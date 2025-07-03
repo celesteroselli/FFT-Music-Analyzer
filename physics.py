@@ -35,6 +35,9 @@ background = []
 # background.append(pygame.transform.scale(my_foreground, (my_img.get_width()/2, 450)))
 #background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
 
+platform = pygame.image.load("platform.png").convert_alpha()
+platform = pygame.transform.scale(platform, (300, 60))
+
 def draw_background(camera, player, foreground, mapname, draw_back, game_back, game_front):
     #clear tiles, fill in background with white to clear it
     DISPLAY_TILES.clear()
@@ -59,8 +62,9 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
         y += 1
         
     #draw rectangle
-    for rect in foreground:     
-        pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
+    for rect in foreground:    
+        display.blit(platform, (rect.x-camera.offset.x, rect.y-camera.offset.y))
+        #pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
         DISPLAY_TILES.append(rect)
         
     for rect in draw_back:     
