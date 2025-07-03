@@ -14,24 +14,47 @@ game_map = "3_1"
 
 DIFF1 = 300
 DIFF2 = 200
+DIFF3 = 200
+DIFF4 = 150
+DIFF5 = 300
+DIFF6 = 200
 
 foreground = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
-        (0,(pygame.Rect((((TILE_SIZE*13), (TILE_SIZE*11)), (150, 300))))),
-        (0,(pygame.Rect((((TILE_SIZE*13+DIFF1), (TILE_SIZE*11)), (150, 300))))),
-        (0,(pygame.Rect((((TILE_SIZE*13+DIFF1*2), (TILE_SIZE*11)), (150, 300))))),
+        (0,(pygame.Rect((((TILE_SIZE*13), (TILE_SIZE*11)-80), (128, 380))))),
+        (0,(pygame.Rect((((TILE_SIZE*13+DIFF1), (TILE_SIZE*11)-80), (128, 380))))),
+        (0,(pygame.Rect((((TILE_SIZE*13+DIFF1*2), (TILE_SIZE*11)-80), (128, 380))))),
         
-        (1,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*10)), (150, 300))))),
-        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2), (TILE_SIZE*10)), (150, 300))))),
-        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2*2), (TILE_SIZE*10)), (150, 300))))),
-        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2*3), (TILE_SIZE*10)), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*10)-80), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2), (TILE_SIZE*10)-80), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2*2), (TILE_SIZE*10)-80), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2*3), (TILE_SIZE*10)-80), (150, 300))))),
+        
+        (2,(pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*9)-80), (150, 300))))),
+        (2,(pygame.Rect((((TILE_SIZE*41+DIFF3), (TILE_SIZE*9)-80), (150, 300))))),
+        (2,(pygame.Rect((((TILE_SIZE*41+DIFF3*2), (TILE_SIZE*9)-80), (150, 300))))),
+        (2,(pygame.Rect((((TILE_SIZE*41+DIFF3*3), (TILE_SIZE*9)-80), (150, 300))))),
+        
+        (3,(pygame.Rect((((TILE_SIZE*54), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4*2), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4*3), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4*4), (TILE_SIZE*10)-80), (150, 300))))),
+        
+        (4,(pygame.Rect((((TILE_SIZE*67), (TILE_SIZE*9)-80), (150, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*67+DIFF5), (TILE_SIZE*9)-80), (150, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*67+DIFF5*2), (TILE_SIZE*9)-80), (150, 300))))),
+        
+        (5,(pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*8)-80), (150, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*79+DIFF6), (TILE_SIZE*8)-80), (150, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*79+DIFF6*2), (TILE_SIZE*8)-80), (150, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*79+DIFF6*3), (TILE_SIZE*8)-80), (150, 300))))),
         
         (0, (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50))))),
 ]
 
 def level9inputs(variables, events, player):
-
     variables["background"] = background
     
     camera = variables.get("camera")
@@ -74,16 +97,37 @@ def level9inputs(variables, events, player):
                         if foreground[i][0]==0:
                             variables["current_rocks"] = 0
                             variables["start"] = 13*TILE_SIZE
+                            variables["rock_count"] = 1
                             run = hit_rhythms(DIFF1*2)
                         elif foreground[i][0]==1:
                             variables["current_rocks"] = 1
                             variables["start"] = 28*TILE_SIZE
+                            variables["rock_count"] = 0
                             run = hit_rhythms(DIFF2*3)
+                        elif foreground[i][0]==2:
+                            variables["current_rocks"] = 2
+                            variables["start"] = 41*TILE_SIZE
+                            variables["rock_count"] = 0
+                            run = hit_rhythms(DIFF3*3)
+                        elif foreground[i][0]==3:
+                            variables["current_rocks"] = 3
+                            variables["start"] = 54*TILE_SIZE
+                            variables["rock_count"] = 0
+                            run = hit_rhythms(DIFF4*4)
+                        elif foreground[i][0]==4:
+                            variables["current_rocks"] = 4
+                            variables["start"] = 67*TILE_SIZE
+                            variables["rock_count"] = 0
+                            run = hit_rhythms(DIFF5*2)
+                        elif foreground[i][0]==5:
+                            variables["current_rocks"] = 5
+                            variables["start"] = 79*TILE_SIZE
+                            variables["rock_count"] = 0
+                            run = hit_rhythms(DIFF6*3)
                         variables["hits"] = run[0]
                         variables["figure"] = run[1]
                         variables["first_move"] = True
                         variables["falling"] = True
-                        variables["rock_count"] = 1
                         
     if variables["falling"] and (not variables["figure"]):
         variables["falling"] = True
@@ -93,7 +137,7 @@ def level9inputs(variables, events, player):
         
         display.blit(variables["rock"], (variables["rock_x"]-camera.offset.x, variables["rock_y"]))
         variables["rock_y"] = variables["rock_y"] + 4
-        if variables["rock_count"] > 3:
+        if variables["rock_count"] > len(variables["hits"]):
             variables["falling"] = False
         if variables["rock_y"] > WINDOW_SIZE[1]:
             if variables["rock_count"] < len(variables["hits"]):
@@ -129,7 +173,11 @@ def level9setup(foreground, camera):
 def level9dialogue(variables, player):
     if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
-        return "sing the intervals in the direction shown"
+        return "clear the rocks in your path"
+    
+    if (player.rect.x > 11*TILE_SIZE) and (variables["dialogue_count"]==1):
+        variables["dialogue_on"] = True
+        return "tap the walls and clap on beat to make rocks fall"
     
     if ((player.rect.x > 93*TILE_SIZE)):
         variables["dialogue_on"] = True

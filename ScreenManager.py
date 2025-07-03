@@ -21,7 +21,7 @@ pygame.init()
 running = True
 
 startx = PLAYER_SCREEN_OFFSET
-starty = 2000
+starty = 1600
 m_player = PlayerClass(startx, starty, 150, 150)
 camera = Camera(m_player)
 follow = CamScroll(camera, m_player)
