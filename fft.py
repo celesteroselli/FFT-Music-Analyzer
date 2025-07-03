@@ -120,6 +120,14 @@ def process_audio():
     
     global Fs
     Fs = sound.frame_rate
+    
+    global fig_audio, audio_axes
+    fig_audio, audio_axes = plt.subplots(1, 1,)
+    
+    audio_axes.plot(np.arange(len(aud_samples)), aud_samples)
+        
+    fig_audio.canvas.draw()
+    
 def split(x):
     N = len(x)
     if (N==1):
@@ -209,10 +217,6 @@ def one_note():
     return note[0].pitch.frequency
 
 def rhythm(r_max):
-    plt.plot(np.arange(len(aud_samples)), aud_samples)
-    plt.title("Raw Audio Waveform")
-    plt.show()
-    
     m_peaks = find_peaks(aud_samples, height=6000, distance = 10000)
     distances = []
     smallest = 1000000000
@@ -258,7 +262,7 @@ def run(type, recording, m_doplot, rhythm_max):
         case "all":
             return all_notes(), fig
         case "rhythm":
-            return rhythm(rhythm_max)
+            return rhythm(rhythm_max), fig_audio
         case _:
             return "Sorry, your input does not match a fft option"
         

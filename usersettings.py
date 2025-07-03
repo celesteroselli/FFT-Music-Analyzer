@@ -11,8 +11,8 @@ pitch_data = {
     "Note": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"]
 }
 
-pygame.font.init() # you have to call this at the start, 
-font_url = "tileset\PixelifySans-Regular.ttf"
+pygame.font.init() # you have to call this at the starsst, 
+font_url = "tileset/PixelifySans-Regular.ttf"
 my_font = pygame.font.Font(font_url, 36)
 title_font = pygame.font.Font(font_url, 55)
 

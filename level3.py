@@ -34,14 +34,14 @@ def level3inputs(variables, events, player):
     foreground_list = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
-        (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*15)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*15)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*15)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*11)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*10)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*15)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*15)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*15)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*11)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*10)), (300, 100)))),
     ]
     
     pitch_list = [

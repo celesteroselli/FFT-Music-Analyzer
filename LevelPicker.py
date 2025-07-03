@@ -8,6 +8,7 @@ from level5 import Level_5
 from level6 import Level_6
 from level7 import Level_7
 from level8 import Level_8
+from level9 import Level_9
 
 levels = {
     1: (Level_1, (1,1)),
@@ -17,7 +18,8 @@ levels = {
     5: (Level_5, (2,1)),
     6: (Level_6, (2,2)),
     7: (Level_7, (2,3)),
-    8: (Level_8, (2,3)),
+    8: (Level_8, (2,4)),
+    9: (Level_9, (3,1)),
 }
 
 MARGIN = 40
@@ -61,6 +63,8 @@ def pick(events):
         (pygame.Rect((((MARGIN+GAP), (TOP+MARGIN*2+LEVEL_H)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP), (TOP+MARGIN*3+LEVEL_H*2)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP), (TOP+MARGIN*4+LEVEL_H*3)), (LEVEL_W, LEVEL_H)))),
+        
+        (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN)), (LEVEL_W, LEVEL_H)))),
     ]
 
     button = pygame.image.load("Button.png")
@@ -68,8 +72,11 @@ def pick(events):
     
     for i in range(num_levels):
         num = i+1
-        if num > 4:
-            num = num - 4
+        num = i+1
+        while num > 4:
+            if num > 4:
+                num = num - 4
+                
         rect = foreground[i]
 
         display.blit(button, (rect.x, rect.y))

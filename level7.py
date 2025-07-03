@@ -44,14 +44,14 @@ def level7inputs(variables, events, player):
     foreground = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
-        (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*11)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*14)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*44), (TILE_SIZE*12)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*11)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*12)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*10)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*11)+(100)-(variables["y3_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*14)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*44), (TILE_SIZE*12)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*11)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*12)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*10)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
                 

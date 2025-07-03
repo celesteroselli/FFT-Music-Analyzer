@@ -31,15 +31,15 @@ def level2inputs(variables, events, player):
     foreground = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
-        (pygame.Rect((((TILE_SIZE*10), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*11)+(100)-(variables["y2_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*14)+(100)-(variables["y3_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*37), (TILE_SIZE*10)+(100)-(variables["y4_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*46), (TILE_SIZE*15)+(100)-(variables["y5_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*11)+(100)-(variables["y6_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*63), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*9)+(100)-(variables["y8_height"]*factor)), (300, 50)))),
-        (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 50)))),
+        (pygame.Rect((((TILE_SIZE*10), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*11)+(100)-(variables["y2_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*14)+(100)-(variables["y3_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*37), (TILE_SIZE*10)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*46), (TILE_SIZE*15)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*11)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*63), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*9)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
     
