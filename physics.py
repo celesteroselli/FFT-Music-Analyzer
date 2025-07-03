@@ -35,11 +35,11 @@ background = []
 # background.append(pygame.transform.scale(my_foreground, (my_img.get_width()/2, 450)))
 #background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
 
-platform = pygame.image.load("platform4.png").convert_alpha()
-platform = pygame.transform.scale(platform, (300, 100))
-
 wall = pygame.image.load("wall.png").convert_alpha()
 wall = pygame.transform.scale_by(wall, 2)
+
+platform = pygame.image.load("platform3.png").convert_alpha()
+platform = pygame.transform.scale(platform, (300, 100))
 
 def draw_background(camera, player, foreground, mapname, draw_back, game_back, game_front):
     #clear tiles, fill in background with white to clear it
@@ -68,19 +68,15 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
         pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
         
     #draw rectangle
-    for rect in foreground:    
-        if type(rect)==type(()):
-            if rect[0]==-1:
-                pygame.draw.rect(display, (0, 0, 255), (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y, rect[1].width, rect[1].height))
-                DISPLAY_TILES.append(rect[1])
-            else:
-                #pygame.draw.rect(display, (0, 0, 255), (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y, rect[1].width, rect[1].height))
-                display.blit(wall, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
-                DISPLAY_TILES.append(rect[1])
-        else:
+    for rect in foreground:  
+        if type(rect)==type(pygame.rect.Rect()):
             display.blit(platform, (rect.x-camera.offset.x, rect.y-camera.offset.y))
             #pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
             DISPLAY_TILES.append(rect)
+        elif type(rect)==type(()):
+            #pygame.draw.rect(display, (0, 0, 255), (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y, rect[1].width, rect[1].height))
+            display.blit(wall, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
+            DISPLAY_TILES.append(rect[1])
         
     #move and draw player - MUST DO LAST TO GET ALL COLLISIONS
     if (player.is_colliding() == False):
