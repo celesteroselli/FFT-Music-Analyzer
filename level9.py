@@ -64,7 +64,7 @@ def level9inputs(variables, events, player):
     
     if variables["killed"]==True:
         for i in range(variables["num_of_elements"]):
-            foreground = [
+            variables["foreground"] = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
         (0,(pygame.Rect((((TILE_SIZE*13), (TILE_SIZE*11)-80), (128, 380))))),
@@ -123,37 +123,37 @@ def level9inputs(variables, events, player):
                         if foreground[i][0]==0:
                             variables["current_rocks"] = 0
                             variables["start"] = 13*TILE_SIZE
-                            variables["rock_count"] = 1
+                            variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 3
                             run = hit_rhythms(DIFF1*(variables["max_hits"]-1))
                         elif foreground[i][0]==1:
                             variables["current_rocks"] = 1
                             variables["start"] = 28*TILE_SIZE
-                            variables["rock_count"] = 0
+                            variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 4
                             run = hit_rhythms(DIFF2*(variables["max_hits"]-1))
                         elif foreground[i][0]==2:
                             variables["current_rocks"] = 2
                             variables["start"] = 41*TILE_SIZE
-                            variables["rock_count"] = 0
+                            variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 4
                             run = hit_rhythms(DIFF3*(variables["max_hits"]-1))
                         elif foreground[i][0]==3:
                             variables["current_rocks"] = 3
                             variables["start"] = 54*TILE_SIZE
-                            variables["rock_count"] = 0
+                            variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 5
                             run = hit_rhythms(DIFF4*(variables["max_hits"]-1))
                         elif foreground[i][0]==4:
                             variables["current_rocks"] = 4
                             variables["start"] = 67*TILE_SIZE
-                            variables["rock_count"] = 0
+                            variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 3
                             run = hit_rhythms(DIFF5*(variables["max_hits"]-1))
                         elif foreground[i][0]==5:
                             variables["current_rocks"] = 5
                             variables["start"] = 79*TILE_SIZE
-                            variables["rock_count"] = 4
+                            variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 3
                             run = hit_rhythms(DIFF6*(variables["max_hits"]-1))
                         variables["hits"] = run[0]
@@ -163,15 +163,60 @@ def level9inputs(variables, events, player):
                         
     if variables["falling"] and (not variables["figure"]):
         if (variables["rock_count"] > len(variables["hits"])) or (variables["rock_count"] > variables["max_hits"]):
-            variables["falling"] = False
+            print("sunk", variables["sunk"], "max-hits", variables["max_hits"])
+            if variables["sunk"]==variables["max_hits"]:
+                print("you did fine bro")
+                variables["sunk"] = 0
+                variables["falling"] = False
+                variables["rock_count"] = 0
+            else:
+                print("you failed bro")
+                variables["sunk"] = 0
+                variables["falling"] = False
+                variables["rock_count"] = 0
+                variables["foreground"] = [
+        #x-left = x tiles from left
+        #y-top = y-1 tiles from top
+        (0,(pygame.Rect((((TILE_SIZE*13), (TILE_SIZE*11)-80), (128, 380))))),
+        (0,(pygame.Rect((((TILE_SIZE*13+DIFF1), (TILE_SIZE*11)-80), (128, 380))))),
+        (0,(pygame.Rect((((TILE_SIZE*13+DIFF1*2), (TILE_SIZE*11)-80), (128, 380))))),
+        
+        (1,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*10)-80), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2), (TILE_SIZE*10)-80), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2*2), (TILE_SIZE*10)-80), (150, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*28+DIFF2*3), (TILE_SIZE*10)-80), (150, 300))))),
+        
+        (2,(pygame.Rect((((TILE_SIZE*41), (TILE_SIZE*9)-80), (150, 300))))),
+        (2,(pygame.Rect((((TILE_SIZE*41+DIFF3), (TILE_SIZE*9)-80), (150, 300))))),
+        (2,(pygame.Rect((((TILE_SIZE*41+DIFF3*2), (TILE_SIZE*9)-80), (150, 300))))),
+        (2,(pygame.Rect((((TILE_SIZE*41+DIFF3*3), (TILE_SIZE*9)-80), (150, 300))))),
+        
+        (3,(pygame.Rect((((TILE_SIZE*54), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4*2), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4*3), (TILE_SIZE*10)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*54+DIFF4*4), (TILE_SIZE*10)-80), (150, 300))))),
+        
+        (4,(pygame.Rect((((TILE_SIZE*67), (TILE_SIZE*9)-80), (150, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*67+DIFF5), (TILE_SIZE*9)-80), (150, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*67+DIFF5*2), (TILE_SIZE*9)-80), (150, 300))))),
+        
+        (5,(pygame.Rect((((TILE_SIZE*79), (TILE_SIZE*8)-80), (150, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*79+DIFF6), (TILE_SIZE*8)-80), (150, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*79+DIFF6*2), (TILE_SIZE*8)-80), (150, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*79+DIFF6*3), (TILE_SIZE*8)-80), (150, 300))))),
+        
+        (0, (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50))))),
+]
         else:
             variables["falling"] = True
             battleship = collision_test(Rect(variables["rock_x"], variables["rock_y"]+ camera.offset.y, 100, 100), foreground)
             if battleship:
+                variables["sunk"] = variables["sunk"]+1
                 variables["foreground"].remove((variables["current_rocks"],battleship[0]))
         
             display.blit(variables["rock"], (variables["rock_x"]-camera.offset.x, variables["rock_y"]))
-            variables["rock_y"] = variables["rock_y"] + 4
+            variables["rock_y"] = variables["rock_y"] + 9
             if variables["rock_y"] > WINDOW_SIZE[1]:
                 if variables["rock_count"] < len(variables["hits"]):
                     variables["rock_y"] = 0
@@ -199,6 +244,7 @@ def level9setup(foreground, camera):
     temp_dict["falling"] = False
     temp_dict["hits"] = None
     temp_dict["max_hits"] = 3
+    temp_dict["sunk"] = 0
     
     temp_dict["start"] = 13*TILE_SIZE
     

@@ -108,7 +108,7 @@ def level10inputs(variables, events, player):
     
     if variables["killed"]==True:
         for i in range(variables["num_of_elements"]):
-            foreground = [
+            variables["foreground"] = [
         #x-left = x tiles from left
         #y-top = y-1 tiles from top
         
