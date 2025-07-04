@@ -76,6 +76,7 @@ def level4inputs(variables, events, player):
                         else:
                             run = harmonize(variables[f"y{i+1}"], 0.5)
                             ifup = -2
+                        variables["figure"] = run[2]
                         orig = variables[f"orig_y{i+1}"]
                         if (run[0]==True):
                             variables[f"y{i+1}"] = run[1]
@@ -139,5 +140,9 @@ def level4dialogue(variables, player):
     if (variables["wrong"] != False ):
         variables["dialogue_on"] = True
         return variables["wrong"]
+    
+    if (variables["figure"]):
+        variables["dialogue_on"] = True
+        return f"you sang {variables["last_note"]} hz"
 
 Level_4 = Level(foreground, game_map, level4inputs, level4setup, level4dialogue, "1", "")

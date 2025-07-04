@@ -98,32 +98,37 @@ def level9inputs(variables, events, player):
                             variables["current_rocks"] = 0
                             variables["start"] = 13*TILE_SIZE
                             variables["rock_count"] = 1
-                            run = hit_rhythms(DIFF1*2)
+                            variables["max_hits"] = 3
+                            run = hit_rhythms(DIFF1*(variables["max_hits"]-1))
                         elif foreground[i][0]==1:
                             variables["current_rocks"] = 1
                             variables["start"] = 28*TILE_SIZE
                             variables["rock_count"] = 0
-                            run = hit_rhythms(DIFF2*3)
+                            variables["max_hits"] = 4
+                            run = hit_rhythms(DIFF2*(variables["max_hits"]-1))
                         elif foreground[i][0]==2:
                             variables["current_rocks"] = 2
                             variables["start"] = 41*TILE_SIZE
                             variables["rock_count"] = 0
-                            run = hit_rhythms(DIFF3*3)
+                            variables["max_hits"] = 4
+                            run = hit_rhythms(DIFF3*(variables["max_hits"]-1))
                         elif foreground[i][0]==3:
                             variables["current_rocks"] = 3
                             variables["start"] = 54*TILE_SIZE
                             variables["rock_count"] = 0
-                            run = hit_rhythms(DIFF4*4)
+                            variables["max_hits"] = 5
+                            run = hit_rhythms(DIFF4*(variables["max_hits"]-1))
                         elif foreground[i][0]==4:
                             variables["current_rocks"] = 4
                             variables["start"] = 67*TILE_SIZE
                             variables["rock_count"] = 0
-                            run = hit_rhythms(DIFF5*2)
+                            variables["max_hits"] = 3
+                            run = hit_rhythms(DIFF5*(variables["max_hits"]-1))
                         elif foreground[i][0]==5:
                             variables["current_rocks"] = 5
                             variables["start"] = 79*TILE_SIZE
-                            variables["rock_count"] = 0
-                            run = hit_rhythms(DIFF6*3)
+                            variables["rock_count"] = 4
+                            run = hit_rhythms(DIFF6*(variables["max_hits"]-1))
                         variables["hits"] = run[0]
                         variables["figure"] = run[1]
                         variables["first_move"] = True
@@ -165,6 +170,7 @@ def level9setup(foreground, camera):
     temp_dict["rock_y"] = 0
     temp_dict["falling"] = False
     temp_dict["hits"] = None
+    temp_dict["max_hits"] = 3
     
     temp_dict["start"] = 13*TILE_SIZE
     

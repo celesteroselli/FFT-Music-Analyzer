@@ -92,7 +92,8 @@ def level3inputs(variables, events, player):
                     if background[i].collidepoint(new_pos):
                         print(f"hitting background {i}")
                         run = harmonize(pitch_list[i], 1)
-                        print(run[2])
+                        variables["figure"] = run[2]
+                        print(run[3])
                         if run[0]:
                             foreground.append(foreground_list[i])
     
@@ -125,5 +126,9 @@ def level3dialogue(variables, player):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"
+    
+    if (variables["figure"]):
+        variables["dialogue_on"] = True
+        return f"you sang {variables["last_note"]} hz"
 
 Level_3 = Level(foreground, game_map, level3inputs, level3setup, level3dialogue, "1", "1fg")

@@ -71,6 +71,7 @@ def level2inputs(variables, events, player):
                 for i in range(num_of_elements):
                     if foreground[i].collidepoint(new_pos):
                         run = constraint(variables[f"y{i+1}"], variables[f"y{i+1}_max"])
+                        variables["figure"] = run[2]
                         if (run[0]==True):
                             print("within constraints!")
                             variables[f"y{i+1}"] = run[1]
@@ -162,5 +163,9 @@ def level2dialogue(variables, player):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"
+    
+    if (variables["figure"]):
+        variables["dialogue_on"] = True
+        return f"you sang {variables["last_note"]} hz"
 
 Level_2 = Level(foreground, game_map, level2inputs, level2setup, level2dialogue, "1", "")

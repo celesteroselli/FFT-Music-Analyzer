@@ -15,8 +15,9 @@ from usersettings import *
 from pygame_markdown import MarkdownRenderer
 from LevelPicker import pick
 
-
 pygame.init()
+
+pygame.mixer.music.load("audio.mp3")
 
 running = True
 
