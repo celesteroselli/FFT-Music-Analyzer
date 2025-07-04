@@ -12,6 +12,7 @@ from level9 import Level_9
 from level10 import Level_10
 from level11 import Level_11
 from level12 import Level_12
+from level13 import Level_13
 
 levels = {
     1: (Level_1, (1,1)),
@@ -25,7 +26,8 @@ levels = {
     9: (Level_9, (3,1)),
     10: (Level_10, (3,2)),
     11: (Level_11, (3,3)),
-    12: (Level_12, (3,4))
+    12: (Level_12, (3,4)),
+    13: (Level_13, (4,1)),
 }
 
 MARGIN = 40
@@ -74,6 +76,8 @@ def pick(events):
         (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN*2+LEVEL_H)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN*3+LEVEL_H*2)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN*4+LEVEL_H*3)), (LEVEL_W, LEVEL_H)))),
+        
+        (pygame.Rect((((MARGIN+GAP*3), (TOP+MARGIN)), (LEVEL_W, LEVEL_H)))),
     ]
     
 

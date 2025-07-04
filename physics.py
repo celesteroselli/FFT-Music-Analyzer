@@ -41,6 +41,13 @@ wall = pygame.transform.scale_by(wall, 2)
 wall2 = pygame.image.load("middleplatform.png").convert_alpha()
 #wall2 = pygame.transform.scale_by(wall, 2)
 
+bridge1 = pygame.image.load("bridge1.png").convert_alpha()
+bridge1 = pygame.transform.scale(bridge1, (150, 750))
+bridge1 = pygame.transform.rotate(bridge1, 90)
+bridge2 = pygame.image.load("bridge2.png").convert_alpha()
+bridge2 = pygame.transform.scale(bridge2, (150, 750))
+bridge2 = pygame.transform.rotate(bridge2, 90)
+
 platform = pygame.image.load("platform3.png").convert_alpha()
 platform = pygame.transform.scale(platform, (300, 100))
 
@@ -79,6 +86,10 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
         elif type(rect)==type(()):
             if rect[1].w==384:
                 display.blit(wall2, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
+            elif rect[0]==-3:
+                display.blit(bridge1, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
+            elif rect[0]==-4:
+                display.blit(bridge2, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
             else:
                 display.blit(wall, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
             DISPLAY_TILES.append(rect[1])

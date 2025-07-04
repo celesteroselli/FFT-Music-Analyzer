@@ -90,9 +90,12 @@ def hit_rhythms(max):
     list = fft.run("rhythm", True, False, max)
     return list
 
-def chord(pitchnum):
+def chord(num):
     print("play a major chord")
-    sine_wave = SineWave(pitch=pitchnum, pitch_per_second=0)
+    sine_wave = SineWave(pitch=1, pitch_per_second=500)
+    sine_wave.set_frequency(pitch_data["Frequency"][pitch_data["Note"].index(num)])
+    
+    print(f"{num} major")
 
     # Play the sine wave
     sine_wave.play()
@@ -105,26 +108,28 @@ def chord(pitchnum):
     
     notes = []
     
-    base = pitch_data["Note"][pitchnum]
-    print("base = " + base)
+    i = music21.interval.Interval("M3")
+    i2 = music21.interval.Interval("P5")
+    i.noteStart = music21.note.Note(num)
+    i2.noteStart = music21.note.Note(num)
+    M3 = i.noteEnd
+    P5 = i2.noteEnd
     
-    notes = fft.run("all", True, False, 0)
+    test_chord = [num, M3.name, P5.name]
     
-    final_chord = []
-    
+    run = fft.run("all", True, False, 0)
+    notes = run[0]
+    fig = run[1]
+
+    pitches = []
     for x in notes:
-        if ((x.pitch.frequency > USER_CHORD_MIN) and (x.pitch.frequency < USER_CHORD_MAX)):
-            if x.name != None:
-                print(x.name)
-                final_chord.append(x.name)
-                    
-    myChord = music21.chord.Chord(final_chord)
-    print(myChord)
-    print(myChord.pitchedCommonName)
+        pitches.append(x.name)
     
-    if (myChord.pitchedCommonName==f"{base}-major triad") or (myChord.pitchedCommonName==f"enharmonic equivalent to {base}-major triad"):
-        print("that's c major!!")
-        return True
-    else: 
-        print("oop that's not right")
-        return False
+    for x in test_chord:
+        if x in pitches:
+            print(x, "in", pitches)
+        else:
+            print(x, "not in", pitches)
+            return False, fig, f"sorry, you sang {pitches}"
+        
+    return True, fig, f"you sang {pitches}"
