@@ -56,7 +56,7 @@ class PlayerClass(pygame.sprite.Sprite):
         camera.offset.x = 0
         camera.offset.y = 0
         self.rect.x = PLAYER_SCREEN_OFFSET
-        self.rect.y = 2000
+        self.rect.y = 1600
         
     def move_x(self, vel):
         self.x_vel = vel
@@ -100,12 +100,12 @@ def handle_move(player):
     if key[pygame.K_LEFT]:
         player.animate = "move"
         player.facing = 1
-        player.ticker = 0.2
+        player.ticker = 0.1
         player.move_x(-6.5)
     if key[pygame.K_RIGHT]:
         player.animate = "move"
         player.facing = 0
-        player.ticker = 0.2
+        player.ticker = 0.1
         player.move_x(6.5)
     if key[pygame.K_UP]:
         if (player.is_colliding() == True):

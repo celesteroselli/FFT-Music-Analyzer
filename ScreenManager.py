@@ -17,7 +17,8 @@ from LevelPicker import pick
 
 pygame.init()
 
-pygame.mixer.music.load("audio.mp3")
+music = pygame.mixer.music.load("audio.mp3")
+pygame.mixer.music.play(loops=-1)
 
 running = True
 
@@ -64,6 +65,7 @@ while running:
                 m_player.rect.y = starty
         else:
         #what should you run after the lesson
+            pygame.mixer.music.pause()
             run = level_run(current_level, pygame_events, camera, m_player, follow)
             if run != False:
                 screen.blit(run, (0,0))
@@ -73,6 +75,7 @@ while running:
                 lesson_first = True
     else:
     #else, show the level screen
+        pygame.mixer.music.unpause()
         run = pick(pygame_events)
         if run[0] == True:
             screen.blit(run[1], (0,0))

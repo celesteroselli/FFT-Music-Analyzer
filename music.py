@@ -37,7 +37,6 @@ def harmonize(pitch, interval):
         return True, y, run[1]
     
 def constraint(pitch, pitch2):
-    
     if pitch2 < pitch:
         higher = pitch
         lower = pitch2
