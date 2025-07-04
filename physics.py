@@ -38,6 +38,9 @@ background = []
 wall = pygame.image.load("wall.png").convert_alpha()
 wall = pygame.transform.scale_by(wall, 2)
 
+wall2 = pygame.image.load("middleplatform.png").convert_alpha()
+#wall2 = pygame.transform.scale_by(wall, 2)
+
 platform = pygame.image.load("platform3.png").convert_alpha()
 platform = pygame.transform.scale(platform, (300, 100))
 
@@ -74,8 +77,10 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
             #pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
             DISPLAY_TILES.append(rect)
         elif type(rect)==type(()):
-            #pygame.draw.rect(display, (0, 0, 255), (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y, rect[1].width, rect[1].height))
-            display.blit(wall, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
+            if rect[1].w==384:
+                display.blit(wall2, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
+            else:
+                display.blit(wall, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
             DISPLAY_TILES.append(rect[1])
         
     #move and draw player - MUST DO LAST TO GET ALL COLLISIONS

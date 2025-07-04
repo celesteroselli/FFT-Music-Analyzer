@@ -11,6 +11,7 @@ from level8 import Level_8
 from level9 import Level_9
 from level10 import Level_10
 from level11 import Level_11
+from level12 import Level_12
 
 levels = {
     1: (Level_1, (1,1)),
@@ -24,6 +25,7 @@ levels = {
     9: (Level_9, (3,1)),
     10: (Level_10, (3,2)),
     11: (Level_11, (3,3)),
+    12: (Level_12, (3,4))
 }
 
 MARGIN = 40
@@ -71,7 +73,9 @@ def pick(events):
         (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN*2+LEVEL_H)), (LEVEL_W, LEVEL_H)))),
         (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN*3+LEVEL_H*2)), (LEVEL_W, LEVEL_H)))),
+        (pygame.Rect((((MARGIN+GAP*2), (TOP+MARGIN*4+LEVEL_H*3)), (LEVEL_W, LEVEL_H)))),
     ]
+    
 
     button = pygame.image.load("Button.png")
     button = pygame.transform.scale(button, (LEVEL_W, LEVEL_H))
