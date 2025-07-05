@@ -125,11 +125,22 @@ def chord(num):
     for x in notes:
         pitches.append(x.name)
     
+    Found = 0
     for x in test_chord:
-        if x in pitches:
-            print(x, "in", pitches)
-        else:
-            print(x, "not in", pitches)
-            return False, fig, f"sorry, you sang {pitches}"
+        for y in pitches:
+            if music21.pitch.Pitch(y).isEnharmonic(music21.pitch.Pitch(x)):
+                print(f"{x} is in pitches, as {x} is enharmonic to {y}")
+                Found = Found + 1
+                
+    if (Found < len(test_chord)):
+        return False, fig, f"sorry, you sang {pitches} while looking for {test_chord}"
         
-    return True, fig, f"you sang {pitches}"
+    others = []
+    for y in pitches:
+        if y not in test_chord:
+            others.append(y)
+    
+    if others:
+        return True, fig, f"you sang {test_chord} with over/under-tones {others}"
+    else:
+        return True, fig, f"you sang {test_chord} with no over/under-tones"
