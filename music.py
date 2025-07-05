@@ -92,8 +92,11 @@ def hit_rhythms(max):
 
 def chord(num):
     print("play a major chord")
+    pitch = music21.pitch.Pitch(num).frequency
+    if pitch>=(music21.pitch.Pitch("F").frequency):
+        pitch = pitch/2
     sine_wave = SineWave(pitch=1, pitch_per_second=500)
-    sine_wave.set_frequency(pitch_data["Frequency"][pitch_data["Note"].index(num)])
+    sine_wave.set_frequency(pitch)
     
     print(f"{num} major")
 
