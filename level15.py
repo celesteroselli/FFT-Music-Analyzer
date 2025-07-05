@@ -12,7 +12,7 @@ foreground = []
 
 game_map = "4_3"
 
-num_of_elements = 6
+num_of_elements = 10
 
 factor = 6
 
@@ -74,9 +74,9 @@ def level15setup(foreground, camera):
     temp_dict["running"] = True
     temp_dict["wrong"] = False
     
-    temp_dict["pitch_list"] = ["C", "D", "E", "D", "C#", "E"]
-    temp_dict["posx"] = [10, 21, 38, 55, 66, 89]
-    temp_dict["posy"] = [16, 16, 15, 14, 14, 12]
+    temp_dict["pitch_list"] = ["E", "D", "G", "A", "C#", "F", "E-", "B", "A#", "G#"]
+    temp_dict["posx"] = [4, 15, 24, 32, 40, 48, 59, 72, 81, 88]
+    temp_dict["posy"] = [14, 16, 16, 16, 15, 14, 14, 12, 12, 14]
     
     for i in range(len(temp_dict["posx"])):
         temp_dict["foreground"].append((-3, pygame.rect.Rect(TILE_SIZE*(temp_dict["posx"][i]), TILE_SIZE*(temp_dict["posy"][i]), TILE_SIZE*5, TILE_SIZE)))
