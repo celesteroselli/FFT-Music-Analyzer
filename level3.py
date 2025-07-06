@@ -45,25 +45,33 @@ def level3inputs(variables, events, player):
     ]
     
     pitch_list = [
+        #C
         261.63*2*OCTAVE,
+        #D
         293.66*2*OCTAVE,
+        #A
         440*2*OCTAVE,
+        #F
         349.23*2*OCTAVE,
+        #G#
         415.30*2*OCTAVE,
+        #E
         329.63*2*OCTAVE,
+        #A
         440*2*OCTAVE,
+        #B
         493.88*2*OCTAVE,
     ]
     
     background = [
-        (pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*17)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*17)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*17)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*17)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*14)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*14)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*13)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*12)), (300, 300)))),
+        (1,(pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*17)), (300, 300))))),
+        (2, (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*17)), (300, 300))))),
+        (3, (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*17)), (300, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*17)), (300, 300))))),
+        (7,(pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*14)), (300, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*14)), (300, 300))))),
+        (3, (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*13)), (300, 300))))),
+        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*12)), (300, 300))))),
     ]
                 
     #things that kill the player
@@ -89,7 +97,7 @@ def level3inputs(variables, events, player):
                 # Check if the mouse position collides with the rect
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 for i in range(len(background)):
-                    if background[i].collidepoint(new_pos):
+                    if background[i][1].collidepoint(new_pos):
                         print(f"hitting background {i}")
                         run = harmonize(pitch_list[i], 1)
                         variables["figure"] = run[2]

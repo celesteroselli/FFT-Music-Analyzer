@@ -22,6 +22,64 @@ unit2bg = pygame.image.load("unit2.png")
 unit3bg = pygame.image.load("unit3.jpeg")
 unit4bg = pygame.image.load("unit4.png")
 
+bgpitch1 = pygame.image.load("tileset/1bgpitch.png")
+bgpitch2 = pygame.image.load("tileset/2bgpitch.png")
+bgpitch3 = pygame.image.load("tileset/3bgpitch.png")
+bgpitch4 = pygame.image.load("tileset/4bgpitch.png")
+bgpitch5 = pygame.image.load("tileset/5bgpitch.png")
+bgpitch6 = pygame.image.load("tileset/6bgpitch.png")
+bgpitch7 = pygame.image.load("tileset/7bgpitch.png")
+bgpitch8 = pygame.image.load("tileset/8bgpitch.png")
+bgpitch9 = pygame.image.load("tileset/10bgpitch.png")
+bgpitch10 = pygame.image.load("tileset/10bgpitch.png")
+bgpitch11 = pygame.image.load("tileset/11bgpitch.png")
+bgpitch12 = pygame.image.load("tileset/12bgpitch.png")
+bgpitch13 = pygame.image.load("tileset/13bgpitch.png")
+bgpitch14 = pygame.image.load("tileset/14bgpitch.png")
+bgpitch15 = pygame.image.load("tileset/15bgpitch.png")
+bgpitch16 = pygame.image.load("tileset/16bgpitch.png")
+bgpitch17 = pygame.image.load("tileset/17bgpitch.png")
+bgpitch18 = pygame.image.load("tileset/18bgpitch.png")
+bgpitch19 = pygame.image.load("tileset/19bgpitch.png")
+bgpitch20 = pygame.image.load("tileset/20bgpitch.png")
+bgpitch21 = pygame.image.load("tileset/21bgpitch.png")
+bgpitch22 = pygame.image.load("tileset/22bgpitch.png")
+bgpitch23 = pygame.image.load("tileset/23bgpitch.png")
+bgpitch24 = pygame.image.load("tileset/24bgpitch.png")
+bgpitch25 = pygame.image.load("tileset/25bgpitch.png")
+bgpitch26 = pygame.image.load("tileset/26bgpitch.png")
+bgpitch27 = pygame.image.load("tileset/27bgpitch.png")
+
+bgpitches = {
+    "1": bgpitch1,
+    "2": bgpitch2,
+    "3": bgpitch3,
+    "4": bgpitch4,
+    "5": bgpitch5,
+    "6": bgpitch6,
+    "7": bgpitch7,
+    "8": bgpitch8,
+    "9": bgpitch9,
+    "10": bgpitch10,
+    "11": bgpitch11,
+    "12": bgpitch12,
+    "13": bgpitch13,
+    "14": bgpitch14,
+    "15": bgpitch15,
+    "16": bgpitch16,
+    "17": bgpitch17,
+    "18": bgpitch18,
+    "19": bgpitch19,
+    "20": bgpitch20,
+    "21": bgpitch21,
+    "22": bgpitch22,
+    "23": bgpitch23,
+    "24": bgpitch24,
+    "25": bgpitch25,
+    "26": bgpitch26,
+    "27": bgpitch27,
+}
+
 images = {
     "1": pygame.transform.scale(unit1bg, (unit1bg.get_width(), 900)),
     "1fg": pygame.transform.scale(unit1fg, (unit1fg.get_width()/2, 450)),
@@ -74,8 +132,10 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
             x += 1
         y += 1
         
-    for rect in draw_back:     
-        pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
+    for rect in draw_back:   
+        i = str(rect[0])
+        display.blit(bgpitches[i], (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))  
+        #pygame.draw.rect(display, (0, 0, 255), (rect.x-camera.offset.x, rect.y-camera.offset.y, rect.width, rect.height))
         
     #draw rectangle
     for rect in foreground:  

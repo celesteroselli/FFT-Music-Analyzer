@@ -51,7 +51,7 @@ def level16inputs(variables, events, player):
                     if (i*2) < (len(foreground)-1):
                         print(foreground[i*2][1])
                         if foreground[i*2][1].collidepoint(new_pos):
-                            run = chord(variables["pitch_list"][i])
+                            run = chord(variables["pitch_list"][i], "switch-to-M")
                             print(run)
                             variables["figure"] = run[1]
                             variables["answer"] = run[2]
@@ -90,7 +90,7 @@ def level16setup(foreground, camera):
 def level16dialogue(variables, player):
     if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
-        return "you feel a need to escape"
+        return "make the minor chord a major chord"
     
     if ((player.rect.x > 92*TILE_SIZE)):
         variables["dialogue_on"] = True

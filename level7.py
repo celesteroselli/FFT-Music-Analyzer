@@ -19,14 +19,14 @@ factor = 11
 def level7inputs(variables, events, player):
     
     background = [
-        (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*14)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*12)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*9)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*12)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*44), (TILE_SIZE*10)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*9)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*10)), (300, 300)))),
-        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*8)), (300, 300)))),
+        (8, (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*14)), (300, 300))))),
+        (12, (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*12)), (300, 300))))),
+        (9, (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*9)), (300, 300))))),
+        (12, (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*12)), (300, 300))))),
+        (12, (pygame.Rect((((TILE_SIZE*44), (TILE_SIZE*10)), (300, 300))))),
+        (13, (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*9)), (300, 300))))),
+        (8, (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*10)), (300, 300))))),
+        (8, (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*8)), (300, 300))))),
     ]
     
     variables["background"] = background

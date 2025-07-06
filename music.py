@@ -90,7 +90,7 @@ def hit_rhythms(max):
     list = fft.run("rhythm", True, False, max)
     return list
 
-def chord(num):
+def chord(num, type):
     print("play a major chord")
     pitch = music21.pitch.Pitch(num).frequency
     if pitch>=(music21.pitch.Pitch("F").frequency):
@@ -98,21 +98,63 @@ def chord(num):
     sine_wave = SineWave(pitch=1, pitch_per_second=500)
     sine_wave.set_frequency(pitch)
     
-    print(f"{num} major")
+    if type=="switch-to-m":
+        sine_wave.play()
+        time.sleep(1)
+        i = music21.interval.Interval("M3")
+        i.noteStart = music21.note.Note(num)
+        M3 = i.noteEnd
+        sine_wave.set_frequency(M3.pitch.frequency)
+        time.sleep(1)
+        i = music21.interval.Interval("P5")
+        i.noteStart = music21.note.Note(num)
+        M3 = i.noteEnd
+        sine_wave.set_frequency(M3.pitch.frequency)
+        time.sleep(1)
+        sine_wave.stop()
+    elif type=="switch-to-M":
+        sine_wave.play()
+        time.sleep(1)
+        i = music21.interval.Interval("m3")
+        i.noteStart = music21.note.Note(num)
+        M3 = i.noteEnd
+        sine_wave.set_frequency(M3.pitch.frequency)
+        time.sleep(1)
+        i = music21.interval.Interval("P5")
+        i.noteStart = music21.note.Note(num)
+        M3 = i.noteEnd
+        sine_wave.set_frequency(M3.pitch.frequency)
+        time.sleep(1)
+        sine_wave.stop()
+    else:
+        # Play the sine wave
+        sine_wave.play()
 
-    # Play the sine wave
-    sine_wave.play()
+        # Keep playing for 2 seconds
+        time.sleep(2)
 
-    # Keep playing for 2 seconds
-    time.sleep(2)
-
-    # Stop the sine wave
-    sine_wave.stop()
+        # Stop the sine wave
+        sine_wave.stop()
     
     notes = []
     
-    i = music21.interval.Interval("M3")
-    i2 = music21.interval.Interval("P5")
+    match type:
+        case "major":
+            i = music21.interval.Interval("M3")
+            i2 = music21.interval.Interval("P5")
+        case "minor":
+            i = music21.interval.Interval("m3")
+            i2 = music21.interval.Interval("P5")
+        case "switch-to-m":
+            i = music21.interval.Interval("m3")
+            i2 = music21.interval.Interval("P5")
+        case "switch-to-M":
+            i = music21.interval.Interval("M3")
+            i2 = music21.interval.Interval("P5")
+        case _:
+            i = music21.interval.Interval("M3")
+            i2 = music21.interval.Interval("P5")
+        
     i.noteStart = music21.note.Note(num)
     i2.noteStart = music21.note.Note(num)
     M3 = i.noteEnd
