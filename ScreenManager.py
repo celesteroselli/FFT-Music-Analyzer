@@ -87,10 +87,10 @@ while running:
             print(unit, level)
             if (unit==1 and level==1):
                 is_gif = 0
-            elif (unit==1 and (level==2 or level==3 or level==4)):
-                is_gif = 1
+            elif (unit==4 and level==2) or (unit==2 and (level==2 or level==3 or level==4)):
+                is_gif = -1
             else:
-                is_gif=-1
+                is_gif=1
             current_lesson = lesson_content(unit, level, is_gif)
             is_level = True
     

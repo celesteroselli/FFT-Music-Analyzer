@@ -1,5 +1,5 @@
-hey!
+# What are major intervals?
 
-what's **up?**
+Major intervals have simpler interval ratios than minor intervals, meaning they sound more consonant or “inherently pleasant” to our ear. This is why a major interval is often considered sounding “happy” while a minor interval is considered to sound “sad”. Listen to this and see if you agree!
 
-THIS IS LESSON 4
+https://www.youtube.com/shorts/z9NpbwdHTyg
