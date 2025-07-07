@@ -83,15 +83,15 @@ while running:
         else:
             current_level = run[1]
             print("unit/level:")
-            print(run[2][0])
-            print(run[2][1])
-            if (run[2][0]==1 and run[2][1]==1):
+            unit, level = run[2][0], run[2][1]
+            print(unit, level)
+            if (unit==1 and level==1):
                 is_gif = 0
-            elif (run[2][0]==1 and run[2][1]==2):
+            elif (unit==1 and (level==2 or level==3 or level==4)):
                 is_gif = 1
             else:
                 is_gif=-1
-            current_lesson = lesson_content(run[2][0], run[2][1], is_gif)
+            current_lesson = lesson_content(unit, level, is_gif)
             is_level = True
     
     clock.tick(90)
