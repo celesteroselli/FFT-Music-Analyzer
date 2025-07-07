@@ -16,9 +16,9 @@ class PlayerClass(pygame.sprite.Sprite):
         self.animate = "idle"
         self.start = time.perf_counter()
         self.spriteurl = "Fourier/tileset/0.png"
-        self.idlesprites = ["Fourier/tileset/char000.png", "Fourier/tileset/char001.png"]
-        self.runsprites = ["Fourier/tileset/char025.png", "Fourier/tileset/char026.png", "Fourier/tileset/char027.png", "Fourier/tileset/char028.png", "Fourier/tileset/char029.png", "Fourier/tileset/char030.png", "Fourier/tileset/char031.png", "Fourier/tileset/char032.png"]
-        self.jumpsprites = ["Fourier/tileset/char041.png", "Fourier/tileset/char042.png", "Fourier/tileset/char043.png", "Fourier/tileset/char044.png", "Fourier/tileset/char045.png", "Fourier/tileset/char046.png", "Fourier/tileset/char047.png", "Fourier/tileset/char048.png"]
+        self.idlesprites = ["tileset/char000.png", "tileset/char001.png"]
+        self.runsprites = ["tileset/char025.png", "tileset/char026.png", "tileset/char027.png", "tileset/char028.png", "tileset/char029.png", "tileset/char030.png", "tileset/char031.png", "tileset/char032.png"]
+        self.jumpsprites = ["tileset/char041.png", "tileset/char042.png", "tileset/char043.png", "tileset/char044.png", "tileset/char045.png", "tileset/char046.png", "tileset/char047.png", "tileset/char048.png"]
         self.i = 0
         self.ticker = 0.7
         self.facing = 0
@@ -72,15 +72,15 @@ class PlayerClass(pygame.sprite.Sprite):
             case "idle":
                 if self.i >= len(self.idlesprites):
                     self.i = 0
-                self.sprite = pygame.transform.scale(pygame.image.load(self.idlesprites[self.i]), (self.rect.w, self.rect.h))
+                self.sprite = pygame.transform.scale(pygame.image.load(resource_path(self.idlesprites[self.i])), (self.rect.w, self.rect.h))
             case "move":
                 if self.i >= len(self.runsprites):
                     self.i = 0
-                self.sprite = pygame.transform.scale(pygame.image.load(self.runsprites[self.i]), (self.rect.w, self.rect.h))
+                self.sprite = pygame.transform.scale(pygame.image.load(resource_path(self.runsprites[self.i])), (self.rect.w, self.rect.h))
             case "jump":
                 if self.i >= len(self.jumpsprites):
                     self.i = 0
-                self.sprite = pygame.transform.scale(pygame.image.load(self.jumpsprites[self.i]), (self.rect.w, self.rect.h))
+                self.sprite = pygame.transform.scale(pygame.image.load(resource_path(self.jumpsprites[self.i])), (self.rect.w, self.rect.h))
             case _:
                 if self.i >= len(self.idlesprites):
                     self.i = 0

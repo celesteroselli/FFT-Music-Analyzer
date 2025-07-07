@@ -4,7 +4,7 @@ a = Analysis(
     ['cli.py'],
     pathex=[],
     binaries=[],
-    datas=[('Fourier/tileset/*', 'tileset')],
+    datas=[('Fourier/tileset/*', 'tileset'), ('Fourier/statics/*', 'statics'), ('Fourier/lessons/*', 'lessons'), ('Fourier/output.wav', '.'), ('Fourier/tilemaps/*', 'tilemaps')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

@@ -7,10 +7,11 @@ import music21 as music
 import wavio as wv
 from scipy.signal import find_peaks
 import sounddevice as sd
+from Fourier.usersettings import resource_path
 
 do_plot = True
 #sound_input = 'test/chord.wav'
-sound_input = 'output.wav'
+sound_input = resource_path('output.wav')
 
 def record():
     fs = 99000  # Sample rate

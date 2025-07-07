@@ -1,0 +1,3 @@
+# What are time signatures?
+
+This is slightly more advanced than you need to understand right now, so feel free to tune out, but basically take the denominator of each notes’ measure division to see what note it’s referring to. I.e., if the time signature is 3:4, then the beat is given to the quarter note - which takes up ¼ of a measure in 4:4 time - because the 4 is the bottom note in the time signature. If the time signature was 3:8, then the beat is given to the eighth note - which takes up ⅛ of a measure in 4:4 time - because the 8 is the bottom note in the time signature.

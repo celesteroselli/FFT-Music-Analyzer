@@ -1,0 +1,112 @@
+# Query: image.load
+# ContextLines: 1
+
+49 results - 9 files
+
+Fourier/level9.py:
+  239      
+  240:     temp_dict["rock"] = pygame.transform.scale(pygame.image.load("Fourier/finalrock.png"), (100,100))
+  241      temp_dict["rock_count"] = 1
+
+Fourier/level10.py:
+  368      
+  369:     temp_dict["rock"] = pygame.transform.scale(pygame.image.load("Fourier/finalrock.png"), (100,100))
+  370      temp_dict["rock_count"] = 1
+
+Fourier/level11.py:
+  308      
+  309:     temp_dict["rock"] = pygame.transform.scale(pygame.image.load("Fourier/finalrock.png"), (100,100))
+  310      temp_dict["rock_count"] = 1
+
+Fourier/level12.py:
+  254      
+  255:     temp_dict["rock"] = pygame.transform.scale(pygame.image.load("Fourier/finalrock.png"), (100,100))
+  256      temp_dict["rock_count"] = 1
+
+Fourier/LevelPicker.py:
+  51  def pick(events):
+  52:     background = pygame.image.load("Fourier/loading.png")
+  53      background = pygame.transform.scale(background, WINDOW_SIZE)
+
+  92  
+  93:     button = pygame.image.load("Fourier/Button.png")
+  94      button = pygame.transform.scale(button, (LEVEL_W, LEVEL_H))
+
+Fourier/physics.py:
+   18  
+   19: unit1bg = pygame.image.load("Fourier/unit1.jpeg")
+   20: unit1fg = pygame.image.load("Fourier/u1foreground.png")
+   21: unit2bg = pygame.image.load("Fourier/unit2.png")
+   22: unit3bg = pygame.image.load("Fourier/unit3.jpeg")
+   23: unit4bg = pygame.image.load("Fourier/unit4.png")
+   24  
+   25: bgpitch1 = pygame.image.load("Fourier/tileset/1bgpitch.png")
+   26: bgpitch2 = pygame.image.load("Fourier/tileset/2bgpitch.png")
+   27: bgpitch3 = pygame.image.load("Fourier/tileset/3bgpitch.png")
+   28: bgpitch4 = pygame.image.load("Fourier/tileset/4bgpitch.png")
+   29: bgpitch5 = pygame.image.load("Fourier/tileset/5bgpitch.png")
+   30: bgpitch6 = pygame.image.load("Fourier/tileset/6bgpitch.png")
+   31: bgpitch7 = pygame.image.load("Fourier/tileset/7bgpitch.png")
+   32: bgpitch8 = pygame.image.load("Fourier/tileset/8bgpitch.png")
+   33: bgpitch9 = pygame.image.load("Fourier/tileset/10bgpitch.png")
+   34: bgpitch10 = pygame.image.load("Fourier/tileset/10bgpitch.png")
+   35: bgpitch11 = pygame.image.load("Fourier/tileset/11bgpitch.png")
+   36: bgpitch12 = pygame.image.load("Fourier/tileset/12bgpitch.png")
+   37: bgpitch13 = pygame.image.load("Fourier/tileset/13bgpitch.png")
+   38: bgpitch14 = pygame.image.load("Fourier/tileset/14bgpitch.png")
+   39: bgpitch15 = pygame.image.load("Fourier/tileset/15bgpitch.png")
+   40: bgpitch16 = pygame.image.load("Fourier/tileset/16bgpitch.png")
+   41: bgpitch17 = pygame.image.load("Fourier/tileset/17bgpitch.png")
+   42: bgpitch18 = pygame.image.load("Fourier/tileset/18bgpitch.png")
+   43: bgpitch19 = pygame.image.load("Fourier/tileset/19bgpitch.png")
+   44: bgpitch20 = pygame.image.load("Fourier/tileset/20bgpitch.png")
+   45: bgpitch21 = pygame.image.load("Fourier/tileset/21bgpitch.png")
+   46: bgpitch22 = pygame.image.load("Fourier/tileset/22bgpitch.png")
+   47: bgpitch23 = pygame.image.load("Fourier/tileset/23bgpitch.png")
+   48: bgpitch24 = pygame.image.load("Fourier/tileset/24bgpitch.png")
+   49: bgpitch25 = pygame.image.load("Fourier/tileset/25bgpitch.png")
+   50: bgpitch26 = pygame.image.load("Fourier/tileset/26bgpitch.png")
+   51: bgpitch27 = pygame.image.load("Fourier/tileset/27bgpitch.png")
+   52  
+
+   93  # background.append(pygame.transform.scale(my_foreground, (my_img.get_width()/2, 450)))
+   94: #background.append(pygame.transform.scale(pygame.image.load("bridge.png"), (2000, 900)))
+   95  
+   96: wall = pygame.image.load("Fourier/wall.png").convert_alpha()
+   97  wall = pygame.transform.scale_by(wall, 2)
+   98  
+   99: wall2 = pygame.image.load("Fourier/middleplatform.png").convert_alpha()
+  100  #wall2 = pygame.transform.scale_by(wall, 2)
+  101  
+  102: bridge1 = pygame.image.load("Fourier/bridge1.png").convert_alpha()
+  103  bridge1 = pygame.transform.scale(bridge1, (150, 750))
+  104  bridge1 = pygame.transform.rotate(bridge1, 90)
+  105: bridge2 = pygame.image.load("Fourier/bridge2.png").convert_alpha()
+  106  bridge2 = pygame.transform.scale(bridge2, (150, 750))
+
+  108  
+  109: platform = pygame.image.load("Fourier/platform3.png").convert_alpha()
+  110  platform = pygame.transform.scale(platform, (300, 100))
+
+Fourier/player.py:
+  74                      self.i = 0
+  75:                 self.sprite = pygame.transform.scale(pygame.image.load(self.idlesprites[self.i]), (self.rect.w, self.rect.h))
+  76              case "move":
+
+  78                      self.i = 0
+  79:                 self.sprite = pygame.transform.scale(pygame.image.load(self.runsprites[self.i]), (self.rect.w, self.rect.h))
+  80              case "jump":
+
+  82                      self.i = 0
+  83:                 self.sprite = pygame.transform.scale(pygame.image.load(self.jumpsprites[self.i]), (self.rect.w, self.rect.h))
+  84              case _:
+
+Fourier/tileset.py:
+  18      for i in range(23-1):
+  19:         dict[f"{i}"] = pygame.transform.scale(pygame.image.load(f"Fourier/tileset/{i}.png"), (size, size))
+  20      return dict
+
+Fourier/old code files/level2.py:
+  35  falling = False
+  36: rock = pygame.image.load("Fourier/rock.png")
+  37  rock = pygame.transform.scale(rock, (100, 100))
