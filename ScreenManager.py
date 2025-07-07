@@ -34,7 +34,7 @@ current_level = Level_1
 
 clock = pygame.time.Clock()
 
-current_lesson = lesson_content(1, 1, True)
+current_lesson = lesson_content(1, 1, 0)
 lesson_first = True
 isdone = MutableInt(0)
 
@@ -45,7 +45,6 @@ while running:
     for event in pygame_events:
         if event.type == pygame.QUIT:
             running = False
-
                 
     #if the user is in a level, do the following each tick:
     if is_level:
@@ -58,6 +57,7 @@ while running:
                 screen.blit(do_lesson(current_lesson[1], current_lesson[0], pygame_events, mouse_x, mouse_y, mouse_pressed, current_lesson[5]), (0,0))
                 inputs(pygame_events, current_lesson[0], current_lesson[2], isdone, current_lesson[3], current_lesson[4])
             else:
+                isdone.increment(-1)
                 pygame.time.delay(150)
                 startTime = pygame.time.get_ticks()
                 lesson_first=False
@@ -86,9 +86,11 @@ while running:
             print(run[2][0])
             print(run[2][1])
             if (run[2][0]==1 and run[2][1]==1):
-                is_gif = True
+                is_gif = 0
+            elif (run[2][0]==1 and run[2][1]==2):
+                is_gif = 1
             else:
-                is_gif=False
+                is_gif=-1
             current_lesson = lesson_content(run[2][0], run[2][1], is_gif)
             is_level = True
     
