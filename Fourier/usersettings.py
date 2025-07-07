@@ -1,9 +1,20 @@
 import pygame
+import os
+import sys
 
 USER_CHORD_MIN = 100
 USER_CHORD_MAX = 600
 
 OCTAVE = 0.5
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS  # this is the temp folder PyInstaller uses
+        print(base_path)
+    else:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 pitch_data = {
     "Pitch": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -12,9 +23,9 @@ pitch_data = {
 }
 
 pygame.font.init() # you have to call this at the starsst, 
-font_url = "Fourier/tileset/PixelifySans-Regular.ttf"
-my_font = pygame.font.Font(font_url, 36)
-title_font = pygame.font.Font(font_url, 55)
+font_path = resource_path("tileset/PixelifySans-Regular.ttf")
+my_font = pygame.font.Font(font_path, 36)
+title_font = pygame.font.Font(font_path, 55)
 
 color1 = (160,0,68)
 color2 = (32,42,120)

@@ -14,7 +14,7 @@ def main():
 
     pygame.init()
 
-    music = pygame.mixer.music.load("audio_final.mp3")
+    music = pygame.mixer.music.load(resource_path("statics/audio_final.mp3"))
     pygame.mixer.music.play(loops=-1)
 
     running = True

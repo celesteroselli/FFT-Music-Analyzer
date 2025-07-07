@@ -33,7 +33,7 @@ foreground = [
     ]
 
 falling = False
-rock = pygame.image.load("rock.png")
+rock = pygame.image.load(resource_path("statics/rock.png"))
 rock = pygame.transform.scale(rock, (100, 100))
 count = 1
 rock_x = 3000

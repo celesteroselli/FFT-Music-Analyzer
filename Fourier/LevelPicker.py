@@ -49,7 +49,7 @@ LEVEL_W = 230
 num_levels = len(levels)
 
 def pick(events):
-    background = pygame.image.load("loading.png")
+    background = pygame.image.load(resource_path("statics/loading.png"))
     background = pygame.transform.scale(background, WINDOW_SIZE)
     display.blit(background, (0,0))
 
@@ -90,7 +90,7 @@ def pick(events):
     ]
     
 
-    button = pygame.image.load("Button.png")
+    button = pygame.image.load(resource_path("statics/Button.png"))
     button = pygame.transform.scale(button, (LEVEL_W, LEVEL_H))
     
     for i in range(num_levels):

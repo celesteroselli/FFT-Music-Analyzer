@@ -2,8 +2,11 @@
 import pandas as pd
 import numpy as np
 import pygame
+from Fourier.usersettings import resource_path
+
 def go(name):
-    df = pd.read_csv(f"tilemaps/{name}.csv")
+    path = resource_path(f"tilemaps/{name}.csv")
+    df = pd.read_csv(path)
     nparray = df.to_numpy()
     array_shape = nparray.shape
     coolarray = []
@@ -16,5 +19,6 @@ def go(name):
 def images(size):
     dict = {}
     for i in range(23-1):
-        dict[f"{i}"] = pygame.transform.scale(pygame.image.load(f"tileset/{i}.png"), (size, size))
+        path = resource_path(f"tileset/{i}.png")
+        dict[f"{i}"] = pygame.transform.scale(pygame.image.load(path), (size, size))
     return dict
