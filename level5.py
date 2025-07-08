@@ -19,13 +19,13 @@ factor = 6
 def level5inputs(variables, events, player):
     
     background = [
-        (16,(pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*13)), (300, 300))))),
-        (18, (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*11)), (300, 300))))),
-        (19, (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*6)), (300, 300))))),
-        (18, (pygame.Rect((((TILE_SIZE*47), (TILE_SIZE*10)), (300, 300))))),
-        (16, (pygame.Rect((((TILE_SIZE*64), (TILE_SIZE*4)), (300, 300))))),
-        (17, (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*0)), (300, 300))))),
-        (19, (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*4)), (300, 300))))),
+        (16,(pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*14)), (300, 300))))),
+        (18, (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*12)), (300, 300))))),
+        (19, (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*7)), (300, 300))))),
+        (18, (pygame.Rect((((TILE_SIZE*47), (TILE_SIZE*11)), (300, 300))))),
+        (16, (pygame.Rect((((TILE_SIZE*64), (TILE_SIZE*5)), (300, 300))))),
+        (17, (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*1)), (300, 300))))),
+        (19, (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*5)), (300, 300))))),
     ]
     
     variables["background"] = background

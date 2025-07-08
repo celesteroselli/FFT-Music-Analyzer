@@ -147,6 +147,7 @@ def level2setup(foreground, camera):
     temp_dict["camera"] = camera
     temp_dict["game_map"] = game_map
     temp_dict["running"] = True
+    temp_dict["last_note"] = 400
     
     return temp_dict
 

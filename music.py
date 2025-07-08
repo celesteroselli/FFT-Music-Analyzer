@@ -91,10 +91,12 @@ def hit_rhythms(max):
     return list
 
 def chord(num, type):
+    octavedown = 1
     print("play a major chord")
     pitch = music21.pitch.Pitch(num).frequency
     if pitch>=(music21.pitch.Pitch("F").frequency):
         pitch = pitch/2
+        octavedown = 2
     sine_wave = SineWave(pitch=1, pitch_per_second=500)
     sine_wave.set_frequency(pitch)
     
@@ -104,12 +106,12 @@ def chord(num, type):
         i = music21.interval.Interval("M3")
         i.noteStart = music21.note.Note(num)
         M3 = i.noteEnd
-        sine_wave.set_frequency(M3.pitch.frequency)
+        sine_wave.set_frequency(M3.pitch.frequency/octavedown)
         time.sleep(1)
         i = music21.interval.Interval("P5")
         i.noteStart = music21.note.Note(num)
         M3 = i.noteEnd
-        sine_wave.set_frequency(M3.pitch.frequency)
+        sine_wave.set_frequency(M3.pitch.frequency/octavedown)
         time.sleep(1)
         sine_wave.stop()
     elif type=="switch-to-M":
@@ -118,12 +120,12 @@ def chord(num, type):
         i = music21.interval.Interval("m3")
         i.noteStart = music21.note.Note(num)
         M3 = i.noteEnd
-        sine_wave.set_frequency(M3.pitch.frequency)
+        sine_wave.set_frequency(M3.pitch.frequency/octavedown)
         time.sleep(1)
         i = music21.interval.Interval("P5")
         i.noteStart = music21.note.Note(num)
         M3 = i.noteEnd
-        sine_wave.set_frequency(M3.pitch.frequency)
+        sine_wave.set_frequency(M3.pitch.frequency/octavedown)
         time.sleep(1)
         sine_wave.stop()
     else:

@@ -50,7 +50,7 @@ class PlayerClass(pygame.sprite.Sprite):
             if dy > 0:
                 self.rect.bottom = tile.top
             if dy < 0:
-                self.rect.top = tile.bottom
+                pass
                 
     def kill(self, camera):
         camera.offset.x = 0

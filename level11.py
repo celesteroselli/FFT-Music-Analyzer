@@ -117,7 +117,8 @@ def level11inputs(variables, events, player):
         (2,(pygame.Rect((((TILE_SIZE*44+DIFF3*4), (TILE_SIZE*10)-80), (150, 300))))),
         #1
         
-        #REST
+        (3,(pygame.Rect((((TILE_SIZE*57), (TILE_SIZE*12)-80), (150, 300))))),
+        #1
         (3,(pygame.Rect((((TILE_SIZE*57+DIFF4), (TILE_SIZE*12)-80), (150, 300))))),
         #1
         #REST
@@ -188,8 +189,8 @@ def level11inputs(variables, events, player):
                             variables["current_rocks"] = 3
                             variables["start"] = 57*TILE_SIZE
                             variables["rock_x"] = variables["start"]
-                            variables["max_hits"] = 2
-                            run = hit_rhythms(DIFF4*(2))
+                            variables["max_hits"] = 3
+                            run = hit_rhythms(DIFF4*(3))
                         elif foreground[i][0]==4:
                             variables["current_rocks"] = 4
                             variables["start"] = 70*TILE_SIZE
@@ -323,10 +324,6 @@ def level11dialogue(variables, player):
     if ((pygame.time.get_ticks() - variables["starttime"]) > 1200) and (variables["dialogue_count"]==0):
         variables["dialogue_on"] = True
         return "clear the rocks in your path"
-    
-    if (player.rect.x > 11*TILE_SIZE) and (variables["dialogue_count"]==1):
-        variables["dialogue_on"] = True
-        return "tap the walls and clap on beat to make rocks fall"
     
     if ((player.rect.x > 93*TILE_SIZE)):
         variables["dialogue_on"] = True

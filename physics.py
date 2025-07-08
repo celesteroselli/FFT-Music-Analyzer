@@ -7,7 +7,7 @@ screen = pygame.display.set_mode([1500, 900])
 WINDOW_SIZE = screen.get_size()
 TILE_SIZE = 150
 
-PLAYER_SCREEN_OFFSET = 300
+PLAYER_SCREEN_OFFSET = 200
 
 GROUND_ROWS = 3
 
@@ -107,6 +107,9 @@ bridge2 = pygame.image.load(resource_path("statics/bridge2.png")).convert_alpha(
 bridge2 = pygame.transform.scale(bridge2, (150, 750))
 bridge2 = pygame.transform.rotate(bridge2, 90)
 
+spikes = pygame.image.load(resource_path("statics/spikes.png")).convert_alpha()
+spikes = pygame.transform.scale(spikes, (600, 50))
+
 platform = pygame.image.load(resource_path("statics/platform3.png")).convert_alpha()
 platform = pygame.transform.scale(platform, (300, 100))
 
@@ -151,6 +154,8 @@ def draw_background(camera, player, foreground, mapname, draw_back, game_back, g
                 display.blit(bridge1, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
             elif rect[0]==-4:
                 display.blit(bridge2, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
+            elif rect[0]==-20:
+                display.blit(spikes, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
             else:
                 display.blit(wall, (rect[1].x-camera.offset.x, rect[1].y-camera.offset.y))
             DISPLAY_TILES.append(rect[1])

@@ -31,6 +31,12 @@ def level13inputs(variables, events, player):
         print("KILLED")
         player.kill(camera)
         variables["killed"] = True
+        
+    for x in foreground[0::2]:
+        if (x[1].y == (player.rect.y+player.rect.h)) and (player.rect.x >= x[1].x) and (player.rect.x < (x[1].x + x[1].w)):
+            print("KILLED")
+            player.kill(camera)
+            variables["killed"] = True
             
     for event in events:
         if event.type == pygame.MOUSEBUTTONUP:

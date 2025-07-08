@@ -93,7 +93,7 @@ def level4setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 280 * OCTAVE
+    temp_dict["orig_y1"] = 390 * OCTAVE
     temp_dict["orig_y2"] = 750 * OCTAVE
     temp_dict["orig_y3"] = 320 * OCTAVE
     temp_dict["orig_y4"] = 770 * OCTAVE
@@ -124,6 +124,7 @@ def level4setup(foreground, camera):
     temp_dict["camera"] = camera
     temp_dict["game_map"] = game_map
     temp_dict["running"] = True
+    temp_dict["last_note"] = 400
     
     return temp_dict
 

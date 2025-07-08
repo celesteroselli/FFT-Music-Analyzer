@@ -19,14 +19,14 @@ factor = 4
 def level8inputs(variables, events, player):
     
     background = [
-        (26, (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*14)), (300, 300))))),
-        (25, (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*9)), (300, 300))))),
-        (20, (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*14)), (300, 300))))),
-        (20, (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*11)), (300, 300))))),
-        (24, (pygame.Rect((((TILE_SIZE*56), (TILE_SIZE*10)), (300, 300))))),
-        (25, (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*5)), (300, 300))))),
-        (26, (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*9)), (300, 300))))),
-        (21, (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*4)), (300, 300))))),
+        (26, (pygame.Rect((((TILE_SIZE*8), (TILE_SIZE*15)), (300, 300))))),
+        (25, (pygame.Rect((((TILE_SIZE*17), (TILE_SIZE*10)), (300, 300))))),
+        (20, (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*15)), (300, 300))))),
+        (20, (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*12)), (300, 300))))),
+        (24, (pygame.Rect((((TILE_SIZE*56), (TILE_SIZE*11)), (300, 300))))),
+        (25, (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*6)), (300, 300))))),
+        (26, (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*10)), (300, 300))))),
+        (21, (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*5)), (300, 300))))),
     ]
     
     variables["background"] = background
@@ -51,7 +51,7 @@ def level8inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*56), (TILE_SIZE*12)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*7)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*11)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*6)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*6)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
                 

@@ -76,7 +76,7 @@ def level16setup(foreground, camera):
     
     temp_dict["pitch_list"] = ["C", "D", "E", "D", "C#", "E"]
     temp_dict["posx"] = [14, 22, 38, 47, 58, 67, 76, 84, 92]
-    temp_dict["posy"] = [15, 15, 13, 12, 13, 14, 12, 12, 13]
+    temp_dict["posy"] = [15, 15, 13, 12, 13, 14, 12, 11, 13]
     
     for i in range(len(temp_dict["posx"])):
         temp_dict["foreground"].append((-3, pygame.rect.Rect(TILE_SIZE*(temp_dict["posx"][i]), TILE_SIZE*(temp_dict["posy"][i]), TILE_SIZE*5, TILE_SIZE)))

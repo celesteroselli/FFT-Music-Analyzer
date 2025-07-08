@@ -64,14 +64,14 @@ def level3inputs(variables, events, player):
     ]
     
     background = [
-        (1,(pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*17)), (300, 300))))),
-        (2, (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*17)), (300, 300))))),
-        (3, (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*17)), (300, 300))))),
-        (4,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*17)), (300, 300))))),
-        (7,(pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*14)), (300, 300))))),
-        (5,(pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*14)), (300, 300))))),
-        (3, (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*13)), (300, 300))))),
-        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*12)), (300, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*15)), (300, 300))))),
+        (2, (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*15)), (300, 300))))),
+        (3, (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*15)), (300, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*15)), (300, 300))))),
+        (7,(pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 300))))),
+        (3, (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*11)), (300, 300))))),
+        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*10)), (300, 300))))),
     ]
                 
     #things that kill the player
@@ -97,6 +97,7 @@ def level3inputs(variables, events, player):
                 # Check if the mouse position collides with the rect
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 for i in range(len(background)):
+                    print(background[i][1])
                     if background[i][1].collidepoint(new_pos):
                         print(f"hitting background {i}")
                         run = harmonize(pitch_list[i], 1)
@@ -118,6 +119,7 @@ def level3setup(foreground, camera):
     temp_dict["camera"] = camera
     temp_dict["game_map"] = game_map
     temp_dict["running"] = True
+    temp_dict["last_note"] = 400
     
     return temp_dict
 

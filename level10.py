@@ -384,10 +384,6 @@ def level10dialogue(variables, player):
         variables["dialogue_on"] = True
         return "clear the rocks in your path"
     
-    if (player.rect.x > 11*TILE_SIZE) and (variables["dialogue_count"]==1):
-        variables["dialogue_on"] = True
-        return "tap the walls and clap on beat to make rocks fall"
-    
     if ((player.rect.x > 93*TILE_SIZE)):
         variables["dialogue_on"] = True
         variables["running"] = False
