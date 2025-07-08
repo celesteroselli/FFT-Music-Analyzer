@@ -1,4 +1,4 @@
-​​​# Timbre: Music Education through Science and Math
+Timbre: Music Education through Science and Math
 
 Timbre is a video game created by **Celeste Roselli**, a 16-year-old from Atlanta, Georgia
 
