@@ -25,11 +25,7 @@ def level3inputs(variables, events, player):
     num_of_elements = 9
     
     if variables["killed"]==True:
-        for i in range(num_of_elements):
-            variables[f"y{i+1}_height"] = 0
-            variables[f"y{i+1}_height_goal"] = 0
-            variables[f"y{i+1}"] = variables[f"orig_y{i+1}"]
-            variables["killed"]=False
+        variables["killed"]=False
     
     foreground_list = [
         #x-left = x tiles from left
@@ -50,7 +46,7 @@ def level3inputs(variables, events, player):
         #D
         293.66*2*OCTAVE,
         #A
-        440*2*OCTAVE,
+        300*2*OCTAVE,
         #F
         349.23*2*OCTAVE,
         #G#
@@ -64,14 +60,14 @@ def level3inputs(variables, events, player):
     ]
     
     background = [
-        (1,(pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*15)), (300, 300))))),
-        (2, (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*15)), (300, 300))))),
-        (3, (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*15)), (300, 300))))),
-        (4,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*15)), (300, 300))))),
-        (7,(pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 300))))),
-        (5,(pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 300))))),
-        (3, (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*11)), (300, 300))))),
-        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*10)), (300, 300))))),
+        (1,(pygame.Rect((((TILE_SIZE*9), (TILE_SIZE*15.8)), (300, 300))))),
+        (2, (pygame.Rect((((TILE_SIZE*14), (TILE_SIZE*15.8)), (300, 300))))),
+        (3, (pygame.Rect((((TILE_SIZE*21), (TILE_SIZE*15.8)), (300, 300))))),
+        (4,(pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*15.8)), (300, 300))))),
+        (7,(pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12.8)), (300, 300))))),
+        (5,(pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12.8)), (300, 300))))),
+        (3, (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12.8)), (300, 300))))),
+        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*10.8)), (300, 300))))),
     ]
                 
     #things that kill the player
@@ -102,9 +98,11 @@ def level3inputs(variables, events, player):
                         print(f"hitting background {i}")
                         run = harmonize(pitch_list[i], 1)
                         variables["figure"] = run[2]
-                        print(run[3])
+                        variables["last_note"] = pitch_list[i]
                         if run[0]:
                             foreground.append(foreground_list[i])
+                        else:
+                            variables["wrong"] = run[3]
     
     variables["background"] = background
     variables["foreground"] = foreground
