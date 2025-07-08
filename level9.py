@@ -237,7 +237,7 @@ def level9setup(foreground, camera):
     temp_dict["game_map"] = game_map
     temp_dict["running"] = True
     
-    temp_dict["rock"] = pygame.transform.scale(pygame.image.load(resource_path("statics/finalrock.png"), (100,100)))
+    temp_dict["rock"] = pygame.transform.scale(pygame.image.load(resource_path("statics/finalrock.png")), (100,100))
     temp_dict["rock_count"] = 1
     temp_dict["rock_x"] = TILE_SIZE*13
     temp_dict["rock_y"] = 0
