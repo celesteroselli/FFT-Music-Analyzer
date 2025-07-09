@@ -12,7 +12,7 @@ foreground = []
 
 game_map = "2_2"
 
-num_of_elements = 7
+num_of_elements = 8
 
 factor = 6
 
@@ -22,11 +22,11 @@ def level6inputs(variables, events, player):
         (10, (pygame.Rect((((TILE_SIZE*10), (TILE_SIZE*14)), (300, 300))))),
         (22, (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*12)), (300, 300))))),
         (14, (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*8)), (300, 300))))),
-        (22, (pygame.Rect((((TILE_SIZE*49), (TILE_SIZE*11)), (300, 300))))),
-        (11, (pygame.Rect((((TILE_SIZE*58), (TILE_SIZE*8)), (300, 300))))),
-        (14, (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*10)), (300, 300))))),
-        (10, (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*3)), (300, 300))))),
-        (23, (pygame.Rect((((TILE_SIZE*84), (TILE_SIZE*5)), (300, 300))))),
+        (22, (pygame.Rect((((TILE_SIZE*49), (TILE_SIZE*8)), (300, 300))))),
+        (11, (pygame.Rect((((TILE_SIZE*58), (TILE_SIZE*4)), (300, 300))))),
+        (14, (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*8)), (300, 300))))),
+        (10, (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*5)), (300, 300))))),
+        (23, (pygame.Rect((((TILE_SIZE*84), (TILE_SIZE*6)), (300, 300))))),
     ]
     
     variables["background"] = background
@@ -47,10 +47,11 @@ def level6inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*10), (TILE_SIZE*16)+(100)-(variables["y1_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*10)+(100)-(variables["y3_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*49), (TILE_SIZE*13)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*12)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*5)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*84), (TILE_SIZE*7)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*49), (TILE_SIZE*10)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*58), (TILE_SIZE*6)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*10)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*7)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*84), (TILE_SIZE*8)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
                 

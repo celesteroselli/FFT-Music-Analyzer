@@ -14,7 +14,7 @@ game_map = "2_3"
 
 num_of_elements = 8
 
-factor = 11
+factor = 8
 
 def level7inputs(variables, events, player):
     
@@ -24,9 +24,9 @@ def level7inputs(variables, events, player):
         (9, (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*9)), (300, 300))))),
         (12, (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*12)), (300, 300))))),
         (12, (pygame.Rect((((TILE_SIZE*44), (TILE_SIZE*10)), (300, 300))))),
-        (13, (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*10)), (300, 300))))),
-        (8, (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*9)), (300, 300))))),
-        (8, (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*8)), (300, 300))))),
+        (13, (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*9)), (300, 300))))),
+        (8, (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*10)), (300, 300))))),
+        (8, (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*8.5)), (300, 300))))),
     ]
     
     variables["background"] = background
@@ -49,9 +49,9 @@ def level7inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*26), (TILE_SIZE*11)+(100)-(variables["y3_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*35), (TILE_SIZE*14)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*44), (TILE_SIZE*12)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*12)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*11)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*10)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*65), (TILE_SIZE*11)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*74), (TILE_SIZE*12)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*10.5)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
                 
@@ -107,7 +107,7 @@ def level7setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 500 * get_octave()
+    temp_dict["orig_y1"] = 600 * get_octave()
     temp_dict["orig_y2"] = 550 * get_octave()
     temp_dict["orig_y3"] = 600 * get_octave()
     temp_dict["orig_y4"] = 450 * get_octave()
@@ -128,13 +128,21 @@ def level7setup(foreground, camera):
     #minor 2nd = 16:5
     #minor 3rd = 6:5
     
+    #m2
     temp_dict["y1_interval"] = 16/15
+    #m3
     temp_dict["y2_interval"] = 6/5
+    #m2 down
     temp_dict["y3_interval"] = 15/16
+    #m3
     temp_dict["y4_interval"] = 6/5
+    #m3
     temp_dict["y5_interval"] = 6/5
+    #m3 down
     temp_dict["y6_interval"] = 5/6
+    #m2
     temp_dict["y7_interval"] = 16/15
+    #m2
     temp_dict["y8_interval"] = 16/15
     
     temp_dict["congrats"] = False
