@@ -70,7 +70,7 @@ def level4inputs(variables, events, player):
                 new_pos = (mouse_pos[0] + camera.offset.x, mouse_pos[1] + camera.offset.y)
                 for i in range(num_of_elements):
                     if foreground[i].collidepoint(new_pos):
-                        if variables[f"y{i+1}"] < (440*OCTAVE):
+                        if variables[f"y{i+1}"] < (440*get_octave()):
                             run = harmonize(variables[f"y{i+1}"], 2)
                             ifup = 2
                         else:
@@ -93,15 +93,15 @@ def level4setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 390 * OCTAVE
-    temp_dict["orig_y2"] = 750 * OCTAVE
-    temp_dict["orig_y3"] = 320 * OCTAVE
-    temp_dict["orig_y4"] = 770 * OCTAVE
-    temp_dict["orig_y5"] = 360 * OCTAVE
-    temp_dict["orig_y6"] = 800 * OCTAVE
-    temp_dict["orig_y7"] = 390 * OCTAVE
-    temp_dict["orig_y8"] = 830 * OCTAVE
-    temp_dict["orig_y9"] = 420 * OCTAVE
+    temp_dict["orig_y1"] = 390 * get_octave()
+    temp_dict["orig_y2"] = 750 * get_octave()
+    temp_dict["orig_y3"] = 320 * get_octave()
+    temp_dict["orig_y4"] = 770 * get_octave()
+    temp_dict["orig_y5"] = 360 * get_octave()
+    temp_dict["orig_y6"] = 800 * get_octave()
+    temp_dict["orig_y7"] = 390 * get_octave()
+    temp_dict["orig_y8"] = 830 * get_octave()
+    temp_dict["orig_y9"] = 420 * get_octave()
     
     temp_dict["y1"] = temp_dict["orig_y1"]
     temp_dict["y2"] = temp_dict["orig_y2"]

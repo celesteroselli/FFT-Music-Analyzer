@@ -89,15 +89,15 @@ def level2setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 440 * OCTAVE
-    temp_dict["orig_y2"] = 500 * OCTAVE
-    temp_dict["orig_y3"] = 500 * OCTAVE
-    temp_dict["orig_y4"] = 440 * OCTAVE
-    temp_dict["orig_y5"] = 500 * OCTAVE
-    temp_dict["orig_y6"] = 440 * OCTAVE
-    temp_dict["orig_y7"] = 500 * OCTAVE
-    temp_dict["orig_y8"] = 600 * OCTAVE
-    temp_dict["orig_y9"] = 500 * OCTAVE
+    temp_dict["orig_y1"] = 440 * get_octave()
+    temp_dict["orig_y2"] = 500 * get_octave()
+    temp_dict["orig_y3"] = 500 * get_octave()
+    temp_dict["orig_y4"] = 440 * get_octave()
+    temp_dict["orig_y5"] = 500 * get_octave()
+    temp_dict["orig_y6"] = 440 * get_octave()
+    temp_dict["orig_y7"] = 500 * get_octave()
+    temp_dict["orig_y8"] = 600 * get_octave()
+    temp_dict["orig_y9"] = 500 * get_octave()
     
     #higher
     temp_dict["y1_max"] = temp_dict["orig_y1"] + 160

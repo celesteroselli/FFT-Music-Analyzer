@@ -2,10 +2,16 @@ import pygame
 import os
 import sys
 
-USER_CHORD_MIN = 100
-USER_CHORD_MAX = 600
+USER_CHORD_MIN = 200
+USER_CHORD_MAX = 550
 
-OCTAVE = 0.5
+def change_octave(change):
+    print(change)
+    global OCTAVE
+    OCTAVE = change
+
+def get_octave():
+    return OCTAVE
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """

@@ -42,21 +42,21 @@ def level3inputs(variables, events, player):
     
     pitch_list = [
         #C
-        261.63*2*OCTAVE,
+        261.63*2*get_octave(),
         #D
-        293.66*2*OCTAVE,
+        293.66*2*get_octave(),
         #A
-        300*2*OCTAVE,
+        300*2*get_octave(),
         #F
-        349.23*2*OCTAVE,
+        349.23*2*get_octave(),
         #G#
-        415.30*2*OCTAVE,
+        415.30*2*get_octave(),
         #E
-        329.63*2*OCTAVE,
+        329.63*2*get_octave(),
         #A
-        440*2*OCTAVE,
+        440*2*get_octave(),
         #B
-        493.88*2*OCTAVE,
+        493.88*2*get_octave(),
     ]
     
     background = [

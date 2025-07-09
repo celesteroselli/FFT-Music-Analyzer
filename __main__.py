@@ -11,7 +11,14 @@ from Fourier.LevelPicker import pick
 import gif_pygame
 
 def main():
-
+    
+    types = {
+    1: ("high", 1),
+    2: ("med", 0.5),
+    3: ("low", 0.25)
+}
+    e = 1
+    
     pygame.init()
 
     music = pygame.mixer.music.load(resource_path("statics/audio_final.mp3"))
@@ -37,6 +44,8 @@ def main():
     is_level = False
 
     while running:
+        change_octave(types.get(e)[1])
+        print("get octave", get_octave())
         pygame_events = pygame.event.get()
         for event in pygame_events:
             if event.type == pygame.QUIT:
@@ -75,7 +84,21 @@ def main():
             pygame.mixer.music.unpause()
             run = pick(pygame_events)
             if run[0] == True:
+                #no level picked
                 screen.blit(run[1], (0,0))
+                octavetext = my_font.render("press e to change octaves:", False, color2, None)
+                
+                typetext = my_font.render(types.get(e)[0], False, color2, None)
+                
+                screen.blit(octavetext, (20, octavetext.get_height()+20))
+                screen.blit(typetext, (20+(octavetext.get_width()-typetext.get_width())/2, octavetext.get_height()*2+40))
+                
+                for event in pygame_events:
+                    if (event.type==KEYDOWN) and (event.key == pygame.K_e):
+                        if e<3:
+                            e = e+1
+                        else:
+                            e=1
             else:
                 current_level = run[1]
                 print("unit/level:")

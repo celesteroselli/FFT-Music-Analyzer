@@ -107,14 +107,14 @@ def level8setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 440 * OCTAVE
-    temp_dict["orig_y2"] = 600 * OCTAVE
-    temp_dict["orig_y3"] = 500 * OCTAVE
-    temp_dict["orig_y4"] = 440 * OCTAVE
-    temp_dict["orig_y5"] = 500 * OCTAVE
-    temp_dict["orig_y6"] = 700 * OCTAVE
-    temp_dict["orig_y7"] = 550 * OCTAVE
-    temp_dict["orig_y8"] = 620 * OCTAVE
+    temp_dict["orig_y1"] = 440 * get_octave()
+    temp_dict["orig_y2"] = 600 * get_octave()
+    temp_dict["orig_y3"] = 500 * get_octave()
+    temp_dict["orig_y4"] = 440 * get_octave()
+    temp_dict["orig_y5"] = 500 * get_octave()
+    temp_dict["orig_y6"] = 700 * get_octave()
+    temp_dict["orig_y7"] = 550 * get_octave()
+    temp_dict["orig_y8"] = 620 * get_octave()
     
     temp_dict["y1"] = temp_dict["orig_y1"]
     temp_dict["y2"] = temp_dict["orig_y2"]

@@ -105,13 +105,13 @@ def level5setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 440 * OCTAVE
-    temp_dict["orig_y2"] = 500 * OCTAVE
-    temp_dict["orig_y3"] = 600 * OCTAVE
-    temp_dict["orig_y4"] = 440 * OCTAVE
-    temp_dict["orig_y5"] = 500 * OCTAVE
-    temp_dict["orig_y6"] = 650 * OCTAVE
-    temp_dict["orig_y7"] = 550 * OCTAVE
+    temp_dict["orig_y1"] = 440 * get_octave()
+    temp_dict["orig_y2"] = 500 * get_octave()
+    temp_dict["orig_y3"] = 600 * get_octave()
+    temp_dict["orig_y4"] = 440 * get_octave()
+    temp_dict["orig_y5"] = 500 * get_octave()
+    temp_dict["orig_y6"] = 650 * get_octave()
+    temp_dict["orig_y7"] = 550 * get_octave()
     
     temp_dict["y1"] = temp_dict["orig_y1"]
     temp_dict["y2"] = temp_dict["orig_y2"]
