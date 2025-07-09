@@ -24,8 +24,8 @@ def level6inputs(variables, events, player):
         (14, (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*8)), (300, 300))))),
         (22, (pygame.Rect((((TILE_SIZE*49), (TILE_SIZE*11)), (300, 300))))),
         (11, (pygame.Rect((((TILE_SIZE*58), (TILE_SIZE*8)), (300, 300))))),
-        (14, (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*5)), (300, 300))))),
-        (10, (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*1)), (300, 300))))),
+        (14, (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*10)), (300, 300))))),
+        (10, (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*3)), (300, 300))))),
         (23, (pygame.Rect((((TILE_SIZE*84), (TILE_SIZE*5)), (300, 300))))),
     ]
     
@@ -48,8 +48,8 @@ def level6inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*14)+(100)-(variables["y2_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*10)+(100)-(variables["y3_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*49), (TILE_SIZE*13)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*7)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*3)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*66), (TILE_SIZE*12)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*75), (TILE_SIZE*5)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*84), (TILE_SIZE*7)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
@@ -111,7 +111,7 @@ def level6setup(foreground, camera):
     temp_dict["orig_y3"] = 600 * get_octave()
     temp_dict["orig_y4"] = 440 * get_octave()
     temp_dict["orig_y5"] = 500 * get_octave()
-    temp_dict["orig_y6"] = 650 * get_octave()
+    temp_dict["orig_y6"] = 700 * get_octave()
     temp_dict["orig_y7"] = 550 * get_octave()
     temp_dict["orig_y8"] = 440 * get_octave()
     

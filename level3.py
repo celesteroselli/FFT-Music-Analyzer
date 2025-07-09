@@ -36,8 +36,9 @@ def level3inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*11)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*10)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*10)), (300, 100)))),
+        #extra one at end with no keyboard on top
+        (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*11)), (300, 100)))),
     ]
     
     pitch_list = [
@@ -46,7 +47,7 @@ def level3inputs(variables, events, player):
         #D
         293.66*2*get_octave(),
         #A
-        300*2*get_octave(),
+        440*2*get_octave(),
         #F
         349.23*2*get_octave(),
         #G#
@@ -130,7 +131,7 @@ def level3dialogue(variables, player):
         variables["dialogue_on"] = True
         return variables["wrong"]
     
-    if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
+    if ((player.rect.x > 93*TILE_SIZE)):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"

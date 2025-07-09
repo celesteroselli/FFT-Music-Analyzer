@@ -18,12 +18,14 @@ factor = 6
 
 def level13inputs(variables, events, player):
     foreground = variables["foreground"]
-    
     camera = variables.get("camera")
-    foreground = variables.get("foreground")
     
-    if variables["killed"]==True:
-        variables["foreground"] = variables["original"]
+    for x in foreground[0::2]:
+        if type(x)==type(("1","1")):
+            if (x[1].y == (player.rect.y+player.rect.h)) and (player.rect.x >= x[1].x) and (player.rect.x < (x[1].x + x[1].w)):
+                print("KILLED")
+                player.kill(camera)
+                variables["killed"] = True
                 
     #things that kill the player
     length = len(foreground)
@@ -31,13 +33,14 @@ def level13inputs(variables, events, player):
         print("KILLED")
         player.kill(camera)
         variables["killed"] = True
-        
-    for x in foreground[0::2]:
-        if (x[1].y == (player.rect.y+player.rect.h)) and (player.rect.x >= x[1].x) and (player.rect.x < (x[1].x + x[1].w)):
-            print("KILLED")
-            player.kill(camera)
-            variables["killed"] = True
-            
+    
+    if variables["killed"]==True:
+        print("setting foreground back to original")
+        variables["foreground"] = variables["original"]
+        variables["killed"] = False
+    
+    foreground = variables.get("foreground")        
+    
     for event in events:
         if event.type == pygame.MOUSEBUTTONUP:
             print("mouse button up in level1 copy")
@@ -89,7 +92,7 @@ def level13setup(foreground, camera):
         
     temp_dict["foreground"].append(pygame.rect.Rect(0, TILE_SIZE*19, TILE_SIZE*100, TILE_SIZE))
     
-    temp_dict["original"] = temp_dict["foreground"]
+    temp_dict["original"] = temp_dict["foreground"].copy()
     
     return temp_dict
 

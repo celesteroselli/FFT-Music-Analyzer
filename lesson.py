@@ -56,7 +56,6 @@ def do_lesson(display, md, pygame_events, mouse_x, mouse_y, mouse_pressed, image
 
 def inputs(events, md, count, isdone, unit, level):
     length = len(os.listdir(resource_path(f'lessons/{unit}/{level}/')))
-    print("length =", length)
     
     for event in events:
         if ((event.type == pygame.KEYDOWN)):
@@ -70,6 +69,4 @@ def inputs(events, md, count, isdone, unit, level):
                     count.increment(1)
                 else:
                     count = 0
-                    print("finished!")
                     isdone.increment(1)
-                    print(isdone.value)

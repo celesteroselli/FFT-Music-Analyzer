@@ -2,26 +2,31 @@ import pygame
 import os
 import sys
 
+global USER_CHORD_MIN
+USER_CHORD_MIN = 150
+global USER_CHORD_MAX
+USER_CHORD_MAX = 700
+global OCTAVE
+OCTAVE = 0.5
+
 def change_octave(change):
-    print(change)
     global OCTAVE
     OCTAVE = change
-    
-    global USER_CHORD_MIN
-    global USER_CHORD_MAX
     
     match change:
         
         case 0.25:
-            USER_CHORD_MIN = 90
+            global USER_CHORD_MIN
+            global USER_CHORD_MAX
+            USER_CHORD_MIN = 75
             USER_CHORD_MAX = 350
             
         case 0.5:
-            USER_CHORD_MIN = 180
+            USER_CHORD_MIN = 150
             USER_CHORD_MAX = 700
             
         case 1:
-            USER_CHORD_MIN = 360
+            USER_CHORD_MIN = 300
             USER_CHORD_MAX = 1400
 
 def get_octave():

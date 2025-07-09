@@ -43,12 +43,17 @@ def level4inputs(variables, events, player):
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
     
-    for i in range(num_of_elements):
-        if np.absolute(variables[f"y{i+1}_height_goal"]-variables[f"y{i+1}_height"]) > 10:
-            if variables[f"y{i+1}_height_goal"] > variables[f"y{i+1}_height"]:
-                variables[f"y{i+1}_height"] += 1
-            elif variables[f"y{i+1}_height_goal"] < variables[f"y{i+1}_height"]:
-                variables[f"y{i+1}_height"] -= 1
+    if variables["dialogue_on"]==False:
+        for i in range(num_of_elements):
+            if np.absolute(variables[f"y{i+1}_height_goal"]-variables[f"y{i+1}_height"]) > 10:
+                if (variables["first_move"] == True):
+                    print("first move was true")
+                    time.sleep(1)
+                    variables["first_move"] = False
+                if variables[f"y{i+1}_height_goal"] > variables[f"y{i+1}_height"]:
+                    variables[f"y{i+1}_height"] += 1
+                elif variables[f"y{i+1}_height_goal"] < variables[f"y{i+1}_height"]:
+                    variables[f"y{i+1}_height"] -= 1
                 
     #things that kill the player
     for i in [9]:
@@ -80,6 +85,7 @@ def level4inputs(variables, events, player):
                         orig = variables[f"orig_y{i+1}"]
                         if (run[0]==True):
                             variables[f"y{i+1}"] = run[1]
+                            variables["last_note"] = run[1]
                             variables[f"y{i+1}_height_goal"] = ifup * 98
                             if (foreground[i].y == (player.rect.y+player.rect.h)) and (player.rect.x >= foreground[i].x) and (player.rect.x < (foreground[i].x + foreground[i].w)):
                                 print("player is touching rectangle")
@@ -133,7 +139,7 @@ def level4dialogue(variables, player):
         variables["dialogue_on"] = True
         return "sing an octave above or below each note!"
     
-    if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
+    if ((player.rect.x > 93*TILE_SIZE)):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"

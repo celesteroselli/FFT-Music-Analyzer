@@ -51,18 +51,20 @@ foreground = [
         
         (3,(pygame.Rect((((TILE_SIZE*57), (TILE_SIZE*12)-80), (150, 300))))),
         #1
+        (3,(pygame.Rect((((TILE_SIZE*57+DIFF4), (TILE_SIZE*12)-80), (150, 300))))),
+        #1
         #REST
-        (3,(pygame.Rect((((TILE_SIZE*57+DIFF4*2), (TILE_SIZE*12)-80), (150, 300))))),
+        (3,(pygame.Rect((((TILE_SIZE*57+DIFF4*3), (TILE_SIZE*12)-80), (150, 300))))),
         #1
         
         (4,(pygame.Rect((((TILE_SIZE*70), (TILE_SIZE*13)-80), (150, 300))))),
-        #1
-        (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*3), (TILE_SIZE*13)-80), (150, 300))))),
-        #0,5
-        (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*4), (TILE_SIZE*13)-80), (150, 300))))),
-        #0.5
         #REST
+        #REST
+        (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*5), (TILE_SIZE*13)-80), (150, 300))))),
+        #0,5
         (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*6), (TILE_SIZE*13)-80), (150, 300))))),
+        #0.5
+        (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*7), (TILE_SIZE*13)-80), (150, 300))))),
         #1
         
         (5,(pygame.Rect((((TILE_SIZE*83), (TILE_SIZE*12)-80), (150, 300))))),
@@ -125,6 +127,7 @@ def level11inputs(variables, events, player):
         (3,(pygame.Rect((((TILE_SIZE*57+DIFF4*3), (TILE_SIZE*12)-80), (150, 300))))),
         #1
         
+        (4,(pygame.Rect((((TILE_SIZE*70), (TILE_SIZE*13)-80), (150, 300))))),
         #REST
         #REST
         (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*5), (TILE_SIZE*13)-80), (150, 300))))),
@@ -196,7 +199,7 @@ def level11inputs(variables, events, player):
                             variables["start"] = 70*TILE_SIZE
                             variables["rock_x"] = variables["start"]
                             variables["max_hits"] = 4
-                            run = hit_rhythms(DIFF5*(6))
+                            run = hit_rhythms(DIFF5*(7))
                         elif foreground[i][0]==5:
                             variables["current_rocks"] = 5
                             variables["start"] = 83*TILE_SIZE
@@ -251,13 +254,15 @@ def level11inputs(variables, events, player):
         (2,(pygame.Rect((((TILE_SIZE*44+DIFF3*4), (TILE_SIZE*10)-80), (150, 300))))),
         #1
         
-        #REST
+        (3,(pygame.Rect((((TILE_SIZE*57), (TILE_SIZE*12)-80), (150, 300))))),
+        #1
         (3,(pygame.Rect((((TILE_SIZE*57+DIFF4), (TILE_SIZE*12)-80), (150, 300))))),
         #1
         #REST
         (3,(pygame.Rect((((TILE_SIZE*57+DIFF4*3), (TILE_SIZE*12)-80), (150, 300))))),
         #1
         
+        (4,(pygame.Rect((((TILE_SIZE*70), (TILE_SIZE*13)-80), (150, 300))))),
         #REST
         #REST
         (4,(pygame.Rect((((TILE_SIZE*70+DIFF5*5), (TILE_SIZE*13)-80), (150, 300))))),

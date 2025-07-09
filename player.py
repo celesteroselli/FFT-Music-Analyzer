@@ -46,11 +46,12 @@ class PlayerClass(pygame.sprite.Sprite):
         self.rect.y += dy
         hit_list = collision_test(self.rect, m_list)
         for tile in hit_list:
-            self.set_colliding(True)
             if dy > 0:
+                self.set_colliding(True)
                 self.rect.bottom = tile.top
-            if dy < 0:
-                pass
+            else:
+                self.set_colliding(False)
+                self.rect.top = tile.bottom
                 
     def kill(self, camera):
         camera.offset.x = 0

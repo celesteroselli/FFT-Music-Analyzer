@@ -154,7 +154,7 @@ def level9inputs(variables, events, player):
                             variables["current_rocks"] = 5
                             variables["start"] = 79*TILE_SIZE
                             variables["rock_x"] = variables["start"]
-                            variables["max_hits"] = 3
+                            variables["max_hits"] = 4
                             run = hit_rhythms(DIFF6*(variables["max_hits"]-1))
                         variables["hits"] = run[0]
                         variables["figure"] = run[1]

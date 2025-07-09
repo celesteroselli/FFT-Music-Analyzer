@@ -25,7 +25,6 @@ def setup():
     global notes_list
     notes_list = []
     
-    print("\n\n\n\n\n")
     c3 = music.note.Note("C3")
     notes_list.append(c3)
     csharp3 = music.note.Note("C#3")
@@ -234,7 +233,7 @@ def rhythm(r_max):
             smallest_peak = i
         new_list.append(i)
         
-    new_list = new_list - smallest_peak
+    new_list = new_list-smallest_peak
     
     divide_by = (new_list[len(new_list)-1]) / r_max
     

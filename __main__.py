@@ -42,10 +42,9 @@ def main():
     isdone = MutableInt(0)
 
     is_level = False
+    change_octave(types.get(e)[1])
 
     while running:
-        change_octave(types.get(e)[1])
-        print("get octave", get_octave())
         pygame_events = pygame.event.get()
         for event in pygame_events:
             if event.type == pygame.QUIT:
@@ -97,13 +96,13 @@ def main():
                     if (event.type==KEYDOWN) and (event.key == pygame.K_e):
                         if e<3:
                             e = e+1
+                            change_octave(types.get(e)[1])
                         else:
                             e=1
+                            change_octave(types.get(e)[1])
             else:
                 current_level = run[1]
-                print("unit/level:")
                 unit, level = run[2][0], run[2][1]
-                print(unit, level)
                 if (unit==1 and level==1):
                     is_gif = 0
                 elif (unit==4 and level==2) or (unit==2 and (level==2 or level==3 or level==4)):
@@ -113,7 +112,7 @@ def main():
                 current_lesson = lesson_content(unit, level, is_gif)
                 is_level = True
     
-        clock.tick(90)
+        clock.tick(110)
     
     pygame.quit()
     

@@ -59,7 +59,6 @@ def level1inputs(variables, events, player):
             
     for event in events:
         if event.type == pygame.MOUSEBUTTONUP:
-            print("mouse button up in level1 copy")
         # Check if the left mouse button was pressed (button 1)
             if event.button == 1:
                 # Get the mouse position at the time of the click
@@ -101,7 +100,7 @@ def level1setup(foreground, camera):
     
     temp_dict["orig_y1"] = 440 * get_octave()
     temp_dict["orig_y2"] = 500 * get_octave()
-    temp_dict["orig_y3"] = 500 * get_octave()
+    temp_dict["orig_y3"] = 600 * get_octave()
     temp_dict["orig_y4"] = 440 * get_octave()
     temp_dict["orig_y5"] = 600 * get_octave()
     temp_dict["orig_y6"] = 440 * get_octave()
