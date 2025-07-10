@@ -17,3 +17,5 @@ For more info on the research that went into Timbre, check out my [research post
 ## How to play
 
 Check out [this YouTube playlist](https://www.youtube.com/watch?v=BI68evIECis&list=PLCHmN06lzeeItfgoLSvbi7_AvC242EvAP) for video run-throughs of each level as well as the research presentation video.
+
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
