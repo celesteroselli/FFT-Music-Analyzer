@@ -36,7 +36,7 @@ def level3inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*10)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*12)), (300, 100)))),
         #extra one at end with no keyboard on top
         (pygame.Rect((((TILE_SIZE*88), (TILE_SIZE*11)), (300, 100)))),
     ]
@@ -68,7 +68,7 @@ def level3inputs(variables, events, player):
         (7,(pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*12.8)), (300, 300))))),
         (5,(pygame.Rect((((TILE_SIZE*62), (TILE_SIZE*12.8)), (300, 300))))),
         (3, (pygame.Rect((((TILE_SIZE*69), (TILE_SIZE*12.8)), (300, 300))))),
-        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*10.8)), (300, 300))))),
+        (6, (pygame.Rect((((TILE_SIZE*76), (TILE_SIZE*12.8)), (300, 300))))),
     ]
                 
     #things that kill the player

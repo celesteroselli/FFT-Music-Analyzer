@@ -27,9 +27,16 @@ levels = {
     7: (Level_7, (2,3)),
     8: (Level_8, (2,4)),
     9: (Level_9, (3,1)),
-    10: (Level_10, (3,2)),
-    11: (Level_11, (3,3)),
-    12: (Level_12, (3,4)),
+    #switched around levels 10-12 to make lessons make the most sense
+    #10 = mixed beat divisions
+    #11 = rests
+    #12 = subdivisions
+    #lesson 3, 2 = subdivisions
+    #lesson 3,3 = mixed beat divisions
+    #lesson 3,4 = rests
+    10: (Level_12, (3,2)),
+    11: (Level_10, (3,3)),
+    12: (Level_11, (3,4)),
     13: (Level_13, (4,1)),
     14: (Level_14, (4,2)),
     15: (Level_15, (4,3)),

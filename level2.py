@@ -35,11 +35,11 @@ def level2inputs(variables, events, player):
         (pygame.Rect((((TILE_SIZE*19), (TILE_SIZE*11)+(100)-(variables["y2_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*28), (TILE_SIZE*14)+(100)-(variables["y3_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*37), (TILE_SIZE*10)+(100)-(variables["y4_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*46), (TILE_SIZE*15)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*46), (TILE_SIZE*16)+(100)-(variables["y5_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*55), (TILE_SIZE*11)+(100)-(variables["y6_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*63), (TILE_SIZE*14)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*63), (TILE_SIZE*15)+(100)-(variables["y7_height"]*factor)), (300, 100)))),
         (pygame.Rect((((TILE_SIZE*73), (TILE_SIZE*9)+(100)-(variables["y8_height"]*factor)), (300, 100)))),
-        (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*14)+(100)-(variables["y9_height"]*factor)), (300, 100)))),
+        (pygame.Rect((((TILE_SIZE*82), (TILE_SIZE*15)+(100)-(variables["y9_height"]*factor)), (300, 100)))),
         (pygame.Rect((((0), (TILE_SIZE*20)), (TILE_SIZE*100, 50)))),
     ]
     
@@ -95,13 +95,13 @@ def level2setup(foreground, camera):
     
     temp_dict["killed"] = False
     
-    temp_dict["orig_y1"] = 440 * get_octave()
-    temp_dict["orig_y2"] = 500 * get_octave()
+    temp_dict["orig_y1"] = 500 * get_octave()
+    temp_dict["orig_y2"] = 600 * get_octave()
     temp_dict["orig_y3"] = 500 * get_octave()
-    temp_dict["orig_y4"] = 440 * get_octave()
-    temp_dict["orig_y5"] = 500 * get_octave()
-    temp_dict["orig_y6"] = 440 * get_octave()
-    temp_dict["orig_y7"] = 500 * get_octave()
+    temp_dict["orig_y4"] = 550 * get_octave()
+    temp_dict["orig_y5"] = 590 * get_octave()
+    temp_dict["orig_y6"] = 620 * get_octave()
+    temp_dict["orig_y7"] = 700 * get_octave()
     temp_dict["orig_y8"] = 600 * get_octave()
     temp_dict["orig_y9"] = 500 * get_octave()
     
@@ -109,28 +109,28 @@ def level2setup(foreground, camera):
     temp_dict["y1_max"] = temp_dict["orig_y1"] + 160
     
     #lower
-    temp_dict["y2_max"] = temp_dict["orig_y2"] - 100
+    temp_dict["y2_max"] = temp_dict["orig_y2"] - 160
     
     #higher
-    temp_dict["y3_max"] = temp_dict["orig_y3"] + 100
+    temp_dict["y3_max"] = temp_dict["orig_y3"] + 160
     
     #lower
-    temp_dict["y4_max"] = temp_dict["orig_y4"] - 100
+    temp_dict["y4_max"] = temp_dict["orig_y4"] - 160
     
     #higher
-    temp_dict["y5_max"] = temp_dict["orig_y5"] + 100
+    temp_dict["y5_max"] = temp_dict["orig_y5"] + 160
     
     #lower
-    temp_dict["y6_max"] = temp_dict["orig_y6"] - 100
+    temp_dict["y6_max"] = temp_dict["orig_y6"] - 160
     
     #higher
-    temp_dict["y7_max"] = temp_dict["orig_y7"] + 100
+    temp_dict["y7_max"] = temp_dict["orig_y7"] + 160
     
     #lower
-    temp_dict["y8_max"] = temp_dict["orig_y8"] - 100
+    temp_dict["y8_max"] = temp_dict["orig_y8"] - 160
     
     #higher
-    temp_dict["y9_max"] = temp_dict["orig_y9"] + 100
+    temp_dict["y9_max"] = temp_dict["orig_y9"] + 160
     
     temp_dict["y1"] = temp_dict["orig_y1"]
     temp_dict["y2"] = temp_dict["orig_y2"]
@@ -166,7 +166,7 @@ def level2dialogue(variables, player):
         variables["dialogue_on"] = True
         return variables["wrong"]
     
-    if ((player.rect.x > 93*TILE_SIZE) and (variables["dialogue_count"]==4)):
+    if ((player.rect.x > 93*TILE_SIZE)):
         variables["dialogue_on"] = True
         variables["running"] = False
         return "congrats! you finished the level!"

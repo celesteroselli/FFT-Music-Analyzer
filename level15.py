@@ -83,7 +83,7 @@ def level15setup(foreground, camera):
     temp_dict["running"] = True
     temp_dict["wrong"] = False
     
-    temp_dict["pitch_list"] = ["E", "D", "G", "A", "C#", "F", "E-", "B", "A#", "G#"]
+    temp_dict["pitch_list"] = ["E", "D", "C", "D#", "C#", "F", "E-", "F#", "G", "C-"]
     temp_dict["posx"] = [4, 15, 24, 32, 40, 48, 59, 72, 81, 88]
     temp_dict["posy"] = [14, 16, 16, 16, 15, 14, 14, 12, 12, 14]
     
